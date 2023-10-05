@@ -7,22 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52030B352AC4572300758202 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52030B342AC4572300758202 /* ApiClient.swift */; };
+		52030B372AC4692600758202 /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52030B362AC4692600758202 /* PostsList.swift */; };
+		52138A162AC8162500C75585 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52138A152AC8162500C75585 /* CoreData.swift */; };
+		52138A192AC8164700C75585 /* GS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52138A172AC8164700C75585 /* GS.xcdatamodeld */; };
+		52138A1F2AC8444600C75585 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52138A1E2AC8444600C75585 /* DataProvider.swift */; };
+		52138A292AC865BB00C75585 /* Posts.json in Resources */ = {isa = PBXBuildFile; fileRef = 52138A282AC865BB00C75585 /* Posts.json */; };
+		52138A2C2AC9BD7B00C75585 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52138A2B2AC9BD7B00C75585 /* Logger.swift */; };
+		52138A2F2AC9BDC700C75585 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 52138A2E2AC9BDC700C75585 /* Logging */; };
+		52138A332AC9DAE600C75585 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52138A322AC9DAE600C75585 /* PostDTO.swift */; };
 		523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */; };
-		523752C52AC1EF930007C48A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523752C42AC1EF930007C48A /* ContentView.swift */; };
 		523752C72AC1EF950007C48A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523752C62AC1EF950007C48A /* Assets.xcassets */; };
 		523752CA2AC1EF950007C48A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523752C92AC1EF950007C48A /* Preview Assets.xcassets */; };
+		523752D12AC1EFBB0007C48A /* CategoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523752D02AC1EFBB0007C48A /* CategoriesList.swift */; };
+		523752D42AC1F0380007C48A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 523752D32AC1F0380007C48A /* ComposableArchitecture */; };
+		523752D62AC1F2D80007C48A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523752D52AC1F2D80007C48A /* Models.swift */; };
+		523752D92AC1F8E60007C48A /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 523752D82AC1F8E60007C48A /* Categories.json */; };
+		523752DC2AC1FAF90007C48A /* DiskDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523752DB2AC1FAF90007C48A /* DiskDataLoader.swift */; };
+		5263957C2ACE8F1600C8D48A /* CategoryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263957B2ACE8F1600C8D48A /* CategoryDTO.swift */; };
+		52A81F472AC35F3D003D8F46 /* DataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81F462AC35F3D003D8F46 /* DataProviderTests.swift */; };
+		52F4EFC02AC30E8C00BAA6FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4EFBF2AC30E8C00BAA6FB /* AppDelegate.swift */; };
+		52F4EFC22AC30EC700BAA6FB /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4EFC12AC30EC700BAA6FB /* AppView.swift */; };
+		52F4EFC52AC342BC00BAA6FB /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4EFC42AC342BC00BAA6FB /* UserDefaultsClient.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		52A81F482AC35F3D003D8F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 523752B72AC1EF930007C48A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 523752BE2AC1EF930007C48A;
+			remoteInfo = GoldenSewingSUI;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		52030B342AC4572300758202 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		52030B362AC4692600758202 /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
+		52138A152AC8162500C75585 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		52138A182AC8164700C75585 /* GS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GS.xcdatamodel; sourceTree = "<group>"; };
+		52138A1E2AC8444600C75585 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		52138A282AC865BB00C75585 /* Posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Posts.json; sourceTree = "<group>"; };
+		52138A2B2AC9BD7B00C75585 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		52138A322AC9DAE600C75585 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		523752BF2AC1EF930007C48A /* GoldenSewingSUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldenSewingSUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenSewingSUIApp.swift; sourceTree = "<group>"; };
-		523752C42AC1EF930007C48A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		523752C62AC1EF950007C48A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		523752C92AC1EF950007C48A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		523752D02AC1EFBB0007C48A /* CategoriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesList.swift; sourceTree = "<group>"; };
+		523752D52AC1F2D80007C48A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		523752D82AC1F8E60007C48A /* Categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
+		523752DB2AC1FAF90007C48A /* DiskDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskDataLoader.swift; sourceTree = "<group>"; };
+		5263957B2ACE8F1600C8D48A /* CategoryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDTO.swift; sourceTree = "<group>"; };
+		52A81F442AC35F3D003D8F46 /* GoldenSewingSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldenSewingSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52A81F462AC35F3D003D8F46 /* DataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderTests.swift; sourceTree = "<group>"; };
+		52F4EFBF2AC30E8C00BAA6FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		52F4EFC12AC30EC700BAA6FB /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		52F4EFC42AC342BC00BAA6FB /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		523752BC2AC1EF930007C48A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52138A2F2AC9BDC700C75585 /* Logging in Frameworks */,
+				523752D42AC1F0380007C48A /* ComposableArchitecture in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52A81F412AC35F3D003D8F46 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -32,10 +86,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52030B332AC4571400758202 /* ApiClients */ = {
+			isa = PBXGroup;
+			children = (
+				52030B342AC4572300758202 /* ApiClient.swift */,
+			);
+			path = ApiClients;
+			sourceTree = "<group>";
+		};
+		52138A142AC8161000C75585 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				52138A152AC8162500C75585 /* CoreData.swift */,
+				52138A172AC8164700C75585 /* GS.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		52138A342AC9DB3D00C75585 /* CategoriesListFeature */ = {
+			isa = PBXGroup;
+			children = (
+				523752D02AC1EFBB0007C48A /* CategoriesList.swift */,
+			);
+			path = CategoriesListFeature;
+			sourceTree = "<group>";
+		};
 		523752B62AC1EF930007C48A = {
 			isa = PBXGroup;
 			children = (
 				523752C12AC1EF930007C48A /* GoldenSewingSUI */,
+				52A81F452AC35F3D003D8F46 /* GoldenSewingSUITests */,
 				523752C02AC1EF930007C48A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				523752BF2AC1EF930007C48A /* GoldenSewingSUI.app */,
+				52A81F442AC35F3D003D8F46 /* GoldenSewingSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,9 +132,17 @@
 		523752C12AC1EF930007C48A /* GoldenSewingSUI */ = {
 			isa = PBXGroup;
 			children = (
+				523752D52AC1F2D80007C48A /* Models.swift */,
+				5263957B2ACE8F1600C8D48A /* CategoryDTO.swift */,
+				52138A322AC9DAE600C75585 /* PostDTO.swift */,
+				52030B362AC4692600758202 /* PostsList.swift */,
 				523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */,
-				523752C42AC1EF930007C48A /* ContentView.swift */,
-				523752C62AC1EF950007C48A /* Assets.xcassets */,
+				52138A142AC8161000C75585 /* CoreData */,
+				52030B332AC4571400758202 /* ApiClients */,
+				52F4EFBE2AC30E7100BAA6FB /* AppFeature */,
+				52138A342AC9DB3D00C75585 /* CategoriesListFeature */,
+				523752DA2AC1FADE0007C48A /* Dependencies */,
+				523752D72AC1F8CB0007C48A /* Resources */,
 				523752C82AC1EF950007C48A /* Preview Content */,
 			);
 			path = GoldenSewingSUI;
@@ -65,6 +154,44 @@
 				523752C92AC1EF950007C48A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		523752D72AC1F8CB0007C48A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				523752C62AC1EF950007C48A /* Assets.xcassets */,
+				523752D82AC1F8E60007C48A /* Categories.json */,
+				52138A282AC865BB00C75585 /* Posts.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		523752DA2AC1FADE0007C48A /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				52138A1E2AC8444600C75585 /* DataProvider.swift */,
+				523752DB2AC1FAF90007C48A /* DiskDataLoader.swift */,
+				52F4EFC42AC342BC00BAA6FB /* UserDefaultsClient.swift */,
+				52138A2B2AC9BD7B00C75585 /* Logger.swift */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		52A81F452AC35F3D003D8F46 /* GoldenSewingSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				52A81F462AC35F3D003D8F46 /* DataProviderTests.swift */,
+			);
+			path = GoldenSewingSUITests;
+			sourceTree = "<group>";
+		};
+		52F4EFBE2AC30E7100BAA6FB /* AppFeature */ = {
+			isa = PBXGroup;
+			children = (
+				52F4EFBF2AC30E8C00BAA6FB /* AppDelegate.swift */,
+				52F4EFC12AC30EC700BAA6FB /* AppView.swift */,
+			);
+			path = AppFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,9 +210,31 @@
 			dependencies = (
 			);
 			name = GoldenSewingSUI;
+			packageProductDependencies = (
+				523752D32AC1F0380007C48A /* ComposableArchitecture */,
+				52138A2E2AC9BDC700C75585 /* Logging */,
+			);
 			productName = GoldenSewingSUI;
 			productReference = 523752BF2AC1EF930007C48A /* GoldenSewingSUI.app */;
 			productType = "com.apple.product-type.application";
+		};
+		52A81F432AC35F3D003D8F46 /* GoldenSewingSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52A81F4A2AC35F3D003D8F46 /* Build configuration list for PBXNativeTarget "GoldenSewingSUITests" */;
+			buildPhases = (
+				52A81F402AC35F3D003D8F46 /* Sources */,
+				52A81F412AC35F3D003D8F46 /* Frameworks */,
+				52A81F422AC35F3D003D8F46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52A81F492AC35F3D003D8F46 /* PBXTargetDependency */,
+			);
+			name = GoldenSewingSUITests;
+			productName = GoldenSewingSUITests;
+			productReference = 52A81F442AC35F3D003D8F46 /* GoldenSewingSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -100,6 +249,10 @@
 					523752BE2AC1EF930007C48A = {
 						CreatedOnToolsVersion = 15.0;
 					};
+					52A81F432AC35F3D003D8F46 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 523752BE2AC1EF930007C48A;
+					};
 				};
 			};
 			buildConfigurationList = 523752BA2AC1EF930007C48A /* Build configuration list for PBXProject "GoldenSewingSUI" */;
@@ -111,11 +264,16 @@
 				Base,
 			);
 			mainGroup = 523752B62AC1EF930007C48A;
+			packageReferences = (
+				523752D22AC1F0380007C48A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				52138A2D2AC9BDC700C75585 /* XCRemoteSwiftPackageReference "swift-log" */,
+			);
 			productRefGroup = 523752C02AC1EF930007C48A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				523752BE2AC1EF930007C48A /* GoldenSewingSUI */,
+				52A81F432AC35F3D003D8F46 /* GoldenSewingSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -125,8 +283,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523752D92AC1F8E60007C48A /* Categories.json in Resources */,
 				523752CA2AC1EF950007C48A /* Preview Assets.xcassets in Resources */,
 				523752C72AC1EF950007C48A /* Assets.xcassets in Resources */,
+				52138A292AC865BB00C75585 /* Posts.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52A81F422AC35F3D003D8F46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,12 +304,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				523752C52AC1EF930007C48A /* ContentView.swift in Sources */,
+				52138A192AC8164700C75585 /* GS.xcdatamodeld in Sources */,
+				52030B372AC4692600758202 /* PostsList.swift in Sources */,
+				5263957C2ACE8F1600C8D48A /* CategoryDTO.swift in Sources */,
+				523752D62AC1F2D80007C48A /* Models.swift in Sources */,
+				52030B352AC4572300758202 /* ApiClient.swift in Sources */,
+				52138A162AC8162500C75585 /* CoreData.swift in Sources */,
+				523752DC2AC1FAF90007C48A /* DiskDataLoader.swift in Sources */,
+				52F4EFC22AC30EC700BAA6FB /* AppView.swift in Sources */,
+				52F4EFC52AC342BC00BAA6FB /* UserDefaultsClient.swift in Sources */,
+				52138A2C2AC9BD7B00C75585 /* Logger.swift in Sources */,
 				523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */,
+				52F4EFC02AC30E8C00BAA6FB /* AppDelegate.swift in Sources */,
+				52138A332AC9DAE600C75585 /* PostDTO.swift in Sources */,
+				523752D12AC1EFBB0007C48A /* CategoriesList.swift in Sources */,
+				52138A1F2AC8444600C75585 /* DataProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52A81F402AC35F3D003D8F46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52A81F472AC35F3D003D8F46 /* DataProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52A81F492AC35F3D003D8F46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 523752BE2AC1EF930007C48A /* GoldenSewingSUI */;
+			targetProxy = 52A81F482AC35F3D003D8F46 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		523752CB2AC1EF950007C48A /* Debug */ = {
@@ -322,6 +518,42 @@
 			};
 			name = Release;
 		};
+		52A81F4B2AC35F3D003D8F46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3PTYV272Z4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kr.ssh.GoldenSewingSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoldenSewingSUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GoldenSewingSUI";
+			};
+			name = Debug;
+		};
+		52A81F4C2AC35F3D003D8F46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3PTYV272Z4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kr.ssh.GoldenSewingSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoldenSewingSUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GoldenSewingSUI";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -343,7 +575,61 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		52A81F4A2AC35F3D003D8F46 /* Build configuration list for PBXNativeTarget "GoldenSewingSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52A81F4B2AC35F3D003D8F46 /* Debug */,
+				52A81F4C2AC35F3D003D8F46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		52138A2D2AC9BDC700C75585 /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.3;
+			};
+		};
+		523752D22AC1F0380007C48A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		52138A2E2AC9BDC700C75585 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52138A2D2AC9BDC700C75585 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
+		};
+		523752D32AC1F0380007C48A /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 523752D22AC1F0380007C48A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		52138A172AC8164700C75585 /* GS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				52138A182AC8164700C75585 /* GS.xcdatamodel */,
+			);
+			currentVersion = 52138A182AC8164700C75585 /* GS.xcdatamodel */;
+			path = GS.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 523752B72AC1EF930007C48A /* Project object */;
 }
