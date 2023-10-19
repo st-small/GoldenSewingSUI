@@ -6,7 +6,7 @@ struct AppReducer: Reducer {
         var appDelegate: AppDelegateReducer.State = .init()
         var dataProvider: DataProvider.State = .init()
         var categoriesList: CategoriesListFeature.State = .init()
-        var postsList: PostsListFeature.State = .init()
+//        var postsList: PostsListFeature.State = .init()
     }
     enum Action: Equatable {
         case appDelegate(AppDelegateReducer.Action)
@@ -37,11 +37,12 @@ struct AppReducer: Reducer {
             case .postsListFeature:
                 return .none
             case let .dataProvider(.postsLoaded(cachedPosts)):
-                return .run { send in
-                    for post in cachedPosts {
-                        await send(.postsListFeature(.addPost(post)))
-                    }
-                }
+//                return .run { send in
+//                    for post in cachedPosts {
+//                        await send(.postsListFeature(.addPost(post)))
+//                    }
+//                }
+                return .none
             case let .dataProvider(.categoriesLoaded(cachedCategories)):
                 return .run { send in
                     for category in cachedCategories {

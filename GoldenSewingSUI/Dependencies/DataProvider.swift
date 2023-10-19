@@ -70,7 +70,7 @@ struct DataProvider: Reducer {
             case .loadDBData:
                 state.current = .loadingFromDB
                 return .run { send in
-                    let categories = try? await database.loadCategories(nil)
+                    let categories = try? await database.loadCategories()
                     if let categories, !categories.isEmpty {
                         await send(.categoriesLoaded(categories))
                         #warning("Add logic to update DB from API if last update was so far")
@@ -88,6 +88,14 @@ struct DataProvider: Reducer {
                         await send(.loadPostsDiskData)
                     }
                 }
+                .merge(with: .run(operation: { send in
+                    try await Task.sleep(nanoseconds: NSEC_PER_SEC)
+                    await send(.fetchCategoriesAPIData)
+                }))
+                .merge(with: .run(operation: { send in
+                    try await Task.sleep(nanoseconds: 3 * NSEC_PER_SEC)
+                    await send(.fetchPostsAPIData)
+                }))
             
             case .fetchCategoriesAPIData:
                 state.current = .loadingCategoriesAPI

@@ -1,14 +1,17 @@
 import ComposableArchitecture
+import SwiftUINavigation
 import SwiftUI
 
 struct CategoriesListFeature: Reducer {
     struct State: Equatable { 
         var categories: IdentifiedArrayOf<CategoryDTO> = []
+        var path = StackState<PostsListFeature.State>()
     }
     
     enum Action: Equatable { 
         case addCategory(CategoryDTO)
         case dropDatabase
+        case path(StackAction<PostsListFeature.State, PostsListFeature.Action>)
     }
     
     var body: some ReducerOf<Self> {
@@ -27,7 +30,12 @@ struct CategoriesListFeature: Reducer {
                         logger.error("🔴 Drop database error \(error.localizedDescription)")
                     }
                 }
+            case .path:
+                return .none
             }
+        }
+        .forEach(\.path, action: /Action.path) {
+            PostsListFeature()
         }
     }
 }
@@ -37,22 +45,29 @@ struct CategoriesListView: View {
     let store: StoreOf<CategoriesListFeature>
     
     var body: some View {
-        WithViewStore(store, observe: \.categories) { viewStore in
-            NavigationView {
-                List {
-                    ForEach(viewStore.state) { category in
-                        Text(category.title)
+        NavigationStackStore(store.scope(state: \.path, action: { .path($0) })) {
+            WithViewStore(store, observe: \.categories) { viewStore in
+                NavigationView {
+                    List {
+                        ForEach(viewStore.state) { category in
+                            NavigationLink(
+                                state: PostsListFeature.State(category: category),
+                                label: { Text(category.title) }
+                            )
+                        }
                     }
-                }
-                .navigationTitle("Categories")
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Drop database") {
-                            viewStore.send(.dropDatabase)
+                    .navigationTitle("Categories")
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button("Drop database") {
+                                viewStore.send(.dropDatabase)
+                            }
                         }
                     }
                 }
             }
+        } destination: { store in
+            PostsListView(store: store)
         }
     }
 }

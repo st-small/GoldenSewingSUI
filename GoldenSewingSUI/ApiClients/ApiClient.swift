@@ -11,9 +11,10 @@ struct APIClient: Sendable {
         var totalPagesURL: URL? {
             switch self {
             case .post:
-                return URL(string: "https://zolotoe-shitvo.kr.ua/wp-json/wp/v2/categories?per_page=100")
-            case .category:
                 return URL(string: "https://zolotoe-shitvo.kr.ua/wp-json/wp/v2/posts?per_page=100")
+                
+            case .category:
+                return URL(string: "https://zolotoe-shitvo.kr.ua/wp-json/wp/v2/categories?per_page=100")
             }
         }
     }

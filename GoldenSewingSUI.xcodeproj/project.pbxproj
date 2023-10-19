@@ -16,6 +16,8 @@
 		52138A2C2AC9BD7B00C75585 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52138A2B2AC9BD7B00C75585 /* Logger.swift */; };
 		52138A2F2AC9BDC700C75585 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 52138A2E2AC9BDC700C75585 /* Logging */; };
 		52138A332AC9DAE600C75585 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52138A322AC9DAE600C75585 /* PostDTO.swift */; };
+		5228861E2AD9B4BD000BBD00 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 5228861D2AD9B4BD000BBD00 /* SwiftUINavigation */; };
+		522D6F362AE1928D002480AC /* all_DB.json in Resources */ = {isa = PBXBuildFile; fileRef = 522D6F352AE191FD002480AC /* all_DB.json */; };
 		523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */; };
 		523752C72AC1EF950007C48A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523752C62AC1EF950007C48A /* Assets.xcassets */; };
 		523752CA2AC1EF950007C48A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523752C92AC1EF950007C48A /* Preview Assets.xcassets */; };
@@ -50,6 +52,7 @@
 		52138A282AC865BB00C75585 /* Posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Posts.json; sourceTree = "<group>"; };
 		52138A2B2AC9BD7B00C75585 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		52138A322AC9DAE600C75585 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
+		522D6F352AE191FD002480AC /* all_DB.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = all_DB.json; sourceTree = "<group>"; };
 		523752BF2AC1EF930007C48A /* GoldenSewingSUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldenSewingSUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenSewingSUIApp.swift; sourceTree = "<group>"; };
 		523752C62AC1EF950007C48A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 			files = (
 				52138A2F2AC9BDC700C75585 /* Logging in Frameworks */,
 				523752D42AC1F0380007C48A /* ComposableArchitecture in Frameworks */,
+				5228861E2AD9B4BD000BBD00 /* SwiftUINavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,12 +115,20 @@
 			path = CategoriesListFeature;
 			sourceTree = "<group>";
 		};
+		5228861C2AD9B4BD000BBD00 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		523752B62AC1EF930007C48A = {
 			isa = PBXGroup;
 			children = (
 				523752C12AC1EF930007C48A /* GoldenSewingSUI */,
 				52A81F452AC35F3D003D8F46 /* GoldenSewingSUITests */,
 				523752C02AC1EF930007C48A /* Products */,
+				5228861C2AD9B4BD000BBD00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,12 +147,10 @@
 				523752D52AC1F2D80007C48A /* Models.swift */,
 				5263957B2ACE8F1600C8D48A /* CategoryDTO.swift */,
 				52138A322AC9DAE600C75585 /* PostDTO.swift */,
-				52030B362AC4692600758202 /* PostsList.swift */,
 				523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */,
 				52138A142AC8161000C75585 /* CoreData */,
 				52030B332AC4571400758202 /* ApiClients */,
-				52F4EFBE2AC30E7100BAA6FB /* AppFeature */,
-				52138A342AC9DB3D00C75585 /* CategoriesListFeature */,
+				5263957F2ACE99B400C8D48A /* Features */,
 				523752DA2AC1FADE0007C48A /* Dependencies */,
 				523752D72AC1F8CB0007C48A /* Resources */,
 				523752C82AC1EF950007C48A /* Preview Content */,
@@ -162,6 +172,7 @@
 				523752C62AC1EF950007C48A /* Assets.xcassets */,
 				523752D82AC1F8E60007C48A /* Categories.json */,
 				52138A282AC865BB00C75585 /* Posts.json */,
+				522D6F352AE191FD002480AC /* all_DB.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -175,6 +186,24 @@
 				52138A2B2AC9BD7B00C75585 /* Logger.swift */,
 			);
 			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		5263957D2ACE998C00C8D48A /* PostsListFeature */ = {
+			isa = PBXGroup;
+			children = (
+				52030B362AC4692600758202 /* PostsList.swift */,
+			);
+			path = PostsListFeature;
+			sourceTree = "<group>";
+		};
+		5263957F2ACE99B400C8D48A /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				52F4EFBE2AC30E7100BAA6FB /* AppFeature */,
+				52138A342AC9DB3D00C75585 /* CategoriesListFeature */,
+				5263957D2ACE998C00C8D48A /* PostsListFeature */,
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 		52A81F452AC35F3D003D8F46 /* GoldenSewingSUITests */ = {
@@ -213,6 +242,7 @@
 			packageProductDependencies = (
 				523752D32AC1F0380007C48A /* ComposableArchitecture */,
 				52138A2E2AC9BDC700C75585 /* Logging */,
+				5228861D2AD9B4BD000BBD00 /* SwiftUINavigation */,
 			);
 			productName = GoldenSewingSUI;
 			productReference = 523752BF2AC1EF930007C48A /* GoldenSewingSUI.app */;
@@ -267,6 +297,7 @@
 			packageReferences = (
 				523752D22AC1F0380007C48A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				52138A2D2AC9BDC700C75585 /* XCRemoteSwiftPackageReference "swift-log" */,
+				52DCF8D02AD9B2C9006226B6 /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
 			);
 			productRefGroup = 523752C02AC1EF930007C48A /* Products */;
 			projectDirPath = "";
@@ -284,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				523752D92AC1F8E60007C48A /* Categories.json in Resources */,
+				522D6F362AE1928D002480AC /* all_DB.json in Resources */,
 				523752CA2AC1EF950007C48A /* Preview Assets.xcassets in Resources */,
 				523752C72AC1EF950007C48A /* Assets.xcassets in Resources */,
 				52138A292AC865BB00C75585 /* Posts.json in Resources */,
@@ -599,8 +631,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
-				kind = exactVersion;
-				version = 1.0.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		52DCF8D02AD9B2C9006226B6 /* XCRemoteSwiftPackageReference "swiftui-navigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swiftui-navigation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -610,6 +650,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 52138A2D2AC9BDC700C75585 /* XCRemoteSwiftPackageReference "swift-log" */;
 			productName = Logging;
+		};
+		5228861D2AD9B4BD000BBD00 /* SwiftUINavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52DCF8D02AD9B2C9006226B6 /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
+			productName = SwiftUINavigation;
 		};
 		523752D32AC1F0380007C48A /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;

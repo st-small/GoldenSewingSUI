@@ -25,7 +25,7 @@ struct CoreData: Sendable {
     var savePost: @Sendable (PostDTO) async throws -> Void
     var dropPosts: @Sendable () async throws -> Void
     
-    var loadCategories: @Sendable (NSPredicate?) async throws -> [CategoryDTO]
+    var loadCategories: @Sendable () async throws -> [CategoryDTO]
     var saveCategory: @Sendable (CategoryDTO) async throws -> Void
     var dropCategories: @Sendable () async throws -> Void
 }
@@ -33,9 +33,9 @@ struct CoreData: Sendable {
 extension CoreData: DependencyKey {
     static let liveValue = Self(
         loadPosts: { predicate in
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+            let request = Post.fetchRequest()
             request.predicate = predicate
-            let posts = (try ContextContainer.shared.context.fetch(request) as? [Post]) ?? []
+            let posts = try ContextContainer.shared.context.fetch(request)
             
             return posts.map { .init(from: $0) }
         },
@@ -43,13 +43,14 @@ extension CoreData: DependencyKey {
             let context = ContextContainer.shared.context
             guard let newPost = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context) as? Post else { return }
             newPost.id = post.id
+            newPost.title = post.title
+            newPost.category = post.categories.first ?? -1
             
             try context.save()
         },
         dropPosts: { try dropEntities(with: "Post") },
-        loadCategories: { predicate in
+        loadCategories: {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
-            request.predicate = predicate
             let categories = (try ContextContainer.shared.context.fetch(request) as? [Category]) ?? []
             
             return categories.map { .init(from: $0) }
@@ -77,19 +78,19 @@ extension CoreData: DependencyKey {
     }
     
     static let testValue = Self(
-        loadPosts: { _ in return [] },
+        loadPosts: { _ in [] },
         savePost: { _ in },
         dropPosts: { },
-        loadCategories: { _ in return [] },
+        loadCategories: { [] },
         saveCategory: { _ in },
         dropCategories: { }
     )
     
     static let mock = Self(
-        loadPosts: { _ in return [PostDTO.mock] },
+        loadPosts: { _ in [PostDTO.mock] },
         savePost: { _ in },
         dropPosts: { },
-        loadCategories: { _ in return [CategoryDTO.mock] },
+        loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
         dropCategories: { }
     )
