@@ -3,13 +3,13 @@ import CoreData
 import SwiftUI
 
 struct PostsListFeature: Reducer {
-    struct State: Equatable { 
+    struct State: Equatable {
         var category: CategoryDTO
         var posts: IdentifiedArrayOf<PostDTO> = []
     }
     enum Action: Equatable { 
-        case onAppear
-        case loadPosts([PostDTO])
+//        case onAppear
+//        case loadPosts([PostDTO])
     }
     
     @Dependency(\.coreData) var database
@@ -17,15 +17,15 @@ struct PostsListFeature: Reducer {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action { 
-            case .onAppear:
-                let categoryID = state.category.id
-                return .run { send in
-                    let predicate = NSPredicate(format: "category == %d", categoryID)
-                    await send(.loadPosts(try await database.loadPosts(predicate)))
-                }
-            case let .loadPosts(posts):
-                state.posts.append(contentsOf: posts)
-                return .none
+//            case .onAppear:
+//                let categoryID = state.category.id
+//                return .run { send in
+//                    let predicate = NSPredicate(format: "category == %d", categoryID)
+//                    await send(.loadPosts(try await database.loadPosts(predicate)))
+//                }
+//            case let .loadPosts(posts):
+//                state.posts.append(contentsOf: posts)
+//                return .none
             }
         }
     }
@@ -41,23 +41,22 @@ struct PostsListView: View {
                     Text(post.title)
                 }
             }
-            .navigationTitle("Category \(viewStore.category.id) \(viewStore.category.title)")
-        }
-        .onAppear {
-            store.send(.onAppear)
+            .navigationBarTitle(viewStore.category.title)
         }
     }
 }
 
 #Preview {
-    PostsListView(
-        store: Store(
-            initialState: PostsListFeature.State(
-                category: CategoryDTO.mock,
-                posts: [PostDTO.mock]
-            )
-        ) {
-            PostsListFeature()
-        }
-    )
+    NavigationStack {
+        PostsListView(
+            store: Store(
+                initialState: PostsListFeature.State(
+                    category: CategoryDTO.mock,
+                    posts: [PostDTO.mock]
+                )
+            ) {
+                PostsListFeature()
+            }
+        )
+    }
 }

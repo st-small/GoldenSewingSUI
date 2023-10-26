@@ -5,6 +5,7 @@ import SwiftUI
 struct CategoriesListFeature: Reducer {
     struct State: Equatable {
         var categories: IdentifiedArrayOf<CategoryDTO> = []
+        var path = StackState<PostsListFeature.State>()
         
         init(categories: [CategoryDTO] = []) {
             if categories.isEmpty {
@@ -19,6 +20,7 @@ struct CategoriesListFeature: Reducer {
     enum Action: Equatable {
         case addCategory(CategoryDTO)
         case dropCategoriesTapped
+        case path(StackAction<PostsListFeature.State, PostsListFeature.Action>)
     }
     
     @Dependency(\.coreData) var dataBase
@@ -33,7 +35,12 @@ struct CategoriesListFeature: Reducer {
                 return .run { send in
                     try await dataBase.dropCategories()
                 }
+            case .path:
+                return .none
             }
+        }
+        .forEach(\.path, action: /Action.path) {
+            PostsListFeature()
         }
     }
 }
@@ -43,11 +50,13 @@ struct CategoriesListView: View {
     let store: StoreOf<CategoriesListFeature>
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            NavigationView {
+        NavigationStackStore(store.scope(state: \.path, action: { .path($0) })) {
+            WithViewStore(store, observe: { $0 }) { viewStore in
                 List {
                     ForEach(viewStore.categories) { category in
-                        Text(category.title)
+                        NavigationLink(state: PostsListFeature.State(category: category)) {
+                            Text(category.title)
+                        }
                     }
                 }
                 .navigationTitle("Categories")
@@ -59,6 +68,8 @@ struct CategoriesListView: View {
                     }
                 }
             }
+        } destination: { store in
+            PostsListView(store: store)
         }
     }
 }
