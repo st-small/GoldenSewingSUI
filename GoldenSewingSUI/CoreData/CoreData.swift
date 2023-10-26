@@ -21,11 +21,14 @@ final class ContextContainer {
 }
 
 struct CoreData: Sendable {
+    
+    static private let context = ContextContainer.shared.context
+    
     var loadPosts: @Sendable (NSPredicate?) async throws -> [PostDTO]
     var savePost: @Sendable (PostDTO) async throws -> Void
     var dropPosts: @Sendable () async throws -> Void
     
-    var loadCategories: @Sendable () async throws -> [CategoryDTO]
+    var loadCategories: @Sendable () throws -> [CategoryDTO]
     var saveCategory: @Sendable (CategoryDTO) async throws -> Void
     var dropCategories: @Sendable () async throws -> Void
 }
@@ -46,6 +49,8 @@ extension CoreData: DependencyKey {
             newPost.title = post.title
             newPost.category = post.categories.first ?? -1
             
+            
+            
             try context.save()
         },
         dropPosts: { try dropEntities(with: "Post") },
@@ -56,12 +61,26 @@ extension CoreData: DependencyKey {
             return categories.map { .init(from: $0) }
         },
         saveCategory: { category in
-            let context = ContextContainer.shared.context
-            guard let newCategory = NSEntityDescription.insertNewObject(forEntityName: "Category", into: context) as? Category else { return }
-            newCategory.id = category.id
-            newCategory.title = category.title
+            let request = Category.fetchRequest()
+            request.predicate = NSPredicate(format: "id = %d", category.id)
+            let storedCategories = (try? context.fetch(request)) ?? []
             
-            try context.save()
+            if let first = storedCategories.first {
+                first.title = category.title
+            } else {
+                let newCategory = Category(context: context)
+                newCategory.id = category.id
+                newCategory.title = category.title
+            }
+            
+            context.perform {
+                do {
+                    try context.save()
+                } catch {
+                    @Dependency(\.logger) var logger
+                    logger.error("error.localizedDescription")
+                }
+            }
         },
         dropCategories: { try dropEntities(with: "Category") }
     )

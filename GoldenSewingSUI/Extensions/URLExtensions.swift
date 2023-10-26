@@ -1,6 +1,4 @@
-import SwiftUI
-
-#warning("Придумать куда это все деть!!!")
+import Foundation
 
 extension URL {
 //    static let posts = Bundle.main.url(forResource: "Posts", withExtension: "json")!
