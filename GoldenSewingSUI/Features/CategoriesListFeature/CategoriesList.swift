@@ -5,7 +5,7 @@ import SwiftUI
 struct CategoriesListFeature: Reducer {
     struct State: Equatable {
         var categories: IdentifiedArrayOf<CategoryDTO> = []
-        var path = StackState<PostsListFeature.State>()
+        var path = StackState<Path.State>()
         
         init(categories: [CategoryDTO] = []) {
             if categories.isEmpty {
@@ -20,7 +20,8 @@ struct CategoriesListFeature: Reducer {
     enum Action: Equatable {
         case addCategory(CategoryDTO)
         case dropCategoriesTapped
-        case path(StackAction<PostsListFeature.State, PostsListFeature.Action>)
+        case selectCategory(CategoryDTO)
+        case path(StackAction<Path.State, Path.Action>)
     }
     
     @Dependency(\.coreData) var dataBase
@@ -35,12 +36,36 @@ struct CategoriesListFeature: Reducer {
                 return .run { send in
                     try await dataBase.dropCategories()
                 }
+            case let .selectCategory(category):
+                state.path.append(.posts(.init(category: category)))
+                return .none
+            case let .path(.element(id: _, action: .posts(.delegate(.postDetail(value))))):
+                state.path.append(.posts(.init(category: .mock)))
+                return .none
             case .path:
                 return .none
             }
         }
         .forEach(\.path, action: /Action.path) {
-            PostsListFeature()
+            Path()
+        }
+    }
+    
+    struct Path: Reducer {
+        enum State: Equatable {
+            case posts(PostsListFeature.State)
+            case postDetail(PostsListFeature.State)
+        }
+        
+        enum Action: Equatable {
+            case posts(PostsListFeature.Action)
+            case postDetail(PostsListFeature.Action)
+        }
+        
+        var body: some ReducerOf<Self> {
+            Scope(state: /State.posts, action: /Action.posts) {
+                PostsListFeature()
+            }
         }
     }
 }
@@ -54,9 +79,10 @@ struct CategoriesListView: View {
             WithViewStore(store, observe: { $0 }) { viewStore in
                 List {
                     ForEach(viewStore.categories) { category in
-                        NavigationLink(state: PostsListFeature.State(category: category)) {
-                            Text(category.title)
-                        }
+                        Text(category.title)
+                            .onTapGesture {
+                                viewStore.send(.selectCategory(category))
+                            }
                     }
                 }
                 .navigationTitle("Categories")
@@ -69,7 +95,16 @@ struct CategoriesListView: View {
                 }
             }
         } destination: { store in
-            PostsListView(store: store)
+            switch store {
+            case .posts:
+                CaseLet(/CategoriesListFeature.Path.State.posts, action: CategoriesListFeature.Path.Action.posts) { store in
+                    PostsListView(store: store)
+                }
+            case .postDetail:
+                CaseLet(/CategoriesListFeature.Path.State.posts, action: CategoriesListFeature.Path.Action.posts) { store in
+                    PostsListView(store: store)
+                }
+            }
         }
     }
 }

@@ -10,13 +10,18 @@ struct PostsListFeature: Reducer {
     enum Action: Equatable { 
 //        case onAppear
 //        case loadPosts([PostDTO])
+        case delegate(Delegate)
+        
+        enum Delegate: Equatable {
+            case postDetail(PostDTO)
+        }
     }
     
     @Dependency(\.coreData) var database
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
-            switch action { 
+//            switch action { 
 //            case .onAppear:
 //                let categoryID = state.category.id
 //                return .run { send in
@@ -26,7 +31,8 @@ struct PostsListFeature: Reducer {
 //            case let .loadPosts(posts):
 //                state.posts.append(contentsOf: posts)
 //                return .none
-            }
+//            }
+            return .none
         }
     }
 }
@@ -39,6 +45,9 @@ struct PostsListView: View {
             List {
                 ForEach(viewStore.posts) { post in
                     Text(post.title)
+                        .onTapGesture {
+                            viewStore.send(.delegate(.postDetail(post)))
+                        }
                 }
             }
             .navigationBarTitle(viewStore.category.title)
