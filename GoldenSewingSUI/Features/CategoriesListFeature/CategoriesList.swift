@@ -40,8 +40,7 @@ struct CategoriesListFeature: Reducer {
                 state.path.append(.posts(.init(category: category)))
                 return .none
             case let .path(.element(id: _, action: .posts(.delegate(.postDetail(value))))):
-                #warning("Добавить поддержку экрана детального просмотра")
-                state.path.append(.posts(.init(category: .mock)))
+                state.path.append(.postDetail(.init(post: value)))
                 return .none
             case .path:
                 return .none
@@ -55,17 +54,20 @@ struct CategoriesListFeature: Reducer {
     struct Path: Reducer {
         enum State: Equatable {
             case posts(PostsListFeature.State)
-            case postDetail(PostsListFeature.State)
+            case postDetail(PostDetailFeature.State)
         }
         
         enum Action: Equatable {
             case posts(PostsListFeature.Action)
-            case postDetail(PostsListFeature.Action)
+            case postDetail(PostDetailFeature.Action)
         }
         
         var body: some ReducerOf<Self> {
             Scope(state: /State.posts, action: /Action.posts) {
                 PostsListFeature()
+            }
+            Scope(state: /State.postDetail, action: /Action.postDetail) {
+                PostDetailFeature()
             }
         }
     }
@@ -102,8 +104,8 @@ struct CategoriesListView: View {
                     PostsListView(store: store)
                 }
             case .postDetail:
-                CaseLet(/CategoriesListFeature.Path.State.posts, action: CategoriesListFeature.Path.Action.posts) { store in
-                    PostsListView(store: store)
+                CaseLet(/CategoriesListFeature.Path.State.postDetail, action: CategoriesListFeature.Path.Action.postDetail) { store in
+                    PostDetailView(store: store)
                 }
             }
         }

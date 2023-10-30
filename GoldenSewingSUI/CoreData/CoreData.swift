@@ -70,7 +70,7 @@ extension CoreData: DependencyKey {
                 }
             }
         },
-        dropPosts: { try await dropEntities(with: "Post") },
+        dropPosts: { try dropEntities(with: "Post") },
         loadCategories: {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
             let categories = (try ContextContainer.shared.context.fetch(request) as? [Category]) ?? []
@@ -102,7 +102,7 @@ extension CoreData: DependencyKey {
                 }
             }
         },
-        dropCategories: { try await dropEntities(with: "Category") },
+        dropCategories: { try dropEntities(with: "Category") },
         postsParentIDPredicate: { NSPredicate(format: "category = %d", $0) }
     )
     
