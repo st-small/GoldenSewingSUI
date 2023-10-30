@@ -41,7 +41,7 @@ struct CategoriesProvider: Reducer {
                             await send(.categoriesLoaded(categories))
                         }
                     } catch {
-                        logger.error("🔴 Load DB data error: \(error.localizedDescription)")
+                        logger.error("🔴 Load categories DB data error: \(error.localizedDescription)")
                         await send(.error(error.localizedDescription))
                     }
                 }
@@ -53,6 +53,7 @@ struct CategoriesProvider: Reducer {
                 return .run { send in
                     do {
                         let categories = try await api.fetchCategories()
+                        logger.info("--- Fetched categories from API successfully ---")
                         await send(.categoriesLoaded(categories))
                     } catch {
                         logger.error("🔴 Fetch categories API data error: \(error.localizedDescription)")
@@ -67,7 +68,7 @@ struct CategoriesProvider: Reducer {
                     }
                 }
             case let .error(error):
-                logger.error("🔴 Data loading error \(error)")
+                logger.error("🔴 Categories data fetch error \(error)")
                 return .none
             }
         }

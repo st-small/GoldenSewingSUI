@@ -23,7 +23,7 @@ final class CategoriesDataProviderTests: XCTestCase {
         await store.receive(.categoriesLoaded([.mock]))
     }
     
-    // Load data base data when it is not empty
+    // Load database data when it is not empty
     func test_database_is_not_empty() async throws {
         let store = TestStore(initialState: CategoriesProvider.State()) {
             CategoriesProvider()

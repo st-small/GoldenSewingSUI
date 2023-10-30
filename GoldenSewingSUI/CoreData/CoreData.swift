@@ -45,15 +45,32 @@ extension CoreData: DependencyKey {
             return posts.map { .init(from: $0) }
         },
         savePost: { post in
-            let context = ContextContainer.shared.context
-            guard let newPost = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context) as? Post else { return }
-            newPost.id = post.id
-            newPost.title = post.title
-            newPost.category = post.categories.first ?? -1
+            let request = Post.fetchRequest()
+            request.predicate = NSPredicate(format: "id = %d", post.id)
             
-            try context.save()
+            await MainActor.run {
+                let storedPosts = (try? context.fetch(request)) ?? []
+                
+                if let first = storedPosts.first {
+                    first.title = post.title
+                } else {
+                    let newPost = Post(context: context)
+                    newPost.id = post.id
+                    newPost.title = post.title
+                    newPost.category = post.categories.first ?? -1
+                }
+                
+                context.perform {
+                    do {
+                        try context.save()
+                    } catch {
+                        @Dependency(\.logger) var logger
+                        logger.error("error.localizedDescription")
+                    }
+                }
+            }
         },
-        dropPosts: { try dropEntities(with: "Post") },
+        dropPosts: { try await dropEntities(with: "Post") },
         loadCategories: {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
             let categories = (try ContextContainer.shared.context.fetch(request) as? [Category]) ?? []
@@ -63,26 +80,29 @@ extension CoreData: DependencyKey {
         saveCategory: { category in
             let request = Category.fetchRequest()
             request.predicate = NSPredicate(format: "id = %d", category.id)
-            let storedCategories = (try? context.fetch(request)) ?? []
             
-            if let first = storedCategories.first {
-                first.title = category.title
-            } else {
-                let newCategory = Category(context: context)
-                newCategory.id = category.id
-                newCategory.title = category.title
-            }
-            
-            context.perform {
-                do {
-                    try context.save()
-                } catch {
-                    @Dependency(\.logger) var logger
-                    logger.error("error.localizedDescription")
+            await MainActor.run {
+                let storedCategories = (try? context.fetch(request)) ?? []
+                
+                if let first = storedCategories.first {
+                    first.title = category.title
+                } else {
+                    let newCategory = Category(context: context)
+                    newCategory.id = category.id
+                    newCategory.title = category.title
+                }
+                
+                context.perform {
+                    do {
+                        try context.save()
+                    } catch {
+                        @Dependency(\.logger) var logger
+                        logger.error("error.localizedDescription")
+                    }
                 }
             }
         },
-        dropCategories: { try dropEntities(with: "Category") },
+        dropCategories: { try await dropEntities(with: "Category") },
         postsParentIDPredicate: { NSPredicate(format: "category = %d", $0) }
     )
     
@@ -109,6 +129,21 @@ extension CoreData: DependencyKey {
     
     static let mock = Self(
         loadPosts: { _ in [PostDTO.mock] },
+        savePost: { _ in },
+        dropPosts: { },
+        loadCategories: { [CategoryDTO.mock] },
+        saveCategory: { _ in },
+        dropCategories: { },
+        postsParentIDPredicate: { _ in NSPredicate() }
+    )
+    
+    static let fail = Self(
+        loadPosts: { _ in
+            struct CoreDataError: Error, LocalizedError {
+                var errorDescription: String? { "CoreData load Posts error" }
+            }
+            throw CoreDataError()
+        },
         savePost: { _ in },
         dropPosts: { },
         loadCategories: { [CategoryDTO.mock] },

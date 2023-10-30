@@ -11,6 +11,7 @@ struct AppFeature: Reducer {
         var redTab = RedTabFeature.State()
         var greenTab = GreenTabFeature.State()
         var categoriesDataProvider = CategoriesProvider.State()
+        var postsDataProvider = PostsProvider.State()
         var selectedTab: Tab = .categories
     }
     
@@ -19,6 +20,7 @@ struct AppFeature: Reducer {
         case redTab(RedTabFeature.Action)
         case greenTab(GreenTabFeature.Action)
         case categoriesDataProvider(CategoriesProvider.Action)
+        case postsDataProvider(PostsProvider.Action)
         case selectedTabChanged(Tab)
     }
     
@@ -43,6 +45,9 @@ struct AppFeature: Reducer {
         }
         Scope(state: \.categoriesDataProvider, action: /Action.categoriesDataProvider) {
             CategoriesProvider()
+        }
+        Scope(state: \.postsDataProvider, action: /Action.postsDataProvider) {
+            PostsProvider()
         }
     }
 }
@@ -79,6 +84,7 @@ struct AppFeatureView: View {
             }
             .onAppear {
                 viewStore.send(.categoriesDataProvider(.loadDBData))
+                viewStore.send(.postsDataProvider(.loadDBData))
             }
         }
     }
