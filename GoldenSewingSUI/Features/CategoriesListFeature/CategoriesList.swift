@@ -40,6 +40,7 @@ struct CategoriesListFeature: Reducer {
                 state.path.append(.posts(.init(category: category)))
                 return .none
             case let .path(.element(id: _, action: .posts(.delegate(.postDetail(value))))):
+                #warning("Добавить поддержку экрана детального просмотра")
                 state.path.append(.posts(.init(category: .mock)))
                 return .none
             case .path:

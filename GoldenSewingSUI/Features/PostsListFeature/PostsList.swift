@@ -6,10 +6,20 @@ struct PostsListFeature: Reducer {
     struct State: Equatable {
         var category: CategoryDTO
         var posts: IdentifiedArrayOf<PostDTO> = []
+        
+        init(category: CategoryDTO, posts: [PostDTO] = []) {
+            self.category = category
+            
+            if posts.isEmpty {
+                @Dependency(\.postsDataSource) var data
+                data.loadPosts(category.id).forEach { self.posts.append($0) }
+            } else {
+                self.posts.append(contentsOf: posts)
+            }
+        }
     }
-    enum Action: Equatable { 
-//        case onAppear
-//        case loadPosts([PostDTO])
+    
+    enum Action: Equatable {
         case delegate(Delegate)
         
         enum Delegate: Equatable {
@@ -21,17 +31,6 @@ struct PostsListFeature: Reducer {
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
-//            switch action { 
-//            case .onAppear:
-//                let categoryID = state.category.id
-//                return .run { send in
-//                    let predicate = NSPredicate(format: "category == %d", categoryID)
-//                    await send(.loadPosts(try await database.loadPosts(predicate)))
-//                }
-//            case let .loadPosts(posts):
-//                state.posts.append(contentsOf: posts)
-//                return .none
-//            }
             return .none
         }
     }

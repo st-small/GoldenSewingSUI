@@ -24,13 +24,15 @@ struct CoreData: Sendable {
     
     static private let context = ContextContainer.shared.context
     
-    var loadPosts: @Sendable (NSPredicate?) async throws -> [PostDTO]
+    var loadPosts: @Sendable (NSPredicate?) throws -> [PostDTO]
     var savePost: @Sendable (PostDTO) async throws -> Void
     var dropPosts: @Sendable () async throws -> Void
     
     var loadCategories: @Sendable () throws -> [CategoryDTO]
     var saveCategory: @Sendable (CategoryDTO) async throws -> Void
     var dropCategories: @Sendable () async throws -> Void
+    
+    var postsParentIDPredicate: @Sendable (CategoryDTO.ID) -> NSPredicate
 }
 
 extension CoreData: DependencyKey {
@@ -48,8 +50,6 @@ extension CoreData: DependencyKey {
             newPost.id = post.id
             newPost.title = post.title
             newPost.category = post.categories.first ?? -1
-            
-            
             
             try context.save()
         },
@@ -82,7 +82,8 @@ extension CoreData: DependencyKey {
                 }
             }
         },
-        dropCategories: { try dropEntities(with: "Category") }
+        dropCategories: { try dropEntities(with: "Category") },
+        postsParentIDPredicate: { NSPredicate(format: "category = %d", $0) }
     )
     
     static private func dropEntities(with name: String) throws {
@@ -102,7 +103,8 @@ extension CoreData: DependencyKey {
         dropPosts: { },
         loadCategories: { [] },
         saveCategory: { _ in },
-        dropCategories: { }
+        dropCategories: { },
+        postsParentIDPredicate: { _ in NSPredicate() }
     )
     
     static let mock = Self(
@@ -111,7 +113,8 @@ extension CoreData: DependencyKey {
         dropPosts: { },
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
-        dropCategories: { }
+        dropCategories: { },
+        postsParentIDPredicate: { _ in NSPredicate() }
     )
 }
 
