@@ -6,6 +6,7 @@ final class ContextContainer {
     static let shared = ContextContainer()
     
     static private var persistentContainer: NSPersistentContainer {
+        Int32ArrayValueTransformer.register()
         let persistentContainer = NSPersistentContainer(name: "GS")
         persistentContainer.loadPersistentStores { _, error in
             guard let error else { return }
@@ -24,22 +25,19 @@ struct CoreData: Sendable {
     
     static private let context = ContextContainer.shared.context
     
-    var loadPosts: @Sendable (NSPredicate?) throws -> [PostDTO]
+    var loadPosts: @Sendable () throws -> [PostDTO]
     var savePost: @Sendable (PostDTO) async throws -> Void
     var dropPosts: @Sendable () async throws -> Void
     
     var loadCategories: @Sendable () throws -> [CategoryDTO]
     var saveCategory: @Sendable (CategoryDTO) async throws -> Void
     var dropCategories: @Sendable () async throws -> Void
-    
-    var postsParentIDPredicate: @Sendable (CategoryDTO.ID) -> NSPredicate
 }
 
 extension CoreData: DependencyKey {
     static let liveValue = Self(
-        loadPosts: { predicate in
+        loadPosts: {
             let request = Post.fetchRequest()
-            request.predicate = predicate
             let posts = try ContextContainer.shared.context.fetch(request)
             
             return posts.map { .init(from: $0) }
@@ -52,12 +50,23 @@ extension CoreData: DependencyKey {
                 let storedPosts = (try? context.fetch(request)) ?? []
                 
                 if let first = storedPosts.first {
+                    first.date = post.date
+                    first.modified = post.modified
+                    first.link = post.link
                     first.title = post.title
+                    first.mainImage = post.mainImage
+                    first.categories = post.categories
+                    first.gallery = post.gallery
                 } else {
                     let newPost = Post(context: context)
                     newPost.id = post.id
+                    newPost.date = post.date
+                    newPost.modified = post.modified
+                    newPost.link = post.link
                     newPost.title = post.title
-                    newPost.category = post.categories.first ?? -1
+                    newPost.mainImage = post.mainImage
+                    newPost.categories = post.categories
+                    newPost.gallery = post.gallery
                 }
                 
                 context.perform {
@@ -65,7 +74,7 @@ extension CoreData: DependencyKey {
                         try context.save()
                     } catch {
                         @Dependency(\.logger) var logger
-                        logger.error("error.localizedDescription")
+                        logger.error("\(error.localizedDescription)")
                     }
                 }
             }
@@ -97,13 +106,12 @@ extension CoreData: DependencyKey {
                         try context.save()
                     } catch {
                         @Dependency(\.logger) var logger
-                        logger.error("error.localizedDescription")
+                        logger.error("\(error.localizedDescription)")
                     }
                 }
             }
         },
-        dropCategories: { try dropEntities(with: "Category") },
-        postsParentIDPredicate: { NSPredicate(format: "category = %d", $0) }
+        dropCategories: { try dropEntities(with: "Category") }
     )
     
     static private func dropEntities(with name: String) throws {
@@ -118,27 +126,25 @@ extension CoreData: DependencyKey {
     }
     
     static let testValue = Self(
-        loadPosts: { _ in [] },
+        loadPosts: { [] },
         savePost: { _ in },
         dropPosts: { },
         loadCategories: { [] },
         saveCategory: { _ in },
-        dropCategories: { },
-        postsParentIDPredicate: { _ in NSPredicate() }
+        dropCategories: { }
     )
     
     static let mock = Self(
-        loadPosts: { _ in [PostDTO.mock] },
+        loadPosts: { [PostDTO.mock] },
         savePost: { _ in },
         dropPosts: { },
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
-        dropCategories: { },
-        postsParentIDPredicate: { _ in NSPredicate() }
+        dropCategories: { }
     )
     
     static let fail = Self(
-        loadPosts: { _ in
+        loadPosts: {
             struct CoreDataError: Error, LocalizedError {
                 var errorDescription: String? { "CoreData load Posts error" }
             }
@@ -148,8 +154,7 @@ extension CoreData: DependencyKey {
         dropPosts: { },
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
-        dropCategories: { },
-        postsParentIDPredicate: { _ in NSPredicate() }
+        dropCategories: { }
     )
 }
 

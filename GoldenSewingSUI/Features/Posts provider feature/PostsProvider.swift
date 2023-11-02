@@ -33,7 +33,7 @@ struct PostsProvider: Reducer {
                 logger.info("--- Try to fetch posts from DB ---")
                 return .run { send in
                     do {
-                        let posts = try dataBase.loadPosts(nil)
+                        let posts = try dataBase.loadPosts()
                         if posts.isEmpty {
                             await send(.loadPostsDiskData)
                         } else {
