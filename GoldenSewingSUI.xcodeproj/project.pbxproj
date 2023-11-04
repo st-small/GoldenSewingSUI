@@ -36,7 +36,6 @@
 		52A632512AF01DF800A179A8 /* PostsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A632502AF01DF800A179A8 /* PostsProvider.swift */; };
 		52A632552AF024DF00A179A8 /* PostsDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A632542AF024DF00A179A8 /* PostsDataProviderTests.swift */; };
 		52A632582AF034A200A179A8 /* PostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A632572AF034A200A179A8 /* PostDetail.swift */; };
-		52A71E002AF2CA5D00303415 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A71DFF2AF2CA5D00303415 /* StringExtensions.swift */; };
 		52A71E022AF2CA8200303415 /* GenericDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A71E012AF2CA8200303415 /* GenericDecodable.swift */; };
 		52A81F472AC35F3D003D8F46 /* CategoriesDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81F462AC35F3D003D8F46 /* CategoriesDataProviderTests.swift */; };
 		52F4EFC22AC30EC700BAA6FB /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4EFC12AC30EC700BAA6FB /* AppFeature.swift */; };
@@ -46,6 +45,8 @@
 		52FCA0202AF573F900BDDD64 /* AsyncImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA01F2AF573F900BDDD64 /* AsyncImageService.swift */; };
 		52FCA0222AF57F0800BDDD64 /* MediaDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0212AF57F0800BDDD64 /* MediaDTO.swift */; };
 		52FCA0252AF580B500BDDD64 /* MediaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0242AF580B500BDDD64 /* MediaProvider.swift */; };
+		52FCA0272AF68C3100BDDD64 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0262AF68C3100BDDD64 /* StringExtensions.swift */; };
+		52FCA0292AF68C5B00BDDD64 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0282AF68C5B00BDDD64 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +87,6 @@
 		52A632502AF01DF800A179A8 /* PostsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsProvider.swift; sourceTree = "<group>"; };
 		52A632542AF024DF00A179A8 /* PostsDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDataProviderTests.swift; sourceTree = "<group>"; };
 		52A632572AF034A200A179A8 /* PostDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetail.swift; sourceTree = "<group>"; };
-		52A71DFF2AF2CA5D00303415 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		52A71E012AF2CA8200303415 /* GenericDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDecodable.swift; sourceTree = "<group>"; };
 		52A81F442AC35F3D003D8F46 /* GoldenSewingSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldenSewingSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A81F462AC35F3D003D8F46 /* CategoriesDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataProviderTests.swift; sourceTree = "<group>"; };
@@ -97,6 +97,8 @@
 		52FCA01F2AF573F900BDDD64 /* AsyncImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageService.swift; sourceTree = "<group>"; };
 		52FCA0212AF57F0800BDDD64 /* MediaDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDTO.swift; sourceTree = "<group>"; };
 		52FCA0242AF580B500BDDD64 /* MediaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProvider.swift; sourceTree = "<group>"; };
+		52FCA0262AF68C3100BDDD64 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		52FCA0282AF68C5B00BDDD64 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				5219AF112AE415850083E7BE /* URLExtensions.swift */,
 				5225049C2AF1611E003D5C0C /* DictionaryExtensions.swift */,
 				52FCA0142AF4318B00BDDD64 /* DataExtensions.swift */,
+				52FCA0262AF68C3100BDDD64 /* StringExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -221,8 +224,8 @@
 		523752C12AC1EF930007C48A /* GoldenSewingSUI */ = {
 			isa = PBXGroup;
 			children = (
-				5219AF132AE4160C0083E7BE /* Models */,
 				523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */,
+				5219AF132AE4160C0083E7BE /* Models */,
 				52138A142AC8161000C75585 /* CoreData */,
 				52030B332AC4571400758202 /* ApiClients */,
 				5263957F2ACE99B400C8D48A /* Features */,
@@ -261,8 +264,8 @@
 				52138A2B2AC9BD7B00C75585 /* Logger.swift */,
 				5219AF1A2AE417750083E7BE /* CategoriesDataSource.swift */,
 				5298866B2AEC3859006716FF /* PostsDataSource.swift */,
-				52A71DFF2AF2CA5D00303415 /* StringExtensions.swift */,
 				52FCA01F2AF573F900BDDD64 /* AsyncImageService.swift */,
+				52FCA0282AF68C5B00BDDD64 /* ImageCache.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -457,10 +460,10 @@
 				52A632582AF034A200A179A8 /* PostDetail.swift in Sources */,
 				523752DC2AC1FAF90007C48A /* DiskDataLoader.swift in Sources */,
 				5219AF1E2AE418610083E7BE /* GreenTabFeature.swift in Sources */,
+				52FCA0272AF68C3100BDDD64 /* StringExtensions.swift in Sources */,
 				5219AF0F2AE3036C0083E7BE /* CollectionExtensions.swift in Sources */,
 				52FCA0202AF573F900BDDD64 /* AsyncImageService.swift in Sources */,
 				52A632512AF01DF800A179A8 /* PostsProvider.swift in Sources */,
-				52A71E002AF2CA5D00303415 /* StringExtensions.swift in Sources */,
 				52F4EFC22AC30EC700BAA6FB /* AppFeature.swift in Sources */,
 				5225049D2AF1611E003D5C0C /* DictionaryExtensions.swift in Sources */,
 				52F4EFC52AC342BC00BAA6FB /* UserDefaultsClient.swift in Sources */,
@@ -468,6 +471,7 @@
 				5298866C2AEC3859006716FF /* PostsDataSource.swift in Sources */,
 				5219AF122AE415850083E7BE /* URLExtensions.swift in Sources */,
 				52138A2C2AC9BD7B00C75585 /* Logger.swift in Sources */,
+				52FCA0292AF68C5B00BDDD64 /* ImageCache.swift in Sources */,
 				523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */,
 				52138A332AC9DAE600C75585 /* PostDTO.swift in Sources */,
 				52FCA0132AF4315500BDDD64 /* Int32ArrayValueTransformer.swift in Sources */,
