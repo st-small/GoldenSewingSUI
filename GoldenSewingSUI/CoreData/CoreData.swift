@@ -32,6 +32,8 @@ struct CoreData: Sendable {
     var loadCategories: @Sendable () throws -> [CategoryDTO]
     var saveCategory: @Sendable (CategoryDTO) async throws -> Void
     var dropCategories: @Sendable () async throws -> Void
+    
+    var saveMedia: @Sendable (MediaDTO) async throws -> Void
 }
 
 extension CoreData: DependencyKey {
@@ -111,7 +113,29 @@ extension CoreData: DependencyKey {
                 }
             }
         },
-        dropCategories: { try dropEntities(with: "Category") }
+        dropCategories: { try dropEntities(with: "Category") },
+        saveMedia: { media in
+            let request = Media.fetchRequest()
+            request.predicate = NSPredicate(format: "id = %d", media.id)
+            
+            await MainActor.run {
+                let storedMedia = (try? context.fetch(request)) ?? []
+                if storedMedia.isEmpty {
+                    let newMedia = Media(context: context)
+                    newMedia.id = media.id
+                    newMedia.sourceUrl = media.sourceUrl
+                }
+                
+                context.perform {
+                    do {
+                        try context.save()
+                    } catch {
+                        @Dependency(\.logger) var logger
+                        logger.error("\(error.localizedDescription)")
+                    }
+                }
+            }
+        }
     )
     
     static private func dropEntities(with name: String) throws {
@@ -131,7 +155,8 @@ extension CoreData: DependencyKey {
         dropPosts: { },
         loadCategories: { [] },
         saveCategory: { _ in },
-        dropCategories: { }
+        dropCategories: { },
+        saveMedia: { _ in }
     )
     
     static let mock = Self(
@@ -140,7 +165,8 @@ extension CoreData: DependencyKey {
         dropPosts: { },
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
-        dropCategories: { }
+        dropCategories: { },
+        saveMedia: { _ in }
     )
     
     static let fail = Self(
@@ -154,7 +180,8 @@ extension CoreData: DependencyKey {
         dropPosts: { },
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
-        dropCategories: { }
+        dropCategories: { },
+        saveMedia: { _ in }
     )
 }
 

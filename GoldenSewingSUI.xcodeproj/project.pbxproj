@@ -43,6 +43,9 @@
 		52F4EFC52AC342BC00BAA6FB /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4EFC42AC342BC00BAA6FB /* UserDefaultsClient.swift */; };
 		52FCA0132AF4315500BDDD64 /* Int32ArrayValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0122AF4315500BDDD64 /* Int32ArrayValueTransformer.swift */; };
 		52FCA0152AF4318B00BDDD64 /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0142AF4318B00BDDD64 /* DataExtensions.swift */; };
+		52FCA0202AF573F900BDDD64 /* AsyncImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA01F2AF573F900BDDD64 /* AsyncImageService.swift */; };
+		52FCA0222AF57F0800BDDD64 /* MediaDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0212AF57F0800BDDD64 /* MediaDTO.swift */; };
+		52FCA0252AF580B500BDDD64 /* MediaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0242AF580B500BDDD64 /* MediaProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +94,9 @@
 		52F4EFC42AC342BC00BAA6FB /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
 		52FCA0122AF4315500BDDD64 /* Int32ArrayValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int32ArrayValueTransformer.swift; sourceTree = "<group>"; };
 		52FCA0142AF4318B00BDDD64 /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
+		52FCA01F2AF573F900BDDD64 /* AsyncImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageService.swift; sourceTree = "<group>"; };
+		52FCA0212AF57F0800BDDD64 /* MediaDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDTO.swift; sourceTree = "<group>"; };
+		52FCA0242AF580B500BDDD64 /* MediaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,7 @@
 			children = (
 				5263957B2ACE8F1600C8D48A /* CategoryDTO.swift */,
 				52138A322AC9DAE600C75585 /* PostDTO.swift */,
+				52FCA0212AF57F0800BDDD64 /* MediaDTO.swift */,
 				52A71E012AF2CA8200303415 /* GenericDecodable.swift */,
 			);
 			path = Models;
@@ -255,6 +262,7 @@
 				5219AF1A2AE417750083E7BE /* CategoriesDataSource.swift */,
 				5298866B2AEC3859006716FF /* PostsDataSource.swift */,
 				52A71DFF2AF2CA5D00303415 /* StringExtensions.swift */,
+				52FCA01F2AF573F900BDDD64 /* AsyncImageService.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -278,6 +286,7 @@
 				5219AF142AE416B20083E7BE /* Red Tab feature */,
 				5219AF0A2AE2CD610083E7BE /* Categories provider feature */,
 				52A6324F2AF01DAA00A179A8 /* Posts provider feature */,
+				52FCA0232AF580A100BDDD64 /* Media provider feature */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -313,6 +322,14 @@
 				52F4EFC12AC30EC700BAA6FB /* AppFeature.swift */,
 			);
 			path = AppFeature;
+			sourceTree = "<group>";
+		};
+		52FCA0232AF580A100BDDD64 /* Media provider feature */ = {
+			isa = PBXGroup;
+			children = (
+				52FCA0242AF580B500BDDD64 /* MediaProvider.swift */,
+			);
+			path = "Media provider feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,6 +449,7 @@
 				52A71E022AF2CA8200303415 /* GenericDecodable.swift in Sources */,
 				52030B372AC4692600758202 /* PostsList.swift in Sources */,
 				5263957C2ACE8F1600C8D48A /* CategoryDTO.swift in Sources */,
+				52FCA0222AF57F0800BDDD64 /* MediaDTO.swift in Sources */,
 				5219AF0C2AE2CD780083E7BE /* CategoriesProvider.swift in Sources */,
 				5219AF162AE416D20083E7BE /* RedTabFeature.swift in Sources */,
 				52030B352AC4572300758202 /* ApiClient.swift in Sources */,
@@ -440,11 +458,13 @@
 				523752DC2AC1FAF90007C48A /* DiskDataLoader.swift in Sources */,
 				5219AF1E2AE418610083E7BE /* GreenTabFeature.swift in Sources */,
 				5219AF0F2AE3036C0083E7BE /* CollectionExtensions.swift in Sources */,
+				52FCA0202AF573F900BDDD64 /* AsyncImageService.swift in Sources */,
 				52A632512AF01DF800A179A8 /* PostsProvider.swift in Sources */,
 				52A71E002AF2CA5D00303415 /* StringExtensions.swift in Sources */,
 				52F4EFC22AC30EC700BAA6FB /* AppFeature.swift in Sources */,
 				5225049D2AF1611E003D5C0C /* DictionaryExtensions.swift in Sources */,
 				52F4EFC52AC342BC00BAA6FB /* UserDefaultsClient.swift in Sources */,
+				52FCA0252AF580B500BDDD64 /* MediaProvider.swift in Sources */,
 				5298866C2AEC3859006716FF /* PostsDataSource.swift in Sources */,
 				5219AF122AE415850083E7BE /* URLExtensions.swift in Sources */,
 				52138A2C2AC9BD7B00C75585 /* Logger.swift in Sources */,

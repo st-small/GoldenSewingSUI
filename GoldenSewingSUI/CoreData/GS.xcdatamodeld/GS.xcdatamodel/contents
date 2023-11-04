@@ -4,6 +4,10 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Media" representedClassName="Media" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sourceUrl" attributeType="URI"/>
+    </entity>
     <entity name="Post" representedClassName="Post" syncable="YES" codeGenerationType="class">
         <attribute name="categories" attributeType="Transformable" valueTransformerName="Int32ArrayValueTransformer" customClassName="[Int32]"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

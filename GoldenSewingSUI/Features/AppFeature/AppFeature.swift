@@ -12,6 +12,7 @@ struct AppFeature: Reducer {
         var greenTab = GreenTabFeature.State()
         var categoriesDataProvider = CategoriesProvider.State()
         var postsDataProvider = PostsProvider.State()
+        var mediaDataProvider = MediaProvider.State()
         var selectedTab: Tab = .categories
     }
     
@@ -21,6 +22,7 @@ struct AppFeature: Reducer {
         case greenTab(GreenTabFeature.Action)
         case categoriesDataProvider(CategoriesProvider.Action)
         case postsDataProvider(PostsProvider.Action)
+        case mediaDataProvider(MediaProvider.Action)
         case selectedTabChanged(Tab)
     }
     
@@ -48,6 +50,9 @@ struct AppFeature: Reducer {
         }
         Scope(state: \.postsDataProvider, action: /Action.postsDataProvider) {
             PostsProvider()
+        }
+        Scope(state: \.mediaDataProvider, action: /Action.mediaDataProvider) {
+            MediaProvider()
         }
     }
 }
@@ -85,6 +90,7 @@ struct AppFeatureView: View {
             .onAppear {
                 viewStore.send(.categoriesDataProvider(.loadDBData))
                 viewStore.send(.postsDataProvider(.loadDBData))
+                viewStore.send(.mediaDataProvider(.fetchAPIData))
             }
         }
     }

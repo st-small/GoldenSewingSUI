@@ -4,9 +4,10 @@ import Foundation
 struct APIClient: Sendable {
     var fetchCategories: @Sendable () async throws -> [CategoryDTO]
     var fetchPosts: @Sendable () async throws -> [PostDTO]
+    var fetchMedia: @Sendable () async throws -> [MediaDTO]
     
     enum ClientItemType {
-        case post, category
+        case post, category, media
         
         var totalPagesURL: URL? {
             switch self {
@@ -15,6 +16,9 @@ struct APIClient: Sendable {
                 
             case .category:
                 return URL(string: "https://zolotoe-shitvo.kr.ua/wp-json/wp/v2/categories?per_page=100")
+                
+            case .media:
+                return URL(string: "https://zolotoe-shitvo.kr.ua/wp-json/wp/v2/media?per_page=100")
             }
         }
     }
@@ -27,6 +31,9 @@ extension APIClient: DependencyKey {
             var categoriesResult: [CategoryDTO] = []
             
             for page in 1...categoriesCount {
+                @Dependency(\.logger) var logger
+                logger.info("--- Try to load categories \(page) page ---")
+                
                 let url = URL(string: "https://zolotoe-shitvo.kr.ua/wp-json/wp/v2/categories?page=\(page)&per_page=100")
                 let request = URLRequest(url: url!)
                 let (data, _) = try await URLSession.shared.data(for: request)
@@ -41,6 +48,9 @@ extension APIClient: DependencyKey {
             
             for page in 1...postsCount {
                 #warning("Реализовать нормальный реквест билдер!")
+                @Dependency(\.logger) var logger
+                logger.info("--- Try to load posts \(page) page ---")
+                
                 let url = URL(string: "https://zolotoe-shitvo.kr.ua/wp-json/wp/v2/posts?page=\(page)&per_page=100")
                 let request = URLRequest(url: url!)
                 let (data, _) = try await URLSession.shared.data(for: request)
@@ -49,12 +59,32 @@ extension APIClient: DependencyKey {
             }
             
             return postsResult
+        },
+        fetchMedia: {
+            let mediaCount = try await getTotalPagesCount(.media)
+            var mediaResult: [MediaDTO] = []
+            
+            for page in 1...mediaCount {
+                @Dependency(\.logger) var logger
+                logger.info("--- Try to load media \(page) page ---")
+                
+                let url = URL(string: "https://zolotoe-shitvo.kr.ua/wp-json/wp/v2/media?page=\(page)&per_page=100")
+                let request = URLRequest(url: url!)
+                let (data, _) = try await URLSession.shared.data(for: request)
+                
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                mediaResult.append(contentsOf: try decoder.decode([MediaDTO].self, from: data))
+            }
+            
+            return mediaResult
         }
     )
     
     static var testValue = Self(
         fetchCategories: { [CategoryDTO.mock] },
-        fetchPosts: { [PostDTO.mock] }
+        fetchPosts: { [PostDTO.mock] },
+        fetchMedia: { [MediaDTO.mock] }
     )
     
     static var errorValue = Self(
@@ -67,6 +97,12 @@ extension APIClient: DependencyKey {
         fetchPosts: {
             struct APIClientError: Error, LocalizedError {
                 var errorDescription: String? { "Posts API error" }
+            }
+            throw APIClientError()
+        },
+        fetchMedia: {
+            struct APIClientError: Error, LocalizedError {
+                var errorDescription: String? { "Media API error" }
             }
             throw APIClientError()
         }
