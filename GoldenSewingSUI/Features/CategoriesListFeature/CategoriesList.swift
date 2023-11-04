@@ -17,6 +17,22 @@ struct CategoriesListFeature: Reducer {
         }
     }
     
+    init() {
+        let searchImage = UIImage(resource: .searchIcon).withTintColor(UIColor(resource: .tint).withAlphaComponent(0.4), renderingMode: .alwaysOriginal)
+        UISearchBar.appearance().setImage(searchImage, for: .search, state: .normal)
+        
+        let clearImage = UIImage(systemName: "xmark.circle.fill")?.withTintColor(UIColor(resource: .tint).withAlphaComponent(0.4), renderingMode: .alwaysOriginal)
+        UISearchBar.appearance().setImage(clearImage, for: .clear, state: .normal)
+        
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor(resource: .searchBg)
+        UISearchTextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = NSAttributedString(
+            string: "Поиск",
+            attributes: [
+                .foregroundColor: UIColor(resource: .tint).withAlphaComponent(0.4),
+                .font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 17) ?? .systemFont(ofSize: 17)
+            ])
+    }
+    
     enum Action: Equatable {
         case addCategory(CategoryDTO)
         case dropCategoriesTapped
@@ -77,25 +93,65 @@ struct CategoriesListView: View {
     
     let store: StoreOf<CategoriesListFeature>
     
+    let columns = [
+        GridItem(.flexible(), spacing: 8),
+        GridItem(.flexible(), spacing: 0),
+    ]
+    
     var body: some View {
         NavigationStackStore(store.scope(state: \.path, action: { .path($0) })) {
             WithViewStore(store, observe: { $0 }) { viewStore in
-                List {
-                    ForEach(viewStore.categories) { category in
-                        Text(category.title)
-                            .onTapGesture {
-                                viewStore.send(.selectCategory(category))
+                ZStack {
+                    Image(.background)
+                        .resizable(resizingMode: .tile).ignoresSafeArea()
+                    ScrollView {
+                        LazyVGrid(columns: columns) {
+                            ForEach(viewStore.categories) { category in
+                                ZStack {
+                                    Image(.categoryBackground)
+                                        .resizable()
+                                        .scaledToFill()
+                                    
+                                    VStack {
+                                        category.image
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 40)
+                                        
+                                        Text(category.title)
+                                            .font(.custom("CyrillicOld", size: 13))
+                                            .foregroundStyle(Color(.title))
+                                            .multilineTextAlignment(.center)
+                                            .padding(.horizontal)
+                                    }
+                                }
+                                .frame(height: 93)
+                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .stroke(Color(.tint), lineWidth: 1)
+                                }
+                                .shadow(
+                                    color: Color(.categoryShadow),
+                                    radius: 8, x: 0, y: 2)
+                                .onTapGesture {
+                                    viewStore.send(.selectCategory(category))
+                                }
                             }
-                    }
-                }
-                .navigationTitle("Categories")
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Drop") {
-                            viewStore.send(.dropCategoriesTapped)
                         }
+                        .padding(.horizontal, 16)
                     }
                 }
+                .scrollContentBackground(.hidden)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbarBackground(Color(.main), for: .navigationBar)
+                .toolbar(content: {
+                    ToolbarItem(placement: .principal) {
+                        Text("Категории")
+                            .foregroundStyle(Color(.tint))
+                            .font(.custom("CyrillicOld", size: 17))
+                    }
+                })
             }
         } destination: { store in
             switch store {
@@ -109,13 +165,16 @@ struct CategoriesListView: View {
                 }
             }
         }
+        .searchable(text: .constant(""), prompt: "Поиск") {
+            
+        }
     }
 }
 
 #Preview {
     CategoriesListView(
         store: Store(
-            initialState: CategoriesListFeature.State(categories: [.mock])) {
+            initialState: CategoriesListFeature.State(categories: [.mock, .mock2])) {
         CategoriesListFeature()
     })
 }

@@ -66,27 +66,34 @@ struct AppFeatureView: View {
                 get: { $0.selectedTab },
                 send: AppFeature.Action.selectedTabChanged)
             ) {
-                CategoriesListView(store: store.scope(
-                    state: \.categories,
-                    action: AppFeature.Action.categoriesTab)
-                )
-                .tabItem { Text("Categories") }
-                .tag(Tab.categories)
-                
-                RedTabView(store: store.scope(
-                    state: \.redTab,
-                    action: AppFeature.Action.redTab)
-                )
-                .tabItem { Text("Red") }
-                .tag(Tab.red)
-                
-                GreenTabView(store: store.scope(
-                    state: \.greenTab,
-                    action: AppFeature.Action.greenTab)
-                )
-                .tabItem { Text("Green") }
-                .tag(Tab.green)
+                Group {
+                    CategoriesListView(store: store.scope(
+                        state: \.categories,
+                        action: AppFeature.Action.categoriesTab)
+                    )
+                    .tabItem {
+                        Label("Категории", image: .categoriesTabIcon)
+                    }
+                    .tag(Tab.categories)
+                    
+                    RedTabView(store: store.scope(
+                        state: \.redTab,
+                        action: AppFeature.Action.redTab)
+                    )
+                    .tabItem { Text("Red") }
+                    .tag(Tab.red)
+                    
+                    GreenTabView(store: store.scope(
+                        state: \.greenTab,
+                        action: AppFeature.Action.greenTab)
+                    )
+                    .tabItem { Text("Green") }
+                    .tag(Tab.green)
+                }
+                .toolbar(.visible, for: .tabBar)
+                .toolbarBackground(Color(.main), for: .tabBar)
             }
+            .accentColor(.tint)
             .onAppear {
                 viewStore.send(.categoriesDataProvider(.loadDBData))
                 viewStore.send(.postsDataProvider(.loadDBData))
@@ -94,4 +101,15 @@ struct AppFeatureView: View {
             }
         }
     }
+}
+
+#Preview {
+    AppFeatureView(
+        store: Store(
+            initialState: AppFeature.State(),
+            reducer: {
+                AppFeature()
+            }
+        )
+    )
 }

@@ -47,6 +47,7 @@
 		52FCA0252AF580B500BDDD64 /* MediaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0242AF580B500BDDD64 /* MediaProvider.swift */; };
 		52FCA0272AF68C3100BDDD64 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0262AF68C3100BDDD64 /* StringExtensions.swift */; };
 		52FCA0292AF68C5B00BDDD64 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0282AF68C5B00BDDD64 /* ImageCache.swift */; };
+		52FED0D82AF699CB00490D31 /* CyrillicOld.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52FED0D72AF699CB00490D31 /* CyrillicOld.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		52A71E012AF2CA8200303415 /* GenericDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDecodable.swift; sourceTree = "<group>"; };
 		52A81F442AC35F3D003D8F46 /* GoldenSewingSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldenSewingSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A81F462AC35F3D003D8F46 /* CategoriesDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataProviderTests.swift; sourceTree = "<group>"; };
+		52B8CD6A2AF69C1800962EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		52F4EFC12AC30EC700BAA6FB /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
 		52F4EFC42AC342BC00BAA6FB /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
 		52FCA0122AF4315500BDDD64 /* Int32ArrayValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int32ArrayValueTransformer.swift; sourceTree = "<group>"; };
@@ -99,6 +101,8 @@
 		52FCA0242AF580B500BDDD64 /* MediaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProvider.swift; sourceTree = "<group>"; };
 		52FCA0262AF68C3100BDDD64 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		52FCA0282AF68C5B00BDDD64 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		52FED0D62AF697D400490D31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		52FED0D72AF699CB00490D31 /* CyrillicOld.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CyrillicOld.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +228,7 @@
 		523752C12AC1EF930007C48A /* GoldenSewingSUI */ = {
 			isa = PBXGroup;
 			children = (
+				52B8CD6A2AF69C1800962EEF /* Info.plist */,
 				523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */,
 				5219AF132AE4160C0083E7BE /* Models */,
 				52138A142AC8161000C75585 /* CoreData */,
@@ -252,6 +257,7 @@
 				523752D82AC1F8E60007C48A /* Categories.json */,
 				52138A282AC865BB00C75585 /* Posts.json */,
 				522D6F352AE191FD002480AC /* all_DB.json */,
+				52FED0D72AF699CB00490D31 /* CyrillicOld.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 		52A81F452AC35F3D003D8F46 /* GoldenSewingSUITests */ = {
 			isa = PBXGroup;
 			children = (
+				52FED0D62AF697D400490D31 /* Info.plist */,
 				52A81F462AC35F3D003D8F46 /* CategoriesDataProviderTests.swift */,
 				52A632542AF024DF00A179A8 /* PostsDataProviderTests.swift */,
 			);
@@ -430,6 +437,7 @@
 				522D6F362AE1928D002480AC /* all_DB.json in Resources */,
 				523752CA2AC1EF950007C48A /* Preview Assets.xcassets in Resources */,
 				523752C72AC1EF950007C48A /* Assets.xcassets in Resources */,
+				52FED0D82AF699CB00490D31 /* CyrillicOld.ttf in Resources */,
 				52138A292AC865BB00C75585 /* Posts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,6 +639,7 @@
 				DEVELOPMENT_TEAM = 3PTYV272Z4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoldenSewingSUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -660,6 +669,7 @@
 				DEVELOPMENT_TEAM = 3PTYV272Z4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoldenSewingSUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -686,6 +696,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3PTYV272Z4;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoldenSewingSUITests/Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kr.ssh.GoldenSewingSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -704,6 +715,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3PTYV272Z4;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoldenSewingSUITests/Info.plist;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kr.ssh.GoldenSewingSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
