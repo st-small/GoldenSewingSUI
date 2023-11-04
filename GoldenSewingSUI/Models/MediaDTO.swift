@@ -2,7 +2,7 @@ import Foundation
 
 struct MediaDTO: Equatable, Decodable { 
     let id: Int32
-    let sourceUrl: URL
+    let sourceUrl: URL?
 }
 
 extension MediaDTO {

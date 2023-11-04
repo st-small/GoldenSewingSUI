@@ -33,6 +33,7 @@ struct CoreData: Sendable {
     var saveCategory: @Sendable (CategoryDTO) async throws -> Void
     var dropCategories: @Sendable () async throws -> Void
     
+    var loadMedia: @Sendable (Int32) throws -> MediaDTO?
     var saveMedia: @Sendable (MediaDTO) async throws -> Void
 }
 
@@ -114,6 +115,20 @@ extension CoreData: DependencyKey {
             }
         },
         dropCategories: { try dropEntities(with: "Category") },
+        loadMedia: { mediaID in
+            let request = Media.fetchRequest()
+            let predicate = NSPredicate(format: "id = %d", mediaID)
+            request.predicate = predicate
+            let mediaResult = try context.fetch(request)
+            
+            guard mediaResult.isNotEmpty, let first = mediaResult.first else {
+                @Dependency(\.logger) var logger
+                logger.error("🔴 Media request with predicate \(mediaID) is empty")
+                return nil
+            }
+            
+            return MediaDTO(id: first.id, sourceUrl: first.sourceUrl)
+        },
         saveMedia: { media in
             let request = Media.fetchRequest()
             request.predicate = NSPredicate(format: "id = %d", media.id)
@@ -156,6 +171,7 @@ extension CoreData: DependencyKey {
         loadCategories: { [] },
         saveCategory: { _ in },
         dropCategories: { },
+        loadMedia: { _ in .mock },
         saveMedia: { _ in }
     )
     
@@ -166,6 +182,7 @@ extension CoreData: DependencyKey {
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
         dropCategories: { },
+        loadMedia: { _ in .mock },
         saveMedia: { _ in }
     )
     
@@ -181,6 +198,7 @@ extension CoreData: DependencyKey {
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
         dropCategories: { },
+        loadMedia: { _ in .mock },
         saveMedia: { _ in }
     )
 }

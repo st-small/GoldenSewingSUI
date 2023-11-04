@@ -30,6 +30,19 @@ struct PostDetailView: View {
                 Text("Title: \(viewStore.post.title)")
                 Text("Category: \(viewStore.post.categories.first ?? -1)")
                 
+                AsyncImage(id: viewStore.post.mainImage) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case let .success(image):
+                        image.resizable().scaledToFit()
+                    case let .failure(error):
+                        Button("Повтор") {
+                            
+                        }
+                    }
+                }
+                
                 Spacer()
             }
             .padding()
