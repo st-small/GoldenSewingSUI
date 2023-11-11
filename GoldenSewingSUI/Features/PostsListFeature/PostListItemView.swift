@@ -6,21 +6,9 @@ struct PostListItemView: View {
     
     var body: some View {
         VStack {
-            RemoteImage(post.mainImage, maxWidth: UIScreen.main.bounds.width/2)
-//            AsyncImage(id: post.mainImage) { phase in
-//                switch phase {
-//                case .empty:
-//                    ProgressView()
-//                case let .success(image):
-//                    image.resizable().scaledToFit()
-//                        .clipped()
-//                case let .failure(error):
-//                    Text(error.localizedDescription)
-//                }
-//            }
-//            Image(Int.random(in: 0...10).isMultiple(of: 2) ? .one : .ten)
-//                .resizable()
-//                .scaledToFit()
+            RemoteImage(
+                id: post.mainImage,
+                width: UIScreen.main.bounds.width / 2)
             
             HStack {
                 VStack(alignment: .leading) {
@@ -46,6 +34,7 @@ struct PostListItemView: View {
         }
     }
 }
+
 #Preview {
     ZStack {
         Image(.background)
