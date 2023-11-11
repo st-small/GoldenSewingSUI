@@ -41,15 +41,91 @@ struct PostsListView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            List {
-                ForEach(viewStore.posts) { post in
-                    Text(post.title)
-                        .onTapGesture {
-                            viewStore.send(.delegate(.postDetail(post)))
+            ZStack {
+                Image(.background)
+                    .resizable(resizingMode: .tile).ignoresSafeArea()
+                ScrollView {
+                    PostsLayoutView(
+                        posts: viewStore.posts,
+                        postTapped: { store.send(.delegate(.postDetail($0)))
                         }
+                    )
                 }
             }
-            .navigationBarTitle(viewStore.category.title)
+            .toolbarBackground(Color(.main), for: .navigationBar)
+            .toolbar(content: {
+                ToolbarItem(placement: .principal) {
+                    Text(viewStore.category.title)
+                        .foregroundStyle(Color(.tint))
+                        .font(.custom("CyrillicOld", size: 15))
+                }
+            })
+        }
+    }
+    /*
+    private func postCardView(_ post: PostDTO) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(.postBg))
+            
+            VStack {
+                AsyncImage(id: post.mainImage) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case let .success(image):
+                        image.resizable().scaledToFit()
+                    case let .failure(error):
+                        Text(error.localizedDescription)
+                    }
+                }
+                
+                Rectangle()
+                    .fill(Color(.tint))
+                    .frame(height: 79)
+            }
+        }
+        .cornerRadius(10)
+        .onTapGesture {
+            store.send(.delegate(.postDetail(post)))
+        }
+    }
+     */
+    private func postCardView(_ post: PostDTO) -> some View {
+        VStack {
+            RemoteImage(post.mainImage, maxWidth: UIScreen.main.bounds.width/2)
+            
+//            AsyncImage(id: post.mainImage) { phase in
+//                switch phase {
+//                case .empty:
+//                    ProgressView()
+//                case let .success(image):
+//                    image.resizable().scaledToFit()
+//                case let .failure(error):
+//                    Text(error.localizedDescription)
+//                }
+//            }
+            
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(post.title)
+                        .font(.system(size: 12))
+                        .foregroundStyle(Color(.tint))
+                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    Text(post.link?.absoluteString ?? "")
+                        .font(.caption)
+                        .foregroundStyle(Color(.tint))
+                }
+                
+                Spacer()
+            }
+            .padding([.leading, .trailing, .bottom], 8)
+        }
+        .cornerRadius(10)
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color(.tint))
         }
     }
 }

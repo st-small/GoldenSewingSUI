@@ -76,10 +76,21 @@ extension PostDTO {
         id: 777,
         date: .now,
         modified: .now,
-        link: URL(string: "")!,
-        title: "Икона Святого равноапостольного князя Владимира", 
-        mainImage: 0,
-        categories: [5],
-        gallery: [0]
+        link: URL(string: "https://zolotoe-shitvo.kr.ua/ikona-svyatogo-ravnoapostolnogo-knyazya-vladimira-2/")!,
+        title: "Икона Святого равноапостольного князя Владимира",
+        mainImage: 10141,
+        categories: [4],
+        gallery: [10140]
+    )
+    
+    static let mock2 = PostDTO(
+        id: 9914,
+        date: .now,
+        modified: .now,
+        link: URL(string: "https://zolotoe-shitvo.kr.ua/mitra-ierejskaya-98/")!,
+        title: "Митра иерейская",
+        mainImage: 9915,
+        categories: [6],
+        gallery: [9915]
     )
 }
