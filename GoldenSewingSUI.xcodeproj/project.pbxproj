@@ -40,6 +40,7 @@
 		52A81F472AC35F3D003D8F46 /* CategoriesDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81F462AC35F3D003D8F46 /* CategoriesDataProviderTests.swift */; };
 		52BBB80C2AFF9AE600D71CC0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 52BBB80B2AFF9AE600D71CC0 /* Kingfisher */; };
 		52BBB80E2AFFA7FD00D71CC0 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BBB80D2AFFA7FD00D71CC0 /* RemoteImage.swift */; };
+		52BBB8102AFFB11300D71CC0 /* MinimizingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BBB80F2AFFB11300D71CC0 /* MinimizingButton.swift */; };
 		52E751292AFE9552006BB243 /* PostsLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E751282AFE9552006BB243 /* PostsLayoutView.swift */; };
 		52E7512B2AFEB213006BB243 /* PostListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E7512A2AFEB213006BB243 /* PostListItemView.swift */; };
 		52F4EFC22AC30EC700BAA6FB /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4EFC12AC30EC700BAA6FB /* AppFeature.swift */; };
@@ -96,6 +97,7 @@
 		52A81F462AC35F3D003D8F46 /* CategoriesDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataProviderTests.swift; sourceTree = "<group>"; };
 		52B8CD6A2AF69C1800962EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		52BBB80D2AFFA7FD00D71CC0 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		52BBB80F2AFFB11300D71CC0 /* MinimizingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimizingButton.swift; sourceTree = "<group>"; };
 		52E751282AFE9552006BB243 /* PostsLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsLayoutView.swift; sourceTree = "<group>"; };
 		52E7512A2AFEB213006BB243 /* PostListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListItemView.swift; sourceTree = "<group>"; };
 		52F4EFC12AC30EC700BAA6FB /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				52BBB80D2AFFA7FD00D71CC0 /* RemoteImage.swift */,
+				52BBB80F2AFFB11300D71CC0 /* MinimizingButton.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				52FCA0292AF68C5B00BDDD64 /* ImageCache.swift in Sources */,
 				523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */,
 				52138A332AC9DAE600C75585 /* PostDTO.swift in Sources */,
+				52BBB8102AFFB11300D71CC0 /* MinimizingButton.swift in Sources */,
 				52FCA0132AF4315500BDDD64 /* Int32ArrayValueTransformer.swift in Sources */,
 				52BBB80E2AFFA7FD00D71CC0 /* RemoteImage.swift in Sources */,
 				52FCA0152AF4318B00BDDD64 /* DataExtensions.swift in Sources */,

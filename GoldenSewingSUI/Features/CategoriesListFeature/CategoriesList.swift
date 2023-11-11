@@ -106,37 +106,8 @@ struct CategoriesListView: View {
                         .resizable(resizingMode: .tile).ignoresSafeArea()
                     ScrollView {
                         LazyVGrid(columns: columns) {
-                            ForEach(viewStore.categories) { category in
-                                ZStack {
-                                    Image(.categoryBackground)
-                                        .resizable()
-                                        .scaledToFill()
-                                    
-                                    VStack {
-                                        category.image
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 40)
-                                        
-                                        Text(category.title)
-                                            .font(.custom("CyrillicOld", size: 13))
-                                            .foregroundStyle(Color(.title))
-                                            .multilineTextAlignment(.center)
-                                            .padding(.horizontal)
-                                    }
-                                }
-                                .frame(height: 93)
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 4)
-                                        .stroke(Color(.tint), lineWidth: 1)
-                                }
-                                .shadow(
-                                    color: Color(.categoryShadow),
-                                    radius: 8, x: 0, y: 2)
-                                .onTapGesture {
-                                    viewStore.send(.selectCategory(category))
-                                }
+                            ForEach(viewStore.categories) {
+                                categoryItemView($0)
                             }
                         }
                         .padding(.horizontal, 16)
@@ -168,6 +139,41 @@ struct CategoriesListView: View {
         .searchable(text: .constant(""), prompt: "Поиск") {
             
         }
+    }
+
+    private func categoryItemView(_ category: CategoryDTO) -> some View {
+        Button {
+            store.send(.selectCategory(category))
+        } label: {
+            ZStack {
+                Image(.categoryBackground)
+                    .resizable()
+                    .scaledToFill()
+                
+                VStack {
+                    category.image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 40)
+                    
+                    Text(category.title)
+                        .font(.custom("CyrillicOld", size: 13))
+                        .foregroundStyle(Color(.title))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+            }
+            .frame(height: 93)
+            .clipShape(RoundedRectangle(cornerRadius: 4))
+            .overlay {
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(Color(.tint), lineWidth: 1)
+            }
+            .shadow(
+                color: Color(.categoryShadow),
+                radius: 8, x: 0, y: 2)
+        }
+        .buttonStyle(MinimizeButtonStyle())
     }
 }
 
