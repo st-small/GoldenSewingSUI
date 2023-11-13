@@ -27,6 +27,7 @@ struct CoreData: Sendable {
     
     var loadPosts: @Sendable () throws -> [PostDTO]
     var savePost: @Sendable (PostDTO) async throws -> Void
+    var updatePost: @Sendable (PostDTO.ID, Bool) async throws -> Void
     var dropPosts: @Sendable () async throws -> Void
     
     var loadCategories: @Sendable () throws -> [CategoryDTO]
@@ -79,6 +80,23 @@ extension CoreData: DependencyKey {
                         @Dependency(\.logger) var logger
                         logger.error("\(error.localizedDescription)")
                     }
+                }
+            }
+        },
+        updatePost: { id, isFavourite in
+            let request = Post.fetchRequest()
+            request.predicate = NSPredicate(format: "id = %d", id)
+            let posts = try context.fetch(request)
+            
+            guard let post = posts.first else { return }
+            post.isFavourite = isFavourite
+            
+            context.perform {
+                do {
+                    try context.save()
+                } catch {
+                    @Dependency(\.logger) var logger
+                    logger.error("\(error.localizedDescription)")
                 }
             }
         },
@@ -167,6 +185,7 @@ extension CoreData: DependencyKey {
     static let testValue = Self(
         loadPosts: { [] },
         savePost: { _ in },
+        updatePost: { _,_ in },
         dropPosts: { },
         loadCategories: { [] },
         saveCategory: { _ in },
@@ -178,6 +197,7 @@ extension CoreData: DependencyKey {
     static let mock = Self(
         loadPosts: { [PostDTO.mock] },
         savePost: { _ in },
+        updatePost: { _,_ in },
         dropPosts: { },
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
@@ -194,6 +214,7 @@ extension CoreData: DependencyKey {
             throw CoreDataError()
         },
         savePost: { _ in },
+        updatePost: { _,_ in },
         dropPosts: { },
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },

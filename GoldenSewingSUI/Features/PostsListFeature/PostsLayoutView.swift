@@ -64,16 +64,21 @@ struct MasonryLayout: Layout {
 
 struct PostsLayoutView: View {
     let posts: IdentifiedArrayOf<PostDTO>
+    let addFavourite: (PostDTO.ID) -> Void
+    let deleteFavourite: (PostDTO.ID) -> Void
     let postTapped: (PostDTO) -> Void
     
     var body: some View {
         ScrollView {
             MasonryLayout(columns: 2, spacing: 8) {
                 ForEach(posts) { post in
-                    PostListItemView(post: post)
-                        .onTapGesture {
-                            postTapped(post)
-                        }
+                    PostListItemView(
+                        post: post,
+                        addFavourite: addFavourite,
+                        deleteFavourite: deleteFavourite)
+                    .onTapGesture {
+                        postTapped(post)
+                    }
                 }
             }
         }
@@ -84,6 +89,8 @@ struct PostsLayoutView: View {
 #Preview {
     PostsLayoutView(
         posts: [.mock, .mock2],
+        addFavourite: { _ in },
+        deleteFavourite: { _ in },
         postTapped: { _ in }
     )
 }

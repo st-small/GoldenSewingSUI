@@ -9,6 +9,7 @@ struct PostDTO: Equatable, Decodable, Identifiable {
     let mainImage: Int32
     let categories: [Int32]
     let gallery: [Int32]
+    var isFavourite: Bool
     
     init(
         id: Int32,
@@ -18,7 +19,8 @@ struct PostDTO: Equatable, Decodable, Identifiable {
         title: String,
         mainImage: Int32,
         categories: [Int32],
-        gallery: [Int32]
+        gallery: [Int32],
+        isFavourite: Bool
     ) {
         self.id = id
         self.date = date
@@ -28,10 +30,11 @@ struct PostDTO: Equatable, Decodable, Identifiable {
         self.mainImage = mainImage
         self.categories = categories
         self.gallery = gallery
+        self.isFavourite = isFavourite
     }
     
     enum CodingKeys: CodingKey {
-        case id, date, modified, link, title, featured_media, categories, tags, acf
+        case id, date, modified, link, title, featured_media, categories, tags, acf, favourite
     }
     
     init(from decoder: Decoder) throws {
@@ -41,6 +44,7 @@ struct PostDTO: Equatable, Decodable, Identifiable {
             self.link = try container.decode(URL.self, forKey: .link)
             self.mainImage = try container.decodeIfPresent(Int32.self, forKey: .featured_media) ?? -1
             self.categories = try container.decode([Int32].self, forKey: .categories)
+            self.isFavourite = try container.decodeIfPresent(Bool.self, forKey: .favourite) ?? false
             
             let dateString = try container.decode(String.self, forKey: .date)
             self.date = dateString.date()
@@ -68,6 +72,7 @@ struct PostDTO: Equatable, Decodable, Identifiable {
         self.mainImage = object.mainImage
         self.categories = object.categories ?? []
         self.gallery = object.gallery ?? []
+        self.isFavourite = object.isFavourite 
     }
 }
 
@@ -80,7 +85,8 @@ extension PostDTO {
         title: "Икона Святого равноапостольного князя Владимира",
         mainImage: 10141,
         categories: [4],
-        gallery: [10140]
+        gallery: [10140],
+        isFavourite: false
     )
     
     static let mock2 = PostDTO(
@@ -91,6 +97,7 @@ extension PostDTO {
         title: "Митра иерейская",
         mainImage: 9915,
         categories: [6],
-        gallery: [9915]
+        gallery: [9915],
+        isFavourite: true
     )
 }
