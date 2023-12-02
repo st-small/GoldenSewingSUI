@@ -48,14 +48,14 @@ struct PostsListFeature: Reducer {
                     state.posts[id: id]?.isFavourite = true
                 }
                 return .run { send in
-                    try await database.updatePost(id, true)
+                    try database.updatePost(id, true)
                 }
             case let .delegate(.removeFavouriteTapped(id)):
                 withAnimation {
                     state.posts[id: id]?.isFavourite = false
                 }
                 return .run { send in
-                    try await database.updatePost(id, false)
+                    try database.updatePost(id, false)
                 }
             default:
                 return .none

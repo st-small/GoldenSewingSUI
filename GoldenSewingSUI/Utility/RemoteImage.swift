@@ -30,6 +30,7 @@ struct RemoteImage: View {
             .placeholder {
                 VStack {
                     ProgressView("Загрузка...")
+                        .font(.caption)
                         .tint(.tint)
                 }
                 .foregroundColor(.tint)

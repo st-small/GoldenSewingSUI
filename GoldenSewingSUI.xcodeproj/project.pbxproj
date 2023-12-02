@@ -18,7 +18,6 @@
 		5219AF0C2AE2CD780083E7BE /* CategoriesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219AF0B2AE2CD780083E7BE /* CategoriesProvider.swift */; };
 		5219AF0F2AE3036C0083E7BE /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219AF0E2AE3036C0083E7BE /* CollectionExtensions.swift */; };
 		5219AF122AE415850083E7BE /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219AF112AE415850083E7BE /* URLExtensions.swift */; };
-		5219AF162AE416D20083E7BE /* RedTabFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219AF152AE416D20083E7BE /* RedTabFeature.swift */; };
 		5219AF1B2AE417750083E7BE /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219AF1A2AE417750083E7BE /* CategoriesDataSource.swift */; };
 		5219AF1E2AE418610083E7BE /* GreenTabFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219AF1D2AE417C80083E7BE /* GreenTabFeature.swift */; };
 		5225049D2AF1611E003D5C0C /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5225049C2AF1611E003D5C0C /* DictionaryExtensions.swift */; };
@@ -51,6 +50,7 @@
 		52FCA0252AF580B500BDDD64 /* MediaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0242AF580B500BDDD64 /* MediaProvider.swift */; };
 		52FCA0272AF68C3100BDDD64 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0262AF68C3100BDDD64 /* StringExtensions.swift */; };
 		52FCA0292AF68C5B00BDDD64 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0282AF68C5B00BDDD64 /* ImageCache.swift */; };
+		52FE76672B0294F80067D96B /* FavouritesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE76662B0294F80067D96B /* FavouritesFeature.swift */; };
 		52FED0D82AF699CB00490D31 /* CyrillicOld.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52FED0D72AF699CB00490D31 /* CyrillicOld.ttf */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +75,6 @@
 		5219AF0B2AE2CD780083E7BE /* CategoriesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesProvider.swift; sourceTree = "<group>"; };
 		5219AF0E2AE3036C0083E7BE /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		5219AF112AE415850083E7BE /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
-		5219AF152AE416D20083E7BE /* RedTabFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedTabFeature.swift; sourceTree = "<group>"; };
 		5219AF1A2AE417750083E7BE /* CategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
 		5219AF1D2AE417C80083E7BE /* GreenTabFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenTabFeature.swift; sourceTree = "<group>"; };
 		5225049C2AF1611E003D5C0C /* DictionaryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
@@ -108,6 +107,7 @@
 		52FCA0242AF580B500BDDD64 /* MediaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProvider.swift; sourceTree = "<group>"; };
 		52FCA0262AF68C3100BDDD64 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		52FCA0282AF68C5B00BDDD64 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		52FE76662B0294F80067D96B /* FavouritesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesFeature.swift; sourceTree = "<group>"; };
 		52FED0D62AF697D400490D31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		52FED0D72AF699CB00490D31 /* CyrillicOld.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CyrillicOld.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,14 +189,6 @@
 				52A71E012AF2CA8200303415 /* GenericDecodable.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		5219AF142AE416B20083E7BE /* Red Tab feature */ = {
-			isa = PBXGroup;
-			children = (
-				5219AF152AE416D20083E7BE /* RedTabFeature.swift */,
-			);
-			path = "Red Tab feature";
 			sourceTree = "<group>";
 		};
 		5219AF1C2AE417BD0083E7BE /* Green Tab feature */ = {
@@ -301,8 +293,8 @@
 				52138A342AC9DB3D00C75585 /* CategoriesListFeature */,
 				5263957D2ACE998C00C8D48A /* PostsListFeature */,
 				52A632562AF0348800A179A8 /* Post detail feature */,
+				52FE76652B0294DA0067D96B /* Favourites feature */,
 				5219AF1C2AE417BD0083E7BE /* Green Tab feature */,
-				5219AF142AE416B20083E7BE /* Red Tab feature */,
 				5219AF0A2AE2CD610083E7BE /* Categories provider feature */,
 				52A6324F2AF01DAA00A179A8 /* Posts provider feature */,
 				52FCA0232AF580A100BDDD64 /* Media provider feature */,
@@ -359,6 +351,14 @@
 				52FCA0242AF580B500BDDD64 /* MediaProvider.swift */,
 			);
 			path = "Media provider feature";
+			sourceTree = "<group>";
+		};
+		52FE76652B0294DA0067D96B /* Favourites feature */ = {
+			isa = PBXGroup;
+			children = (
+				52FE76662B0294F80067D96B /* FavouritesFeature.swift */,
+			);
+			path = "Favourites feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,7 +483,6 @@
 				5263957C2ACE8F1600C8D48A /* CategoryDTO.swift in Sources */,
 				52FCA0222AF57F0800BDDD64 /* MediaDTO.swift in Sources */,
 				5219AF0C2AE2CD780083E7BE /* CategoriesProvider.swift in Sources */,
-				5219AF162AE416D20083E7BE /* RedTabFeature.swift in Sources */,
 				52030B352AC4572300758202 /* ApiClient.swift in Sources */,
 				52138A162AC8162500C75585 /* CoreData.swift in Sources */,
 				52A632582AF034A200A179A8 /* PostDetail.swift in Sources */,
@@ -491,6 +490,7 @@
 				5219AF1E2AE418610083E7BE /* GreenTabFeature.swift in Sources */,
 				52FCA0272AF68C3100BDDD64 /* StringExtensions.swift in Sources */,
 				5219AF0F2AE3036C0083E7BE /* CollectionExtensions.swift in Sources */,
+				52FE76672B0294F80067D96B /* FavouritesFeature.swift in Sources */,
 				52A632512AF01DF800A179A8 /* PostsProvider.swift in Sources */,
 				52F4EFC22AC30EC700BAA6FB /* AppFeature.swift in Sources */,
 				5225049D2AF1611E003D5C0C /* DictionaryExtensions.swift in Sources */,

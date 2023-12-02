@@ -2,13 +2,13 @@ import ComposableArchitecture
 import SwiftUI
 
 enum Tab {
-    case categories, red, green
+    case categories, favourites, green
 }
 
 struct AppFeature: Reducer {
     struct State: Equatable { 
         var categories = CategoriesListFeature.State()
-        var redTab = RedTabFeature.State()
+        var favouritesTab = FavouritesFeature.State()
         var greenTab = GreenTabFeature.State()
         var categoriesDataProvider = CategoriesProvider.State()
         var postsDataProvider = PostsProvider.State()
@@ -18,7 +18,7 @@ struct AppFeature: Reducer {
     
     enum Action: Equatable {
         case categoriesTab(CategoriesListFeature.Action)
-        case redTab(RedTabFeature.Action)
+        case favouritesTab(FavouritesFeature.Action)
         case greenTab(GreenTabFeature.Action)
         case categoriesDataProvider(CategoriesProvider.Action)
         case postsDataProvider(PostsProvider.Action)
@@ -36,8 +36,8 @@ struct AppFeature: Reducer {
                 return .none
             }
         }
-        Scope(state: \.redTab, action: /Action.redTab) {
-            RedTabFeature()
+        Scope(state: \.favouritesTab, action: /Action.favouritesTab) {
+            FavouritesFeature()
         }
         Scope(state: \.categories, action: /Action.categoriesTab) {
             CategoriesListFeature()
@@ -76,12 +76,14 @@ struct AppFeatureView: View {
                     }
                     .tag(Tab.categories)
                     
-                    RedTabView(store: store.scope(
-                        state: \.redTab,
-                        action: AppFeature.Action.redTab)
+                    FavouritesScreen(store: store.scope(
+                        state: \.favouritesTab,
+                        action: AppFeature.Action.favouritesTab)
                     )
-                    .tabItem { Text("Red") }
-                    .tag(Tab.red)
+                    .tabItem {
+                        Label("Избранное", image: .favouritesTabIcon)
+                    }
+                    .tag(Tab.favourites)
                     
                     GreenTabView(store: store.scope(
                         state: \.greenTab,
