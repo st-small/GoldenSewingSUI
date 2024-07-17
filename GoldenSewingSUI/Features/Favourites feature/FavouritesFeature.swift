@@ -13,9 +13,14 @@ struct FavouritesFeature: Reducer {
         case addFavourite(PostDTO)
         case removeTapped(PostDTO.ID)
         case path(StackAction<Path.State, Path.Action>)
+        case onDisappear
     }
     
     @Dependency(\.coreData) var database
+    
+    private enum CancelID {
+        case database
+    }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -26,7 +31,17 @@ struct FavouritesFeature: Reducer {
                     for post in try database.loadFavourites() {
                         await send(.addFavourite(post))
                     }
+                    
+                    for await event in await database.notify() {
+                        switch event {
+                        case let .didAddFavourite(postID):
+                            print("<<< didAddFavourite \(postID)")
+                        case let .didRemoveFavourite(postID):
+                            print("<<< didRemoveFavourite \(postID)")
+                        }
+                    }
                 }
+                .cancellable(id: CancelID.database)
             case let .addFavourite(post):
                 state.favourites.append(post)
                 return .none
@@ -37,6 +52,8 @@ struct FavouritesFeature: Reducer {
                 }
             case .path:
                 return .none
+            case .onDisappear:
+                return .cancel(id: CancelID.database)
             }
         }
         .forEach(\.path, action: /Action.path) {
@@ -121,6 +138,9 @@ struct FavouritesScreen: View {
             }
             .onAppear {
                 store.send(.onAppear)
+            }
+            .onDisappear {
+                store.send(.onDisappear)
             }
         } destination: { store in
             switch store {

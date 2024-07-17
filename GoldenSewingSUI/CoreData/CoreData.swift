@@ -1,3 +1,4 @@
+import Combine
 import CoreData
 import Dependencies
 
@@ -25,10 +26,16 @@ struct CoreData: Sendable {
     
     static private let context = ContextContainer.shared.context
     
+    enum Event {
+        case didAddFavourite(PostDTO.ID)
+        case didRemoveFavourite(PostDTO.ID)
+    }
+    
     var loadPosts: @Sendable () throws -> [PostDTO]
     var savePost: @Sendable (PostDTO) async throws -> Void
-    var updatePost: @Sendable (PostDTO.ID, Bool) async throws -> Void
+    var updatePost: @Sendable (PostDTO.ID, Bool) throws -> Void
     var dropPosts: @Sendable () async throws -> Void
+    var loadFavourites: @Sendable () throws -> [PostDTO]
     
     var loadCategories: @Sendable () throws -> [CategoryDTO]
     var saveCategory: @Sendable (CategoryDTO) async throws -> Void
@@ -36,17 +43,22 @@ struct CoreData: Sendable {
     
     var loadMedia: @Sendable (Int32) throws -> MediaDTO?
     var saveMedia: @Sendable (MediaDTO) async throws -> Void
+    
+    var notify: @Sendable () async -> AsyncStream<Event>
 }
 
 extension CoreData: DependencyKey {
-    static let liveValue = Self(
-        loadPosts: {
+    static var cancellables: Set<AnyCancellable> = []
+    
+    static var liveValue: CoreData {
+        let subject: PassthroughSubject<Event, Never> = .init()
+        
+        return Self {
             let request = Post.fetchRequest()
-            let posts = try ContextContainer.shared.context.fetch(request)
+            let posts = try context.fetch(request)
             
             return posts.map { .init(from: $0) }
-        },
-        savePost: { post in
+        } savePost: { post in
             let request = Post.fetchRequest()
             request.predicate = NSPredicate(format: "id = %d", post.id)
             
@@ -82,8 +94,7 @@ extension CoreData: DependencyKey {
                     }
                 }
             }
-        },
-        updatePost: { id, isFavourite in
+        } updatePost: { id, isFavourite in
             let request = Post.fetchRequest()
             request.predicate = NSPredicate(format: "id = %d", id)
             let posts = try context.fetch(request)
@@ -99,15 +110,26 @@ extension CoreData: DependencyKey {
                     logger.error("\(error.localizedDescription)")
                 }
             }
-        },
-        dropPosts: { try dropEntities(with: "Post") },
-        loadCategories: {
+            
+            if isFavourite {
+                subject.send(.didAddFavourite(id))
+            } else {
+                subject.send(.didRemoveFavourite(id))
+            }
+            
+        } dropPosts: {
+            try dropEntities(with: "Post")
+        } loadFavourites: {
+            let request = Post.fetchRequest()
+            request.predicate = NSPredicate(format: "isFavourite == 1")
+            
+            return (try context.fetch(request)).map { .init(from: $0) }
+        } loadCategories: {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
-            let categories = (try ContextContainer.shared.context.fetch(request) as? [Category]) ?? []
+            let categories = (try context.fetch(request) as? [Category]) ?? []
             
             return categories.map { .init(from: $0) }
-        },
-        saveCategory: { category in
+        } saveCategory: { category in
             let request = Category.fetchRequest()
             request.predicate = NSPredicate(format: "id = %d", category.id)
             
@@ -131,9 +153,9 @@ extension CoreData: DependencyKey {
                     }
                 }
             }
-        },
-        dropCategories: { try dropEntities(with: "Category") },
-        loadMedia: { mediaID in
+        } dropCategories: {
+            try dropEntities(with: "Category")
+        } loadMedia: { mediaID in
             let request = Media.fetchRequest()
             let predicate = NSPredicate(format: "id = %d", mediaID)
             request.predicate = predicate
@@ -146,8 +168,7 @@ extension CoreData: DependencyKey {
             }
             
             return MediaDTO(id: first.id, sourceUrl: first.sourceUrl)
-        },
-        saveMedia: { media in
+        } saveMedia: { media in
             let request = Media.fetchRequest()
             request.predicate = NSPredicate(format: "id = %d", media.id)
             
@@ -168,8 +189,21 @@ extension CoreData: DependencyKey {
                     }
                 }
             }
+        } notify: {
+            AsyncStream { continuation in
+                subject.sink { value in
+                    print("<<< value \(value)")
+                    continuation.yield(value)
+                }
+                .store(in: &cancellables)
+                
+                continuation.onTermination = { _ in
+                    cancellables = []
+                }
+            }
+//            subject.values.eraseToStream()
         }
-    )
+    }
     
     static private func dropEntities(with name: String) throws {
         let context = ContextContainer.shared.context
@@ -187,11 +221,13 @@ extension CoreData: DependencyKey {
         savePost: { _ in },
         updatePost: { _,_ in },
         dropPosts: { },
+        loadFavourites: { [] },
         loadCategories: { [] },
         saveCategory: { _ in },
         dropCategories: { },
         loadMedia: { _ in .mock },
-        saveMedia: { _ in }
+        saveMedia: { _ in },
+        notify: { .never }
     )
     
     static let mock = Self(
@@ -199,11 +235,13 @@ extension CoreData: DependencyKey {
         savePost: { _ in },
         updatePost: { _,_ in },
         dropPosts: { },
+        loadFavourites: { [] },
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
         dropCategories: { },
         loadMedia: { _ in .mock },
-        saveMedia: { _ in }
+        saveMedia: { _ in },
+        notify: { .never }
     )
     
     static let fail = Self(
@@ -216,11 +254,13 @@ extension CoreData: DependencyKey {
         savePost: { _ in },
         updatePost: { _,_ in },
         dropPosts: { },
+        loadFavourites: { [] },
         loadCategories: { [CategoryDTO.mock] },
         saveCategory: { _ in },
         dropCategories: { },
         loadMedia: { _ in .mock },
-        saveMedia: { _ in }
+        saveMedia: { _ in },
+        notify: { .never }
     )
 }
 

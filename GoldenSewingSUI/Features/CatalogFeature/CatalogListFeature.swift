@@ -1,0 +1,57 @@
+import Combine
+import Constants
+import ModelsKit
+import SwiftDataProviderKit
+import SwiftUI
+
+// TODO: Add design system support
+struct CatalogListFeature: View {
+    @StateObject private var vm = CatalogListViewModel()
+    
+    private var columns = [
+        GridItem(.adaptive(minimum: 167), spacing: 8)
+    ]
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 8) {
+                    ForEach(vm.categories) { category in
+                        CategoryItemView(category: category)
+                    }
+                }
+                .padding(.horizontal, 16)
+            }
+            .navigationTitle("Каталог")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+
+struct CategoryItemView: View {
+    let category: CategoryModel
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 10)
+            .frame(height: 162)
+            .foregroundStyle(.white)
+            .shadow(color: .black.opacity(0.12), radius: 5)
+            .overlay {
+                VStack(alignment: .leading, spacing: 4) {
+                    Constants.Category.preview(category.id.value)
+                        .resizable()
+                        .frame(maxHeight: 120)
+                        .cornerRadius(6)
+                        .padding([.top, .horizontal], 10)
+                    Text(Constants.Category.title(category.id.value))
+                        .font(.system(size: 13, weight: .medium))
+                        .frame(height: 18)
+                        .padding(.horizontal, 10)
+                }
+            }
+    }
+}
+
+#Preview {
+    CatalogListFeature()
+}

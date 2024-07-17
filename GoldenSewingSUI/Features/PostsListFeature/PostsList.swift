@@ -19,16 +19,22 @@ struct PostsListFeature: Reducer {
     enum Action: Equatable {
         case onAppear
         case loadedPost(PostDTO)
+//        case addFavourite(PostDTO.ID)
+        case addFavouriteTapped(PostDTO.ID)
+//        case removeFavourite(PostDTO.ID)
+        case removeFavouriteTapped(PostDTO.ID)
         case delegate(Delegate)
         
         enum Delegate: Equatable {
-            case addFavouriteTapped(PostDTO.ID)
-            case removeFavouriteTapped(PostDTO.ID)
+//            case addFavouriteTapped(PostDTO.ID)
+//            case removeFavouriteTapped(PostDTO.ID)
             case postDetail(PostDTO)
         }
     }
     
     @Dependency(\.coreData) var database
+    
+    enum CancelID { case database }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -39,24 +45,52 @@ struct PostsListFeature: Reducer {
                     for post in data.loadPosts(id) {
                         await send(.loadedPost(post))
                     }
+                    
+//                    for await event in await database.notify() {
+//                        switch event {
+//                        case let .didAddFavourite(postID):
+//                            await send(.addFavourite(postID))
+//                        case let .didRemoveFavourite(postID):
+//                            await send(.removeFavourite(postID))
+//                        }
+//                    }
                 }
+                .cancellable(id: CancelID.database)
             case let .loadedPost(post):
                 state.posts.append(post)
                 return .none
-            case let .delegate(.addFavouriteTapped(id)):
-                withAnimation {
-                    state.posts[id: id]?.isFavourite = true
-                }
+//            case let .addFavourite(postID):
+//                withAnimation {
+//                    state.posts[id: postID]?.isFavourite = true
+//                }
+//                return .none
+            case let .addFavouriteTapped(postID):
                 return .run { send in
-                    try database.updatePost(id, true)
+                    try database.updatePost(postID, true)
                 }
-            case let .delegate(.removeFavouriteTapped(id)):
-                withAnimation {
-                    state.posts[id: id]?.isFavourite = false
-                }
+//            case let .removeFavourite(postID):
+//                withAnimation {
+//                    state.posts[id: postID]?.isFavourite = false
+//                }
+//                return .none
+            case let .removeFavouriteTapped(postID):
                 return .run { send in
-                    try database.updatePost(id, false)
+                    try database.updatePost(postID, false)
                 }
+//            case let .delegate(.addFavouriteTapped(id)):
+//                withAnimation {
+//                    state.posts[id: id]?.isFavourite = true
+//                }
+//                return .run { send in
+//                    try database.updatePost(id, true)
+//                }
+//            case let .delegate(.removeFavouriteTapped(id)):
+//                withAnimation {
+//                    state.posts[id: id]?.isFavourite = false
+//                }
+//                return .run { send in
+//                    try database.updatePost(id, false)
+//                }
             default:
                 return .none
             }
@@ -75,8 +109,8 @@ struct PostsListView: View {
                 ScrollView {
                     PostsLayoutView(
                         posts: viewStore.posts,
-                        addFavourite: { store.send(.delegate(.addFavouriteTapped($0))) },
-                        deleteFavourite: { store.send(.delegate(.removeFavouriteTapped($0))) },
+                        addFavourite: { store.send(.addFavouriteTapped($0)) },
+                        deleteFavourite: { store.send(.removeFavouriteTapped($0)) },
                         postTapped: { store.send(.delegate(.postDetail($0)))
                         }
                     )
