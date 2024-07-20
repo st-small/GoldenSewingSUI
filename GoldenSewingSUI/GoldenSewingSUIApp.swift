@@ -6,14 +6,11 @@ import SwiftUI
 
 @main
 struct GoldenSewingSUIApp: App {
-//    @StateObject private var categoriesManager = DataProvider()
-    
     @Injected(\.dbProvider) private var dbProvider
     
     var body: some Scene {
         WindowGroup {
-            CatalogListFeature()
-//                .environment(categoriesManager)
+            RootScreen()
                 .task {
                     let cache = DataSource()
                     let swiftData = dbProvider//DataProvider()
@@ -70,5 +67,17 @@ extension InjectedValues {
     public var dbProvider: DataProviderProtocol {
         get { Self[DataProviderKey.self] }
         set { Self[DataProviderKey.self] = newValue }
+    }
+}
+
+private struct RouterInjectionKey: InjectionKey {
+    static var currentValue: Router<Route> = Router(root: .catalogList)
+}
+
+
+extension InjectedValues {
+    public var router: Router<Route> {
+        get { Self[RouterInjectionKey.self] }
+        set { Self[RouterInjectionKey.self] = newValue }
     }
 }
