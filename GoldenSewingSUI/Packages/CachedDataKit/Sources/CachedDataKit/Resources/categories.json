@@ -1,0 +1,658 @@
+[
+  {
+    "id": 156,
+    "count": 2,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/venchalnye-i-krestilnye-nabory\/",
+    "name": "\u0412\u0435\u043d\u0447\u0430\u043b\u044c\u043d\u044b\u0435 \u0438 \u041a\u0440\u0435\u0441\u0442\u0438\u043b\u044c\u043d\u044b\u0435 \u043d\u0430\u0431\u043e\u0440\u044b",
+    "slug": "venchalnye-i-krestilnye-nabory",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/156"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=156"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 141,
+    "count": 15,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/vyshyvanky\/",
+    "name": "\u0412\u044b\u0448\u0438\u0432\u043a\u0430 \u043d\u0430 \u043e\u0434\u0435\u0436\u0434\u0435, \u0432\u044b\u0448\u0438\u0442\u044b\u0435 \u043d\u0430\u0446\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0435 \u043a\u043e\u0441\u0442\u044e\u043c\u044b",
+    "slug": "vyshyvanky",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/141"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=141"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "count": 9,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/ikonostasy\/",
+    "name": "\u0418\u043a\u043e\u043d\u043e\u0441\u0442\u0430\u0441\u044b",
+    "slug": "ikonostasy",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/3"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=3"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "count": 151,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/ikony\/",
+    "name": "\u0418\u043a\u043e\u043d\u044b",
+    "slug": "ikony",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/4"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=4"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "count": 52,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/komplekty-vyshivki-dlya-sborki-mitr\/",
+    "name": "\u041a\u043e\u043c\u043f\u043b\u0435\u043a\u0442\u044b \u0432\u044b\u0448\u0438\u0432\u043a\u0438 \u0434\u043b\u044f \u0441\u0431\u043e\u0440\u043a\u0438 \u043c\u0438\u0442\u0440",
+    "slug": "komplekty-vyshivki-dlya-sborki-mitr",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/5"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=5"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 101,
+    "count": 78,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/metallonit-metanit-dlya-mashshinnoj-i-ruchnoj-vyshivki\/",
+    "name": "\u041c\u0435\u0442\u0430\u043b\u043b\u043e\u043d\u0438\u0442\u044c (\u043c\u0435\u0442\u0430\u043d\u0438\u0442) \u0434\u043b\u044f \u043c\u0430\u0448\u0438\u043d\u043d\u043e\u0439 \u0438 \u0440\u0443\u0447\u043d\u043e\u0439 \u0432\u044b\u0448\u0438\u0432\u043a\u0438",
+    "slug": "metallonit-metanit-dlya-mashshinnoj-i-ruchnoj-vyshivki",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/101"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=101"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "count": 174,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/mitry-arhierejskie-ierejskie\/",
+    "name": "\u041c\u0438\u0442\u0440\u044b \u0430\u0440\u0445\u0438\u0435\u0440\u0435\u0439\u0441\u043a\u0438\u0435, \u0438\u0435\u0440\u0435\u0439\u0441\u043a\u0438\u0435",
+    "slug": "mitry-arhierejskie-ierejskie",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/6"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=6"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "count": 37,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/oblacheniya-arhierejskie-omofory-mantii-podlsakosniki\/",
+    "name": "\u041e\u0431\u043b\u0430\u0447\u0435\u043d\u0438\u044f \u0430\u0440\u0445\u0438\u0435\u0440\u0435\u0439\u0441\u043a\u0438\u0435, \u043e\u043c\u043e\u0444\u043e\u0440\u044b, \u043c\u0430\u043d\u0442\u0438\u0438, \u043f\u043e\u0434\u0441\u0430\u043a\u043e\u0441\u043d\u0438\u043a\u0438",
+    "slug": "oblacheniya-arhierejskie-omofory-mantii-podlsakosniki",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/7"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=7"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "count": 25,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/oblacheniya-diakonskie-orari-stihari-podryasniki\/",
+    "name": "\u041e\u0431\u043b\u0430\u0447\u0435\u043d\u0438\u044f \u0434\u0438\u0430\u043a\u043e\u043d\u0441\u043a\u0438\u0435, \u043e\u0440\u0430\u0440\u0438, \u0441\u0442\u0438\u0445\u0430\u0440\u0438, \u043f\u043e\u0434\u0440\u044f\u0441\u043d\u0438\u043a\u0438",
+    "slug": "oblacheniya-diakonskie-orari-stihari-podryasniki",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/8"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=8"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "count": 39,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/oblacheniya-ierejskie-podrizniki-trebnye-nabory\/",
+    "name": "\u041e\u0431\u043b\u0430\u0447\u0435\u043d\u0438\u044f \u0438\u0435\u0440\u0435\u0439\u0441\u043a\u0438\u0435, \u043f\u043e\u0434\u0440\u0438\u0437\u043d\u0438\u043a\u0438, \u0442\u0440\u0435\u0431\u043d\u044b\u0435 \u043d\u0430\u0431\u043e\u0440\u044b",
+    "slug": "oblacheniya-ierejskie-podrizniki-trebnye-nabory",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/9"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=9"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "count": 16,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/plashhanitsy-horugvi\/",
+    "name": "\u041f\u043b\u0430\u0449\u0430\u043d\u0438\u0446\u044b, \u0445\u043e\u0440\u0443\u0433\u0432\u0438",
+    "slug": "plashhanitsy-horugvi",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/10"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=10"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "count": 34,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/pokrovtsy-vozduhi-naprestolniki-ilitony\/",
+    "name": "\u041f\u043e\u043a\u0440\u043e\u0432\u0446\u044b, \u043e\u0440\u043b\u0435\u0446\u044b, \u043d\u0430\u043f\u0440\u0435\u0441\u0442\u043e\u043b\u044c\u043d\u0438\u043a\u0438, \u0438\u043b\u0438\u0442\u043e\u043d\u044b, \u043f\u043b\u0430\u0442\u044b \u043f\u043e\u0434 \u043a\u0440\u0435\u0441\u0442",
+    "slug": "pokrovtsy-vozduhi-naprestolniki-ilitony",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/11"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=11"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 1,
+    "count": 1,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/raznoe\/",
+    "name": "\u0420\u0430\u0437\u043d\u043e\u0435",
+    "slug": "raznoe",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/1"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=1"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 155,
+    "count": 0,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/rasprodazha\/",
+    "name": "\u0420\u0430\u0441\u043f\u0440\u043e\u0434\u0430\u0436\u0430",
+    "slug": "rasprodazha",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/155"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=155"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "count": 30,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/skrizhali-kresty-na-oblacheniya-poyasa\/",
+    "name": "\u0421\u043a\u0440\u0438\u0436\u0430\u043b\u0438, \u043a\u0440\u0435\u0441\u0442\u044b \u043d\u0430 \u043e\u0431\u043b\u0430\u0447\u0435\u043d\u0438\u044f, \u043f\u043e\u044f\u0441\u0430",
+    "slug": "skrizhali-kresty-na-oblacheniya-poyasa",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/13"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=13"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 103,
+    "count": 15,
+    "description": "",
+    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/tserkovnye-tkani\/",
+    "name": "\u0426\u0435\u0440\u043a\u043e\u0432\u043d\u044b\u0435 \u0442\u043a\u0430\u043d\u0438",
+    "slug": "tserkovnye-tkani",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/103"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=103"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

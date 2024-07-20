@@ -64,6 +64,7 @@
 		52EEED582C4BD56600699AC9 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEED572C4BD56600699AC9 /* Types.swift */; };
 		52EEED5A2C4BD57100699AC9 /* Utilities in Frameworks */ = {isa = PBXBuildFile; productRef = 52EEED592C4BD57100699AC9 /* Utilities */; };
 		52EEED5C2C4BDB9400699AC9 /* Inhection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEED5B2C4BDB9400699AC9 /* Inhection.swift */; };
+		52EEED5F2C4BDF2100699AC9 /* AppStarterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEED5E2C4BDF2100699AC9 /* AppStarterService.swift */; };
 		52F4EFC22AC30EC700BAA6FB /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4EFC12AC30EC700BAA6FB /* AppFeature.swift */; };
 		52F4EFC52AC342BC00BAA6FB /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4EFC42AC342BC00BAA6FB /* UserDefaultsClient.swift */; };
 		52FCA0132AF4315500BDDD64 /* Int32ArrayValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA0122AF4315500BDDD64 /* Int32ArrayValueTransformer.swift */; };
@@ -136,6 +137,7 @@
 		52EEED552C4BD40F00699AC9 /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
 		52EEED572C4BD56600699AC9 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		52EEED5B2C4BDB9400699AC9 /* Inhection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inhection.swift; sourceTree = "<group>"; };
+		52EEED5E2C4BDF2100699AC9 /* AppStarterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStarterService.swift; sourceTree = "<group>"; };
 		52F4EFC12AC30EC700BAA6FB /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
 		52F4EFC42AC342BC00BAA6FB /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
 		52FCA0122AF4315500BDDD64 /* Int32ArrayValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int32ArrayValueTransformer.swift; sourceTree = "<group>"; };
@@ -291,7 +293,7 @@
 				52EEED572C4BD56600699AC9 /* Types.swift */,
 				52EEED5B2C4BDB9400699AC9 /* Inhection.swift */,
 				52975CFA2C483B4F009CB283 /* RootScreen.swift */,
-				52975CF82C4837E9009CB283 /* Router.swift */,
+				52EEED5D2C4BDF0A00699AC9 /* Services */,
 				523C07C02C3FF500008253DE /* Sample2View.swift */,
 				5219AF132AE4160C0083E7BE /* Models */,
 				52138A142AC8161000C75585 /* CoreData */,
@@ -410,6 +412,15 @@
 				52BBB80F2AFFB11300D71CC0 /* MinimizingButton.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		52EEED5D2C4BDF0A00699AC9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				52EEED5E2C4BDF2100699AC9 /* AppStarterService.swift */,
+				52975CF82C4837E9009CB283 /* Router.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		52F4EFBE2AC30E7100BAA6FB /* AppFeature */ = {
@@ -599,6 +610,7 @@
 				52FCA0292AF68C5B00BDDD64 /* ImageCache.swift in Sources */,
 				523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */,
 				52138A332AC9DAE600C75585 /* PostDTO.swift in Sources */,
+				52EEED5F2C4BDF2100699AC9 /* AppStarterService.swift in Sources */,
 				52BBB8102AFFB11300D71CC0 /* MinimizingButton.swift in Sources */,
 				52FCA0132AF4315500BDDD64 /* Int32ArrayValueTransformer.swift in Sources */,
 				52BBB80E2AFFA7FD00D71CC0 /* RemoteImage.swift in Sources */,
