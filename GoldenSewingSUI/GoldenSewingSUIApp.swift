@@ -1,25 +1,18 @@
-import CachedDataKit
-import DataNormaliserKit
-import NetworkKit
-import SwiftDataProviderKit
 import SwiftUI
 
 @main
 struct GoldenSewingSUIApp: App {
-    @Injected(\.dbProvider) private var dbProvider
+    
+    @Environment(\.scenePhase) var scenePhase
+    
+    private let starterService = AppStarterService()
     
     var body: some Scene {
         WindowGroup {
             RootScreen()
-                .task {
-                    let cache = DataSource()
-                    let swiftData = dbProvider//DataProvider()
-                    let normaliser = DataNormaliser(
-                        cache: cache,
-                        swiftData: swiftData
-                    )
-                    
-                    await normaliser.start()
+                .onChange(of: scenePhase) { _, newPhase in
+                    guard case newPhase = .active else { return }
+                    Task { await starterService.start() }
                 }
         }
     }
