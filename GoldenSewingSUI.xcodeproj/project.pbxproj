@@ -45,6 +45,8 @@
 		5279F0B72C44103B0070BAC7 /* CatalogListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279F0B62C44103B0070BAC7 /* CatalogListViewModel.swift */; };
 		5279F0B92C45326F0070BAC7 /* Constants in Resources */ = {isa = PBXBuildFile; fileRef = 5279F0B82C45326F0070BAC7 /* Constants */; };
 		5279F0BB2C4532780070BAC7 /* Constants in Frameworks */ = {isa = PBXBuildFile; productRef = 5279F0BA2C4532780070BAC7 /* Constants */; };
+		52975CF92C4837E9009CB283 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52975CF82C4837E9009CB283 /* Router.swift */; };
+		52975CFB2C483B4F009CB283 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52975CFA2C483B4F009CB283 /* RootScreen.swift */; };
 		5298866C2AEC3859006716FF /* PostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5298866B2AEC3859006716FF /* PostsDataSource.swift */; };
 		529FE5BF2C3D611F00A35257 /* SwiftDataProviderKit in Resources */ = {isa = PBXBuildFile; fileRef = 529FE5BE2C3D611F00A35257 /* SwiftDataProviderKit */; };
 		529FE5C12C3D72BA00A35257 /* SwiftDataProviderKit in Frameworks */ = {isa = PBXBuildFile; productRef = 529FE5C02C3D72BA00A35257 /* SwiftDataProviderKit */; };
@@ -112,6 +114,8 @@
 		5279F0B42C43E1680070BAC7 /* CatalogListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogListFeature.swift; sourceTree = "<group>"; };
 		5279F0B62C44103B0070BAC7 /* CatalogListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogListViewModel.swift; sourceTree = "<group>"; };
 		5279F0B82C45326F0070BAC7 /* Constants */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Constants; sourceTree = "<group>"; };
+		52975CF82C4837E9009CB283 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		52975CFA2C483B4F009CB283 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
 		5298866B2AEC3859006716FF /* PostsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDataSource.swift; sourceTree = "<group>"; };
 		529FE5BE2C3D611F00A35257 /* SwiftDataProviderKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftDataProviderKit; sourceTree = "<group>"; };
 		52A632502AF01DF800A179A8 /* PostsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsProvider.swift; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 			children = (
 				52B8CD6A2AF69C1800962EEF /* Info.plist */,
 				523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */,
+				52975CFA2C483B4F009CB283 /* RootScreen.swift */,
+				52975CF82C4837E9009CB283 /* Router.swift */,
 				523C07C02C3FF500008253DE /* Sample2View.swift */,
 				5219AF132AE4160C0083E7BE /* Models */,
 				52138A142AC8161000C75585 /* CoreData */,
@@ -554,7 +560,9 @@
 				523C07C12C3FF500008253DE /* Sample2View.swift in Sources */,
 				5263957C2ACE8F1600C8D48A /* CategoryDTO.swift in Sources */,
 				52FCA0222AF57F0800BDDD64 /* MediaDTO.swift in Sources */,
+				52975CFB2C483B4F009CB283 /* RootScreen.swift in Sources */,
 				5219AF0C2AE2CD780083E7BE /* CategoriesProvider.swift in Sources */,
+				52975CF92C4837E9009CB283 /* Router.swift in Sources */,
 				52030B352AC4572300758202 /* ApiClient.swift in Sources */,
 				52138A162AC8162500C75585 /* CoreData.swift in Sources */,
 				52A632582AF034A200A179A8 /* PostDetail.swift in Sources */,
