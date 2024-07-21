@@ -23,6 +23,10 @@ public protocol DataSourceProtocol {
         dataLoading: DataLoadingFunction?,
         _ handler: @escaping Handler<[CategoryModel], CachedDataKitError>
     )
+    func loadPosts(
+        dataLoading: DataLoadingFunction?,
+        _ handler: @escaping Handler<[PostModel], CachedDataKitError>
+    )
 }
 
 public final class DataSource: DataSourceProtocol {
@@ -47,41 +51,24 @@ public final class DataSource: DataSourceProtocol {
             }
         }
     }
-}
-
-public final class DataLoader {
-    public static func loadData(
-        from: Resource,
-        handler: @escaping Handler<Data, CachedDataKitError>
-    ) {
-        guard let resourceFile = Bundle.module.url(
-            forResource: from.filename,
-            withExtension: "json"
-        ) else {
-            handler(.failure(.categoriesDataFileMissing))
-            return
-        }
-        
-        do {
-            let data = try Data(contentsOf: resourceFile)
-            handler(.success(data))
-        } catch {
-            handler(.failure(.categoriesDataFileMissing))
-        }
-    }
-}
-
-public final class DataSourceMock: DataSourceProtocol {
-    public init() { }
     
-    public func loadCategories(
-        dataLoading: DataLoadingFunction? = DataLoader.loadData,
-        _ handler: @escaping Handler<[CategoryModel], CachedDataKitError>
+    public func loadPosts(
+        dataLoading: DataLoadingFunction?,
+        _ handler: @escaping Handler<[PostModel], CachedDataKitError>
     ) {
-        handler(.success([
-            CategoryModel(id: Int32(1), title: "", link: ""),
-            CategoryModel(id: Int32(3), title: "", link: ""),
-            CategoryModel(id: Int32(5), title: "", link: ""),
-        ]))
+        let dataLoading = dataLoading ?? DataLoader.loadData
+        dataLoading(.posts) { result in
+            switch result {
+            case let .success(postsData):
+                do {
+                    let posts = try JSONDecoder().decode([PostModel].self, from: postsData)
+                    handler(.success(posts))
+                } catch {
+                    handler(.failure(.postsDataFileMissing))
+                }
+            case let .failure(error):
+                handler(.failure(error))
+            }
+        }
     }
 }

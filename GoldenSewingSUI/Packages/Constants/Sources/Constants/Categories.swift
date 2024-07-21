@@ -15,6 +15,7 @@ public struct Category {
 }
 
 private let categoryTitles = [
+    Int32(0): "Геральдика",
     Int32(1): "Разное",
     Int32(3): "Иконостасы",
     Int32(4): "Иконы",

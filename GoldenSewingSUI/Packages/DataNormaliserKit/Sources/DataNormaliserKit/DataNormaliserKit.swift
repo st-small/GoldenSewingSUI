@@ -26,6 +26,7 @@ public final class DataNormaliser {
         defer { inProgress = false }
         
         await checkCategories()
+        await checkPosts()
     }
     
     private func checkCategories() async {
@@ -33,9 +34,20 @@ public final class DataNormaliser {
             if sdCategories.isEmpty {
                 Task.detached {
                     let cachedCategories = await self.loadCategoriesFromCache()
-                    cachedCategories.forEach {
-                        _ = self.swiftData.addCategory($0.id, title: $0.title, link: $0.link)
-                    }
+                    await self.swiftData.addCategories(cachedCategories)
+                }
+            }
+        }
+        
+        await normaliseCategories()
+    }
+    
+    private func checkPosts() async {
+        let _ = swiftData.postsPublisher.sink { sdPosts in
+            if sdPosts.isEmpty {
+                Task.detached {
+                    let cachedPosts = await self.loadPostsFromCache()
+                    await self.swiftData.addPosts(cachedPosts)
                 }
             }
         }
@@ -56,6 +68,11 @@ public final class DataNormaliser {
 //        }
     }
     
+    
+}
+
+// MARK: - Categories
+extension DataNormaliser {
     private func loadCategoriesFromCache() async -> [CategoryModel] {
         await withCheckedContinuation { continuation in
             cache.loadCategories(dataLoading: nil) { result in
@@ -63,7 +80,7 @@ public final class DataNormaliser {
                 case let .success(categories):
                     continuation.resume(returning: categories)
                 case let .failure(error):
-                    preconditionFailure()
+                    preconditionFailure(error.localizedDescription)
                 }
             }
         }
@@ -76,5 +93,25 @@ public final class DataNormaliser {
             print("Error \(error.localizedDescription)")
             return []
         }
+    }
+}
+
+// MARK: - Posts
+extension DataNormaliser {
+    private func loadPostsFromCache() async -> [PostModel] {
+        await withCheckedContinuation { continuation in
+            cache.loadPosts(dataLoading: nil) { result in
+                switch result {
+                case let .success(posts):
+                    continuation.resume(returning: posts)
+                case let .failure(error):
+                    preconditionFailure(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    private func loadPostsAPI() async -> [PostModel] {
+        return []
     }
 }

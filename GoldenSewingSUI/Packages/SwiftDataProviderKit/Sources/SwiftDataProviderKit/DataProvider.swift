@@ -5,15 +5,21 @@ import SwiftUI
 
 public protocol DataProviderProtocol {
     var categoriesPublisher: Published<[CategoryModel]>.Publisher { get }
-    func addCategory(_ id: CategoryID, title: String, link: String)
-    func updateCategory(_ id: CategoryID, isFavourite: Bool)
-    func deleteCategory(_ id: CategoryID)
+    func addCategories(_ categories: [CategoryModel]) async
+    func updateCategory(_ id: CategoryID, isFavourite: Bool) async
+    func deleteCategory(_ id: CategoryID) async
+    
+    var postsPublisher: Published<[PostModel]>.Publisher { get }
+    func addPosts(_ posts: [PostModel]) async
 }
 
 public final class DataProvider: ObservableObject, DataProviderProtocol {
 
     @Published private(set) var categories: [CategoryModel] = []
     public var categoriesPublisher: Published<[CategoryModel]>.Publisher { $categories }
+    
+    @Published private(set) var posts: [PostModel] = []
+    public var postsPublisher: Published<[PostModel]>.Publisher { $posts }
     
     private(set) var modelContext: ModelContext? = nil
     private(set) var modelContainer: ModelContainer? = nil
@@ -37,25 +43,22 @@ public final class DataProvider: ObservableObject, DataProviderProtocol {
         prefetchData()
     }
     
-    // MARK: - Public
-    
-    public func addCategory(_ id: CategoryID, title: String, link: String) {
+    // MARK: - Categories
+    public func addCategories(_ categories: [CategoryModel]) async {
         guard let context = modelContext else { preconditionFailure() }
         
-        let category = SDCategoryModel(
-            id: id.value,
-            title: title,
-            link: link,
-            isFavourite: false
-        )
-        context.insert(category)
-        
-        do {
-            try context.save()
-        } catch {
-            preconditionFailure(error.localizedDescription)
+        categories.forEach {
+            context.insert(
+                SDCategoryModel(
+                    id: $0.id.value,
+                    title: $0.title,
+                    link: $0.link,
+                    isFavourite: false
+                )
+            )
         }
         
+        await save()
         prefetchData()
     }
     
@@ -84,8 +87,38 @@ public final class DataProvider: ObservableObject, DataProviderProtocol {
 //        } catch {
 //            preconditionFailure(error.localizedDescription)
 //        }
-//        
+//
 //        prefetchData()
+    }
+    
+    // MARK: - Posts
+    public func addPost(_ id: PostID, title: String) async {
+        guard let context = modelContext else { preconditionFailure() }
+        
+        let post = SDPostModel(
+            id: id.value,
+            title: title
+        )
+        context.insert(post)
+        
+        await save()
+        prefetchData()
+    }
+    
+    public func addPosts(_ posts: [PostModel]) async {
+        guard let context = modelContext else { preconditionFailure() }
+        
+        posts.forEach {
+            context.insert(
+                SDPostModel(
+                    id: $0.id.value,
+                    title: $0.title
+                )
+            )
+        }
+        
+        await save()
+        prefetchData()
     }
     
     // MARK: - Private
@@ -96,7 +129,19 @@ public final class DataProvider: ObservableObject, DataProviderProtocol {
         do {
             categories = try context.fetch(FetchDescriptor<SDCategoryModel>())
                 .map { $0.map() }
-            categories.forEach { print($0.id) }
+            posts = try context.fetch(FetchDescriptor<SDPostModel>())
+                .map { $0.map() }
+        } catch {
+            preconditionFailure(error.localizedDescription)
+        }
+    }
+    
+    @MainActor
+    private func save() async {
+        guard let context = modelContext else { preconditionFailure() }
+        
+        do {
+            try context.save()
         } catch {
             preconditionFailure(error.localizedDescription)
         }
@@ -107,18 +152,21 @@ public final class DataProviderMock: DataProviderProtocol {
     @Published private(set) var categories: [CategoryModel] = []
     public var categoriesPublisher: Published<[CategoryModel]>.Publisher { $categories }
     
+    @Published private(set) var posts: [PostModel] = []
+    public var postsPublisher: Published<[PostModel]>.Publisher { $posts }
+    
     public init() { }
     
-    public func addCategory(_ id: CategoryID, title: String, link: String) {
-        categories.append(
-            CategoryModel(
-                id: id.value,
-                title: title,
-                link: link
-            )
-        )
+    public func addCategories(_ categories: [CategoryModel]) {
+        self.categories = categories
     }
     
     public func updateCategory(_ id: ModelsKit.CategoryID, isFavourite: Bool) { }
     public func deleteCategory(_ id: ModelsKit.CategoryID) { }
+    
+    public func addPost(_ id: PostID, title: String) {
+        posts.append(PostModel(id: id.value, title: title))
+    }
+    
+    public func addPosts(_ posts: [PostModel]) { }
 }
