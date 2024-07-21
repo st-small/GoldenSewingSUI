@@ -9,6 +9,6 @@ public enum SchemaVersion_1: VersionedSchema {
     }
     
     public static var models: [any PersistentModel.Type] {
-        [SDCategoryModel.self]
+        [SDCategoryModel.self, SDPostModel.self]
     }
 }

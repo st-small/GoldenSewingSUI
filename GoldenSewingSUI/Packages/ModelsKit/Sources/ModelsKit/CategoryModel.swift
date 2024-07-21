@@ -1,4 +1,4 @@
-public struct CategoryID: Hashable, Decodable {
+public struct CategoryID: Hashable, Decodable, Sendable {
     public init(_ value: Int32) {
         self.value = value
     }
@@ -32,13 +32,18 @@ public struct CategoryModel: Decodable, Identifiable {
         self.isFavourite = isFavourite
     }
     
-    public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let categoryIDValue = try container.decode(Int32.self, forKey: .id)
-        self.id = CategoryID(categoryIDValue)
-        self.title = try container.decode(String.self, forKey: .title)
-        self.link = try container.decode(String.self, forKey: .link)
-        self.isFavourite = try container.decodeIfPresent(Bool.self, forKey: .isFavourite)
+    public init(from decoder: any Decoder) {
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let categoryIDValue = try container.decode(Int32.self, forKey: .id)
+            self.id = CategoryID(categoryIDValue)
+            self.title = try container.decode(String.self, forKey: .title)
+            self.link = try container.decode(String.self, forKey: .link)
+            self.isFavourite = try container.decodeIfPresent(Bool.self, forKey: .isFavourite)
+        } catch {
+            print("Error \(error)")
+            preconditionFailure()
+        }
     }
 }
 
