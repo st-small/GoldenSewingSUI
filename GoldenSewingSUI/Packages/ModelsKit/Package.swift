@@ -10,8 +10,15 @@ let package = Package(
             name: "ModelsKit",
             targets: ["ModelsKit"]),
     ],
+    dependencies: [
+        .package(name: "Constants", path: "../Constants"),
+    ],
     targets: [
         .target(
-            name: "ModelsKit"),
+            name: "ModelsKit",
+            dependencies: [
+                .product(name: "Constants", package: "Constants"),
+            ]
+        )
     ]
 )

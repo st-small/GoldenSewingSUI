@@ -1,9 +1,11 @@
+import Constants
+
 public struct CategoryID: Hashable, Decodable, Sendable {
-    public init(_ value: Int32) {
+    public init(_ value: UInt32) {
         self.value = value
     }
 
-    public let value: Int32
+    public let value: UInt32
 }
 
 public struct CategoryModel: Decodable, Identifiable {
@@ -21,7 +23,7 @@ public struct CategoryModel: Decodable, Identifiable {
     }
     
     public init(
-        id: Int32,
+        id: UInt32,
         title: String,
         link: String,
         isFavourite: Bool = false
@@ -32,10 +34,19 @@ public struct CategoryModel: Decodable, Identifiable {
         self.isFavourite = isFavourite
     }
     
+    public init(id: UInt32) {
+        let title = Category.title(id)
+        
+        self.id = CategoryID(id)
+        self.title = title
+        self.link = ""
+        self.isFavourite = false
+    }
+    
     public init(from decoder: any Decoder) {
         do {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            let categoryIDValue = try container.decode(Int32.self, forKey: .id)
+            let categoryIDValue = try container.decode(UInt32.self, forKey: .id)
             self.id = CategoryID(categoryIDValue)
             self.title = try container.decode(String.self, forKey: .title)
             self.link = try container.decode(String.self, forKey: .link)

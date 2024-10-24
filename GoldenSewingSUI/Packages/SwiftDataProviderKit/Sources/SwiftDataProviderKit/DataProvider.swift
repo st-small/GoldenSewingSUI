@@ -32,6 +32,8 @@ public final class DataProvider: ObservableObject, DataProviderProtocol {
             isStoredInMemoryOnly: inMemory
         )
         
+        print("Model container path: \(configuration.url)")
+        
         do {
             modelContainer = try ModelContainer(for: schema, configurations: [configuration])
             modelContext = modelContainer?.mainContext
@@ -92,29 +94,37 @@ public final class DataProvider: ObservableObject, DataProviderProtocol {
     }
     
     // MARK: - Posts
-    public func addPost(_ id: PostID, title: String) async {
-        guard let context = modelContext else { preconditionFailure() }
-        
-        let post = SDPostModel(
-            id: id.value,
-            title: title
-        )
-        context.insert(post)
-        
-        await save()
-        prefetchData()
-    }
+//    public func addPost(_ id: PostID, title: String, categories: [UInt32]) async {
+//        guard let context = modelContext else { preconditionFailure() }
+//        
+//        let categories = try? context.fetch(FetchDescriptor<SDCategoryModel>())
+//        let post = SDPostModel(
+//            id: id.value,
+//            title: title,
+//            categories: categories ?? []
+//        )
+//        context.insert(post)
+//        
+//        await save()
+//        prefetchData()
+//    }
     
     public func addPosts(_ posts: [PostModel]) async {
         guard let context = modelContext else { preconditionFailure() }
+        let categories = try? context.fetch(FetchDescriptor<SDCategoryModel>())
         
-        posts.forEach {
-            context.insert(
-                SDPostModel(
-                    id: $0.id.value,
-                    title: $0.title
-                )
+        for post in posts {
+            let postModel = SDPostModel(
+                id: post.id.value,
+                title: post.title
             )
+            context.insert(postModel)
+            
+            let postCategoriesIDs = post.categories.map { $0.id.value }
+            let postCategories = (categories?.filter { postCategoriesIDs.contains($0.id) }) ?? []
+            for category in postCategories {
+                category.posts.append(postModel)
+            }
         }
         
         await save()
@@ -165,7 +175,7 @@ public final class DataProviderMock: DataProviderProtocol {
     public func deleteCategory(_ id: ModelsKit.CategoryID) { }
     
     public func addPost(_ id: PostID, title: String) {
-        posts.append(PostModel(id: id.value, title: title))
+        posts.append(PostModel(id: id.value, title: title, categories: []))
     }
     
     public func addPosts(_ posts: [PostModel]) { }
