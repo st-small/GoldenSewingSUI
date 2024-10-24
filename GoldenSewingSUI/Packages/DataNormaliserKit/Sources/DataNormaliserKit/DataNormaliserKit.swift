@@ -52,7 +52,7 @@ public final class DataNormaliser {
             }
         }
         
-        await normaliseCategories()
+        await normalisePosts()
     }
     
     private func normaliseCategories() async {
@@ -68,7 +68,7 @@ public final class DataNormaliser {
 //        }
     }
     
-    
+    private func normalisePosts() async { }
 }
 
 // MARK: - Categories

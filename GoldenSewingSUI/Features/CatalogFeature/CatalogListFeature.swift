@@ -33,7 +33,7 @@ struct CategoryItemView: View {
     
     var body: some View {
         Button {
-            router.push(.productsList)
+            router.push(.productsList(category.id))
         } label: {
             RoundedRectangle(cornerRadius: 10)
                 .frame(height: 162)
