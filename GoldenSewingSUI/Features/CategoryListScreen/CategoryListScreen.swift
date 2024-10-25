@@ -23,6 +23,8 @@ public final class CategoryListViewModel: ObservableObject {
 }
 
 struct CategoryListScreen: View {
+    @Injected(\.router) private var router
+    
     let categoryID: CategoryID
     
     @StateObject private var vm: CategoryListViewModel
@@ -40,10 +42,14 @@ struct CategoryListScreen: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 12) {
-                ForEach(vm.items) {
-                    ProductItemView(product: $0)
-                        .frame(height: 240)
-                        .border(.green)
+                ForEach(vm.items) { product in
+                    Button {
+                        router.push(.productDetail(product))
+                    } label: {
+                        ProductItemView(product: product)
+                            .frame(height: 240)
+                            .border(.green)
+                    }
                 }
             }
             .padding(.horizontal, 16)

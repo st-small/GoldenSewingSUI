@@ -8,7 +8,7 @@ public struct CategoryID: Hashable, Decodable, Sendable {
     public let value: UInt32
 }
 
-public struct CategoryModel: Decodable, Identifiable {
+public struct CategoryModel: Decodable, Identifiable, Hashable {
     public let id: CategoryID
     public let title: String
     public let link: String

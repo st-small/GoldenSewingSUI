@@ -13,6 +13,7 @@ public struct ProductItemView: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text(product.title)
                     .font(.system(size: 13, weight: .semibold))
+                    .multilineTextAlignment(.leading)
                     .frame(maxHeight: .infinity)
                     .border(.cyan)
                 

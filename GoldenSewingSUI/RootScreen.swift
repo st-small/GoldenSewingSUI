@@ -10,6 +10,8 @@ struct RootScreen: View {
                 CatalogListFeature()
             case let .productsList(categoryID):
                 CategoryListScreen(categoryID)
+            case let .productDetail(product):
+                PostDetailScreen(post: product)
             }
         }
     }
