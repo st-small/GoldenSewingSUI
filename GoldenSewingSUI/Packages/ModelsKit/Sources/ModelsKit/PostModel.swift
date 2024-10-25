@@ -47,6 +47,8 @@ public struct PostModel: Decodable, Identifiable {
     }
 }
 
+extension PostModel: Equatable, Hashable { }
+
 private struct TitleModel: Decodable {
     let rendered: String
     
