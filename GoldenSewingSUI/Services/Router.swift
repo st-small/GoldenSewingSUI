@@ -2,7 +2,8 @@ import ModelsKit
 import SwiftUI
 
 public enum Route: Hashable {
-    case catalogList, productsList(CategoryID)
+    case catalogList
+    case productsList(CategoryID)
 }
 
 public final class Router<T: Hashable>: ObservableObject {

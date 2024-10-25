@@ -4,6 +4,7 @@ import SwiftData
 import SwiftUI
 
 public protocol DataProviderProtocol {
+    var categories: [CategoryModel] { get }
     var categoriesPublisher: Published<[CategoryModel]>.Publisher { get }
     func addCategories(_ categories: [CategoryModel]) async
     func updateCategory(_ id: CategoryID, isFavourite: Bool) async
@@ -15,7 +16,7 @@ public protocol DataProviderProtocol {
 
 public final class DataProvider: ObservableObject, DataProviderProtocol {
 
-    @Published private(set) var categories: [CategoryModel] = []
+    @Published private(set) public var categories: [CategoryModel] = []
     public var categoriesPublisher: Published<[CategoryModel]>.Publisher { $categories }
     
     @Published private(set) var posts: [PostModel] = []
@@ -159,7 +160,7 @@ public final class DataProvider: ObservableObject, DataProviderProtocol {
 }
 
 public final class DataProviderMock: DataProviderProtocol {
-    @Published private(set) var categories: [CategoryModel] = []
+    @Published private(set) public var categories: [CategoryModel] = []
     public var categoriesPublisher: Published<[CategoryModel]>.Publisher { $categories }
     
     @Published private(set) var posts: [PostModel] = []
