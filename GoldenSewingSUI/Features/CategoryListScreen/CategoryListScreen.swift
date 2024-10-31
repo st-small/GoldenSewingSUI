@@ -5,33 +5,25 @@ import SwiftUI
 public final class CategoryListViewModel: ObservableObject {
     @Injected(\.dbProvider) private var dbProvider
     
-    @Published private(set) var category: CategoryModel!
-    @Published private(set) var items: [PostModel] = []
+    @Published private(set) var category: CategoryModel
+    @Published private(set) var items: [ProductModel] = []
     
     private var cancellables: Set<AnyCancellable> = []
     
-    public init(_ categoryID: CategoryID) {
-        category = dbProvider.categories.first(where: { $0.id == categoryID })!
+    public init(_ category: CategoryModel) {
+        self.category = category
         
-        dbProvider.postsPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] posts in
-                items = posts.filter { $0.categories.contains(category) }
-            }
-            .store(in: &cancellables)
+//        items = dbProvider.posts.filter { $0.categories.contains(category) }
     }
 }
 
 struct CategoryListScreen: View {
     @Injected(\.router) private var router
     
-    let categoryID: CategoryID
-    
     @StateObject private var vm: CategoryListViewModel
     
-    public init(_ categoryID: CategoryID) {
-        self.categoryID = categoryID
-        _vm = StateObject(wrappedValue: .init(categoryID))
+    public init(_ category: CategoryModel) {
+        _vm = StateObject(wrappedValue: .init(category))
     }
     
     private let columns = [

@@ -3,7 +3,7 @@ import ModelsKit
 import SwiftData
 
 public typealias SDCategoryModel = SchemaVersion_1.SDCategoryModel
-public typealias SDPostModel = SchemaVersion_1.SDPostModel
+public typealias SDProductModel = SchemaVersion_1.SDProductModel
 
 extension SchemaVersion_1 {
     @Model
@@ -13,14 +13,15 @@ extension SchemaVersion_1 {
         public var title: String
         public var link: String
         public var isFavorite: Bool
-        public var posts: [SDPostModel] = []
+        @Relationship(inverse: \SDProductModel.categories)
+        public var posts: [SDProductModel] = []
         
         public init(
             id: UInt32,
             title: String,
             link: String,
             isFavourite: Bool,
-            posts: [SDPostModel] = []
+            posts: [SDProductModel] = []
         ) {
             self.id = id
             self.title = title
@@ -28,15 +29,20 @@ extension SchemaVersion_1 {
             self.isFavorite = isFavourite
             self.posts = posts
         }
+        
+        public init(_ model: CategoryModel) {
+            self.id = model.id.value
+            self.title = model.title
+            self.link = model.link
+            self.isFavorite = model.isFavourite ?? false
+        }
     }
     
     @Model
-    public final class SDPostModel {
+    public final class SDProductModel {
         @Attribute(.unique)
         public var id: UInt32
         public var title: String
-        
-        @Relationship(inverse: \SDCategoryModel.posts)
         public var categories: [SDCategoryModel]
         
         init(
@@ -57,9 +63,9 @@ extension SchemaVersion_1.SDCategoryModel {
     }
 }
 
-extension SchemaVersion_1.SDPostModel {
-    func map() -> PostModel {
-        PostModel(
+extension SchemaVersion_1.SDProductModel {
+    func map() -> ProductModel {
+        ProductModel(
             id: UInt32(id),
             title: title,
             categories: categories.map { $0.map() }

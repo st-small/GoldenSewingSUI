@@ -7,7 +7,7 @@ public typealias Injected = Utilities.Injected
 public typealias InjectionKey = Utilities.InjectionKey
 public typealias InjectedValues = Utilities.InjectedValues
 
-public typealias DataProviderProtocol = SwiftDataProviderKit.DataProviderProtocol
+public typealias DataHandler = SwiftDataProviderKit.DataHandler
 public typealias DataProvider = SwiftDataProviderKit.DataProvider
 
 public typealias DataSource = CachedDataKit.DataSource

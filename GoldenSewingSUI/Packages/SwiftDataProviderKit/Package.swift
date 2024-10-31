@@ -25,6 +25,6 @@ let package = Package(
         ),
         .testTarget(
             name: "SwiftDataProviderKitTests",
-            dependencies: ["SwiftDataProviderKit"]),
+            dependencies: ["SwiftDataProviderKit", "ModelsKit"]),
     ]
 )

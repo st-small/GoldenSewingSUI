@@ -8,8 +8,8 @@ struct RootScreen: View {
             switch path {
             case .catalogList:
                 CatalogListFeature()
-            case let .productsList(categoryID):
-                CategoryListScreen(categoryID)
+            case let .productsList(category):
+                CategoryListScreen(category)
             case let .productDetail(product):
                 PostDetailScreen(post: product)
             }
