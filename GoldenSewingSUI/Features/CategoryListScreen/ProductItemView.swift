@@ -2,7 +2,7 @@ import ModelsKit
 import SwiftUI
 
 public struct ProductItemView: View {
-    let product: PostModel
+    let product: ProductModel
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 10) {

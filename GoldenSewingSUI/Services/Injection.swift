@@ -1,17 +1,18 @@
 // MARK: - Database
-@MainActor
-private struct DataProviderKey: InjectionKey {
-    static var currentValue: DataProviderProtocol = DataProvider()
+private struct DataHandlerKey: InjectionKey {
+    static var currentValue: @Sendable () async -> DataHandler = {
+        DataProvider().dataHandleCreator()
+    }()
 }
 
 public extension InjectedValues {
-    var dbProvider: DataProviderProtocol {
-        get { Self[DataProviderKey.self] }
-        set { Self[DataProviderKey.self] = newValue }
+    var dbProvider: @Sendable () async -> DataHandler {
+        get { Self[DataHandlerKey.self] }
+        set { Self[DataHandlerKey.self] = newValue }
     }
 }
 
-    // MARK: - Router
+// MARK: - Router
 private struct RouterInjectionKey: InjectionKey {
     static var currentValue: Router<Route> = Router(root: .catalogList)
 }

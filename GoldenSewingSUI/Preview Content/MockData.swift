@@ -8,8 +8,8 @@ extension CategoryModel {
     )
 }
 
-extension PostModel {
-    static let mock = PostModel(
+extension ProductModel {
+    static let mock = ProductModel(
             id: UInt32(111),
             title: "Икона Святого равноапостольного князя Владимира",
             categories: [

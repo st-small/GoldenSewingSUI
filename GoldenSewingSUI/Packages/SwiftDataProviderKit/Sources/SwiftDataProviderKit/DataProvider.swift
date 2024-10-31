@@ -1,26 +1,70 @@
-import Combine
 import ModelsKit
 import SwiftData
-import SwiftUI
 
-public protocol DataProviderProtocol {
-    var categories: [CategoryModel] { get }
-    var categoriesPublisher: Published<[CategoryModel]>.Publisher { get }
-    func addCategories(_ categories: [CategoryModel]) async
-    func updateCategory(_ id: CategoryID, isFavourite: Bool) async
-    func deleteCategory(_ id: CategoryID) async
+public final class DataProvider: Sendable {
+    public let sharedModelContainer: ModelContainer = {
+        let schema = Schema(CurrentScheme.models)
+        let configuration = ModelConfiguration(
+            schema: schema,
+            isStoredInMemoryOnly: false
+        )
+        
+        print("Model container path: \(configuration.url)")
+        
+        return try! ModelContainer(for: schema, configurations: [configuration])
+    }()
     
-    var postsPublisher: Published<[PostModel]>.Publisher { get }
-    func addPosts(_ posts: [PostModel]) async
+    public init() { }
+    
+    public func dataHandleCreator() -> @Sendable () async -> DataHandler {
+        let container = sharedModelContainer
+        return { await DataHandler(container: container) }
+    }
+}
+
+/*
+public actor DataProvider: DataProviderProtocol {
+    public let categories: [CategoryModel] = []
+    public let products: [PostModel] = []
+    
+    private let modelContext: ModelContext
+    private let modelContainer: ModelContainer
+    
+    public init(inMemory: Bool = false) {
+        let schema = Schema(CurrentScheme.models)
+        let configuration = ModelConfiguration(
+            schema: schema,
+            isStoredInMemoryOnly: inMemory
+        )
+        
+        print("Model container path: \(configuration.url)")
+        
+        do {
+            modelContainer = try ModelContainer(for: schema, configurations: [configuration])
+            modelContext = await modelContainer.mainContext
+            modelContext.autosaveEnabled = true
+        } catch {
+            preconditionFailure("Could not create ModelContainer: \(error)")
+        }
+        
+//        prefetchData()
+    }
+    
+    // MARK: - DataProviderProtocol
+    public func addCategories(_ categories: [CategoryModel]) async { }
+    public func updateCategory(_ id: CategoryID, isFavourite: Bool) async { }
+    public func deleteCategory(_ id: CategoryID) async { }
+    
+    public func addProducts(_ posts: [PostModel]) async { }
 }
 
 public final class DataProvider: ObservableObject, DataProviderProtocol {
 
     @Published private(set) public var categories: [CategoryModel] = []
-    public var categoriesPublisher: Published<[CategoryModel]>.Publisher { $categories }
+//    public var categoriesPublisher: Published<[CategoryModel]>.Publisher { $categories }
     
-    @Published private(set) var posts: [PostModel] = []
-    public var postsPublisher: Published<[PostModel]>.Publisher { $posts }
+    @Published private(set) public var posts: [PostModel] = []
+//    public var postsPublisher: Published<[PostModel]>.Publisher { $posts }
     
     private(set) var modelContext: ModelContext? = nil
     private(set) var modelContainer: ModelContainer? = nil
@@ -161,10 +205,10 @@ public final class DataProvider: ObservableObject, DataProviderProtocol {
 
 public final class DataProviderMock: DataProviderProtocol {
     @Published private(set) public var categories: [CategoryModel] = []
-    public var categoriesPublisher: Published<[CategoryModel]>.Publisher { $categories }
+//    public var categoriesPublisher: Published<[CategoryModel]>.Publisher { $categories }
     
-    @Published private(set) var posts: [PostModel] = []
-    public var postsPublisher: Published<[PostModel]>.Publisher { $posts }
+    @Published private(set) public var posts: [PostModel] = []
+//    public var postsPublisher: Published<[PostModel]>.Publisher { $posts }
     
     public init() { }
     
@@ -181,3 +225,4 @@ public final class DataProviderMock: DataProviderProtocol {
     
     public func addPosts(_ posts: [PostModel]) { }
 }
+*/

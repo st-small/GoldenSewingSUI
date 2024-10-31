@@ -3,8 +3,8 @@ import SwiftUI
 
 public enum Route: Hashable {
     case catalogList
-    case productsList(CategoryID)
-    case productDetail(PostModel)
+    case productsList(CategoryModel)
+    case productDetail(ProductModel)
 }
 
 public final class Router<T: Hashable>: ObservableObject {

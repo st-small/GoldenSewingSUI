@@ -5,7 +5,7 @@ public struct AppStarterService {
     
     public func start() async {
         let cache = DataSource()
-        let swiftData = dbProvider
+        let swiftData = await dbProvider()
         let normaliser = DataNormaliser(
             cache: cache,
             swiftData: swiftData

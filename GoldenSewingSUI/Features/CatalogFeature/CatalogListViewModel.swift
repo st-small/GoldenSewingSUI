@@ -5,16 +5,25 @@ import ModelsKit
 public final class CatalogListViewModel: ObservableObject {
     @Injected(\.dbProvider) private var dbProvider
     
-    @Published var categories: [CategoryModel] = []
-    
+    @Published private(set) var categories: [CategoryModel] = []
+
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
-        dbProvider.categoriesPublisher
+        fetchData()
+        
+        NotificationCenter.default
+            .publisher(for: .NSManagedObjectContextDidSave)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] categories in
-                self?.categories = categories
+            .sink { [weak self] value in
+                self?.fetchData()
             }
             .store(in: &cancellables)
+    }
+    
+    private func fetchData() {
+        Task { @MainActor in
+            categories = await dbProvider().readCategories()
+        }
     }
 }
