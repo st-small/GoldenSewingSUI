@@ -8,17 +8,21 @@ public final class SDCategoryEntity {
     public var title: String
     public var link: String
     public var isFavorite: Bool
+    @Relationship(inverse: \SDProductEntity.categories)
+    public var products: [SDProductEntity] = []
     
     public init(
         id: UInt32,
         title: String,
         link: String,
-        isFavourite: Bool
+        isFavourite: Bool,
+        products: [SDProductEntity] = []
     ) {
         self.id = id
         self.title = title
         self.link = link
         self.isFavorite = isFavourite
+        self.products = products
     }
     
     public init(_ model: CategoryModel) {

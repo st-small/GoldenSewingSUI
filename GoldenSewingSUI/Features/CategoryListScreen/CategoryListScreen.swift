@@ -13,7 +13,13 @@ public final class CategoryListViewModel: ObservableObject {
     public init(_ category: CategoryModel) {
         self.category = category
         
-//        items = dbProvider.posts.filter { $0.categories.contains(category) }
+        Task { @MainActor in
+            do {
+                items = try await dbProvider.getProducts(category.id.value)
+            } catch {
+                preconditionFailure(error.localizedDescription)
+            }
+        }
     }
 }
 
