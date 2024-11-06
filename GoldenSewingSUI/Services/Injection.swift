@@ -1,14 +1,12 @@
 // MARK: - Database
-private struct DataHandlerKey: InjectionKey {
-    static var currentValue: @Sendable () async -> DataHandler = {
-        DataProvider().dataHandleCreator()
-    }()
+private struct DatabaseKey: InjectionKey {
+    static var currentValue: DatabaseQueryProtocol = DatabaseQuery()
 }
 
 public extension InjectedValues {
-    var dbProvider: @Sendable () async -> DataHandler {
-        get { Self[DataHandlerKey.self] }
-        set { Self[DataHandlerKey.self] = newValue }
+    var dbProvider: DatabaseQueryProtocol {
+        get { Self[DatabaseKey.self] }
+        set { Self[DatabaseKey.self] = newValue }
     }
 }
 

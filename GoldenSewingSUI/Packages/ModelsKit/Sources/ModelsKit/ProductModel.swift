@@ -12,23 +12,29 @@ public struct ProductModel: Decodable, Identifiable {
     public let id: ProductID
     public let title: String
     public let categories: [CategoryModel]
-//    public let imageModel: ???
-//    public let images: [???]
+    public let image: ImageModel?
+    public let images: [ImageModel]?
     
     public init(
         id: UInt32,
         title: String,
-        categories: [CategoryModel]
+        categories: [CategoryModel],
+        image: ImageModel? = nil,
+        images: [ImageModel]? = nil
     ) {
         self.id = ProductID(id)
         self.title = title
         self.categories = categories
+        self.image = image
+        self.images = images
     }
     
-    enum CodingKeys: CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case title
         case categories
+        case betterFeaturedImage = "better_featured_image"
+        case acf
     }
     
     public init(from decoder: any Decoder) {
@@ -39,7 +45,15 @@ public struct ProductModel: Decodable, Identifiable {
             self.title = try container.decode(TitleModel.self, forKey: .title).rendered
             self.categories = try container.decode([UInt32].self, forKey: .categories)
                 .map { CategoryModel(id: $0) }
+            self.image = try container.decodeIfPresent(BetterFeaturedImage.self, forKey: .betterFeaturedImage)?.image
             
+            do {
+                let acf = try container.decodeIfPresent(ACF.self, forKey: .acf)
+                self.images = acf?.asImages
+            } catch {
+                print(error)
+                self.images = nil
+            }
         } catch {
             print("Error \(error)")
             preconditionFailure()
@@ -49,36 +63,33 @@ public struct ProductModel: Decodable, Identifiable {
 
 extension ProductModel: Equatable, Hashable { }
 
-private struct TitleModel: Decodable {
-    let rendered: String
+struct ACF: Decodable {
+    let images: [SubImageModel]
     
-    enum CodingKeys: CodingKey {
-        case rendered
+    enum CodingKeys: String, CodingKey {
+        case images = "add_img"
     }
     
-    init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.rendered = try container.decodeIfPresent(String.self, forKey: .rendered)?.htmlDecoded ?? ""
+    var asImages: [ImageModel] {
+        images.map { ImageModel(id: $0.id, link: $0.link) }
     }
 }
 
-private extension String {
-    var htmlDecoded: String {
-        guard let encodedData = self.data(using: .utf8) else {
-            return self
-        }
-        
-        let attributedOptions: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-            .documentType: NSAttributedString.DocumentType.html,
-            .characterEncoding: String.Encoding.utf8.rawValue
-        ]
-        
-        let decoded = try? NSAttributedString(
-            data: encodedData,
-            options: attributedOptions,
-            documentAttributes: nil
-        )
-        
-        return decoded?.string ?? self
+public struct SubImageModel: Decodable {
+    let id: ImageID
+    let link: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "sub_img"
+        case link = "sub_img_url"
+    }
+    
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let id = try container.decode(UInt32.self, forKey: .id)
+        self.id = ImageID(id)
+        self.link = try container.decode(String.self, forKey: .link)
     }
 }
+
+

@@ -4,16 +4,15 @@ import NetworkKit
 import SwiftDataProviderKit
 
 public final class DataNormaliser {
-    
     private let network = NetworkService()
     private var inProgress: Bool = false
     
     private let cache: DataSourceProtocol
-    private let swiftData: DataProviderProtocol
+    private let swiftData: DataHandler
     
     public init(
         cache: DataSourceProtocol,
-        swiftData: DataProviderProtocol
+        swiftData: DataHandler
     ) {
         self.cache = cache
         self.swiftData = swiftData
@@ -26,29 +25,26 @@ public final class DataNormaliser {
         defer { inProgress = false }
         
         await checkCategories()
-        await checkPosts()
+        await checkProducts()
     }
     
     private func checkCategories() async {
-        let _ = swiftData.categoriesPublisher.sink { sdCategories in
-            if sdCategories.isEmpty {
-                Task.detached {
-                    let cachedCategories = await self.loadCategoriesFromCache()
-                    await self.swiftData.addCategories(cachedCategories)
-                }
-            }
+        // TODO: Add normaliser implementation        
+        let sdCategories = await swiftData.readCategories()
+        if sdCategories.isEmpty {
+            let cachedCategories = await self.loadCategoriesFromCache()
+            await swiftData.addCategories(cachedCategories)
         }
         
         await normaliseCategories()
     }
     
-    private func checkPosts() async {
-        let _ = swiftData.postsPublisher.sink { sdPosts in
-            if sdPosts.isEmpty {
-                Task.detached {
-                    let cachedPosts = await self.loadPostsFromCache()
-                    await self.swiftData.addPosts(cachedPosts)
-                }
+    private func checkProducts() async {
+        // TODO: Add normaliser implementation
+        let sdProducts = await swiftData.readProducts()
+        if sdProducts.isEmpty {
+            for await cachedProducts in cache.loadPosts() {
+                await swiftData.addProducts(cachedProducts)
             }
         }
         
@@ -68,7 +64,10 @@ public final class DataNormaliser {
 //        }
     }
     
-    private func normalisePosts() async { }
+    private func normalisePosts() async {
+        print("<<< Пошел в нормализацию постов")
+        // TODO: normalisePosts
+    }
 }
 
 // MARK: - Categories
@@ -96,22 +95,9 @@ extension DataNormaliser {
     }
 }
 
-// MARK: - Posts
+// MARK: - Products
 extension DataNormaliser {
-    private func loadPostsFromCache() async -> [PostModel] {
-        await withCheckedContinuation { continuation in
-            cache.loadPosts(dataLoading: nil) { result in
-                switch result {
-                case let .success(posts):
-                    continuation.resume(returning: posts)
-                case let .failure(error):
-                    preconditionFailure(error.localizedDescription)
-                }
-            }
-        }
-    }
-    
-    private func loadPostsAPI() async -> [PostModel] {
+    private func loadPostsAPI() async -> [ProductModel] {
         return []
     }
 }

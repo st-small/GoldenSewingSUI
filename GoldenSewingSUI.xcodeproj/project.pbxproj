@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5218A2852CDBD90B002D9A7D /* SwiftDataModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5218A2842CDBD90B002D9A7D /* SwiftDataModule */; };
 		522E24A92C300A2F00C9A774 /* CachedDataKit in Frameworks */ = {isa = PBXBuildFile; productRef = 522E24A82C300A2F00C9A774 /* CachedDataKit */; };
 		522E24AB2C300B5800C9A774 /* CachedDataKit in Resources */ = {isa = PBXBuildFile; fileRef = 522E24AA2C300B5700C9A774 /* CachedDataKit */; };
 		522E24AD2C303A9D00C9A774 /* ModelsKit in Resources */ = {isa = PBXBuildFile; fileRef = 522E24AC2C303A9D00C9A774 /* ModelsKit */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5218A2832CDB9BB4002D9A7D /* SwiftDataModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftDataModule; sourceTree = "<group>"; };
 		522E24AA2C300B5700C9A774 /* CachedDataKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CachedDataKit; sourceTree = "<group>"; };
 		522E24AC2C303A9D00C9A774 /* ModelsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ModelsKit; sourceTree = "<group>"; };
 		522E24B02C3068BE00C9A774 /* NetworkKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkKit; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				5279F0BB2C4532780070BAC7 /* Constants in Frameworks */,
 				522E24B32C306EF800C9A774 /* NetworkKit in Frameworks */,
 				52EEED5A2C4BD57100699AC9 /* Utilities in Frameworks */,
+				5218A2852CDBD90B002D9A7D /* SwiftDataModule in Frameworks */,
 				522E24AF2C303AD700C9A774 /* ModelsKit in Frameworks */,
 				529FE5C12C3D72BA00A35257 /* SwiftDataProviderKit in Frameworks */,
 				522E24A92C300A2F00C9A774 /* CachedDataKit in Frameworks */,
@@ -128,6 +131,7 @@
 		522E24A62C30095500C9A774 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				5218A2832CDB9BB4002D9A7D /* SwiftDataModule */,
 				52EEED552C4BD40F00699AC9 /* Utilities */,
 				5279F0B82C45326F0070BAC7 /* Constants */,
 				523C07C22C40358E008253DE /* DataNormaliserKit */,
@@ -270,6 +274,7 @@
 				523C07C42C40359D008253DE /* DataNormaliserKit */,
 				5279F0BA2C4532780070BAC7 /* Constants */,
 				52EEED592C4BD57100699AC9 /* Utilities */,
+				5218A2842CDBD90B002D9A7D /* SwiftDataModule */,
 			);
 			productName = GoldenSewingSUI;
 			productReference = 523752BF2AC1EF930007C48A /* GoldenSewingSUI.app */;
@@ -648,6 +653,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5218A2842CDBD90B002D9A7D /* SwiftDataModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftDataModule;
+		};
 		522E24A82C300A2F00C9A774 /* CachedDataKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CachedDataKit;
