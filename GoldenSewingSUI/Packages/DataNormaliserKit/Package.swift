@@ -14,7 +14,7 @@ let package = Package(
         .package(name: "CachedDataKit", path: "../CachedDataKit"),
         .package(name: "ModelsKit", path: "../ModelsKit"),
         .package(name: "NetworkKit", path: "../NetworkKit"),
-        .package(name: "SwiftDataProviderKit", path: "../SwiftDataProviderKit")
+        .package(name: "SwiftDataModule", path: "../SwiftDataModule")
     ],
     targets: [
         .target(
@@ -23,7 +23,7 @@ let package = Package(
                 .product(name: "CachedDataKit", package: "CachedDataKit"),
                 .product(name: "ModelsKit", package: "ModelsKit"),
                 .product(name: "NetworkKit", package: "NetworkKit"),
-                .product(name: "SwiftDataProviderKit", package: "SwiftDataProviderKit")
+                .product(name: "SwiftDataModule", package: "SwiftDataModule")
             ]
         ),
         .testTarget(
@@ -32,7 +32,7 @@ let package = Package(
                 "DataNormaliserKit",
                 .product(name: "CachedDataKit", package: "CachedDataKit"),
                 .product(name: "ModelsKit", package: "ModelsKit"),
-                .product(name: "SwiftDataProviderKit", package: "SwiftDataProviderKit"),
+                .product(name: "SwiftDataModule", package: "SwiftDataModule"),
             ]),
     ]
 )

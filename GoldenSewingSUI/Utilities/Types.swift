@@ -1,14 +1,14 @@
 import CachedDataKit
 import DataNormaliserKit
-import SwiftDataProviderKit
+import SwiftDataModule
 import Utilities
 
 public typealias Injected = Utilities.Injected
 public typealias InjectionKey = Utilities.InjectionKey
 public typealias InjectedValues = Utilities.InjectedValues
 
-public typealias DataHandler = SwiftDataProviderKit.DataHandler
-public typealias DataProvider = SwiftDataProviderKit.DataProvider
+public typealias DatabaseQueryProtocol = SwiftDataModule.DataQueryProtocol
+public typealias DatabaseQuery = SwiftDataModule.DatabaseQuery
 
 public typealias DataSource = CachedDataKit.DataSource
 

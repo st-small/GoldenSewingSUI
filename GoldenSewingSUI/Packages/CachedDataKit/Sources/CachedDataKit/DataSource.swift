@@ -3,14 +3,14 @@ import ModelsKit
 
 public enum Resource {
     case categories
-    case posts
+    case posts(Int)
     
     public var filename: String {
         switch self {
         case .categories:
             return "categories"
-        case .posts:
-            return "posts"
+        case let .posts(page):
+            return "posts_\(page)"
         }
     }
 }
@@ -23,10 +23,8 @@ public protocol DataSourceProtocol {
         dataLoading: DataLoadingFunction?,
         _ handler: @escaping Handler<[CategoryModel], CachedDataKitError>
     )
-    func loadPosts(
-        dataLoading: DataLoadingFunction?,
-        _ handler: @escaping Handler<[PostModel], CachedDataKitError>
-    )
+    
+    func loadPosts() -> AsyncStream<[ProductModel]>
 }
 
 public final class DataSource: DataSourceProtocol {
@@ -52,23 +50,32 @@ public final class DataSource: DataSourceProtocol {
         }
     }
     
-    public func loadPosts(
-        dataLoading: DataLoadingFunction?,
-        _ handler: @escaping Handler<[PostModel], CachedDataKitError>
-    ) {
-        let dataLoading = dataLoading ?? DataLoader.loadData
-        dataLoading(.posts) { result in
-            switch result {
-            case let .success(postsData):
-                do {
-                    let posts = try JSONDecoder().decode([PostModel].self, from: postsData)
-                    handler(.success(posts))
-                } catch {
-                    handler(.failure(.postsDataFileMissing))
+    public func loadPosts() -> AsyncStream<[ProductModel]> {
+        AsyncStream { continuation in
+            Task {
+                for page in Array(1...7) {
+                    if let posts = try? await getPosts(page) {
+                        continuation.yield(posts)
+                    }
                 }
-            case let .failure(error):
-                handler(.failure(error))
+                
+                continuation.finish()
             }
         }
+    }
+    
+    private func getPosts(_ pageIndex: Int) async throws -> [ProductModel] {
+        guard let resourceFile = Bundle.module.url(
+            forResource: "posts_\(pageIndex)",
+            withExtension: "json"
+        ) else {
+            print("🔴 \(CachedDataKitError.postsDataFileMissing)")
+            return []
+        }
+        
+        let postsData = try Data(contentsOf: resourceFile)
+        let posts = try JSONDecoder().decode([ProductModel].self, from: postsData)
+        
+        return posts
     }
 }
