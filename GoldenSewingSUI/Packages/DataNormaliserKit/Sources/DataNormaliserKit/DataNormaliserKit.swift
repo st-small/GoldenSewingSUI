@@ -1,18 +1,18 @@
 import CachedDataKit
 import ModelsKit
 import NetworkKit
-import SwiftDataProviderKit
+import SwiftDataModule
 
 public final class DataNormaliser {
     private let network = NetworkService()
     private var inProgress: Bool = false
     
     private let cache: DataSourceProtocol
-    private let swiftData: DataHandler
+    private let swiftData: DataQueryProtocol
     
     public init(
         cache: DataSourceProtocol,
-        swiftData: DataHandler
+        swiftData: DataQueryProtocol
     ) {
         self.cache = cache
         self.swiftData = swiftData
@@ -30,10 +30,10 @@ public final class DataNormaliser {
     
     private func checkCategories() async {
         // TODO: Add normaliser implementation        
-        let sdCategories = await swiftData.readCategories()
+        let sdCategories = try! await swiftData.getCategories()
         if sdCategories.isEmpty {
             let cachedCategories = await self.loadCategoriesFromCache()
-            await swiftData.addCategories(cachedCategories)
+            try? await swiftData.addCategories(cachedCategories)
         }
         
         await normaliseCategories()
@@ -41,10 +41,10 @@ public final class DataNormaliser {
     
     private func checkProducts() async {
         // TODO: Add normaliser implementation
-        let sdProducts = await swiftData.readProducts()
+        let sdProducts = try! await swiftData.getProducts()
         if sdProducts.isEmpty {
             for await cachedProducts in cache.loadPosts() {
-                await swiftData.addProducts(cachedProducts)
+                try! await swiftData.addProducts(cachedProducts)
             }
         }
         
