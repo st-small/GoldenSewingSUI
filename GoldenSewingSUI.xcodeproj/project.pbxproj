@@ -28,8 +28,6 @@
 		5279F0BB2C4532780070BAC7 /* Constants in Frameworks */ = {isa = PBXBuildFile; productRef = 5279F0BA2C4532780070BAC7 /* Constants */; };
 		52975CF92C4837E9009CB283 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52975CF82C4837E9009CB283 /* Router.swift */; };
 		52975CFB2C483B4F009CB283 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52975CFA2C483B4F009CB283 /* RootScreen.swift */; };
-		529FE5BF2C3D611F00A35257 /* SwiftDataProviderKit in Resources */ = {isa = PBXBuildFile; fileRef = 529FE5BE2C3D611F00A35257 /* SwiftDataProviderKit */; };
-		529FE5C12C3D72BA00A35257 /* SwiftDataProviderKit in Frameworks */ = {isa = PBXBuildFile; productRef = 529FE5C02C3D72BA00A35257 /* SwiftDataProviderKit */; };
 		52A71E022AF2CA8200303415 /* GenericDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A71E012AF2CA8200303415 /* GenericDecodable.swift */; };
 		52C855512CCC0553007FE216 /* ProductItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C855502CCC0553007FE216 /* ProductItemView.swift */; };
 		52EEED562C4BD40F00699AC9 /* Utilities in Resources */ = {isa = PBXBuildFile; fileRef = 52EEED552C4BD40F00699AC9 /* Utilities */; };
@@ -67,7 +65,6 @@
 		5279F0B82C45326F0070BAC7 /* Constants */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Constants; sourceTree = "<group>"; };
 		52975CF82C4837E9009CB283 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		52975CFA2C483B4F009CB283 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
-		529FE5BE2C3D611F00A35257 /* SwiftDataProviderKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftDataProviderKit; sourceTree = "<group>"; };
 		52A71E012AF2CA8200303415 /* GenericDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDecodable.swift; sourceTree = "<group>"; };
 		52A81F442AC35F3D003D8F46 /* GoldenSewingSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldenSewingSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B8CD6A2AF69C1800962EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,7 +87,6 @@
 				52EEED5A2C4BD57100699AC9 /* Utilities in Frameworks */,
 				5218A2852CDBD90B002D9A7D /* SwiftDataModule in Frameworks */,
 				522E24AF2C303AD700C9A774 /* ModelsKit in Frameworks */,
-				529FE5C12C3D72BA00A35257 /* SwiftDataProviderKit in Frameworks */,
 				522E24A92C300A2F00C9A774 /* CachedDataKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,7 +131,6 @@
 				52EEED552C4BD40F00699AC9 /* Utilities */,
 				5279F0B82C45326F0070BAC7 /* Constants */,
 				523C07C22C40358E008253DE /* DataNormaliserKit */,
-				529FE5BE2C3D611F00A35257 /* SwiftDataProviderKit */,
 				522E24B02C3068BE00C9A774 /* NetworkKit */,
 				522E24AC2C303A9D00C9A774 /* ModelsKit */,
 				522E24AA2C300B5700C9A774 /* CachedDataKit */,
@@ -347,7 +342,6 @@
 				52EEED562C4BD40F00699AC9 /* Utilities in Resources */,
 				523C07C32C40358E008253DE /* DataNormaliserKit in Resources */,
 				523752CA2AC1EF950007C48A /* Preview Assets.xcassets in Resources */,
-				529FE5BF2C3D611F00A35257 /* SwiftDataProviderKit in Resources */,
 				523752C72AC1EF950007C48A /* Assets.xcassets in Resources */,
 				522E24AD2C303A9D00C9A774 /* ModelsKit in Resources */,
 				522E24B12C3068BE00C9A774 /* NetworkKit in Resources */,

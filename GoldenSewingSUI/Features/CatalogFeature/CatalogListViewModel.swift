@@ -24,7 +24,7 @@ public final class CatalogListViewModel: ObservableObject {
     private func fetchData() {
         Task { @MainActor in
             do {
-                categories = try await dbProvider.getCategories()
+                categories = try await dbProvider.getAllCategories()
             } catch {
                 preconditionFailure(error.localizedDescription)
             }
