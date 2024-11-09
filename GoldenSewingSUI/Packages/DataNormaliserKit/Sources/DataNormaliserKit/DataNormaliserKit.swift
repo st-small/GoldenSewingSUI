@@ -24,16 +24,23 @@ public final class DataNormaliser {
         
         defer { inProgress = false }
         
-        await checkCategories()
-        await checkProducts()
+        await calculateTime {
+            print("T!: Start check categories")
+            await checkCategories()
+        }
+        
+        await calculateTime {
+            print("T!: Start check all products")
+            await checkProducts()
+        }
     }
     
     private func checkCategories() async {
         // TODO: Add normaliser implementation        
-        let sdCategories = try! await swiftData.getCategories()
+        let sdCategories = try! await swiftData.getAllCategories()
         if sdCategories.isEmpty {
             let cachedCategories = await self.loadCategoriesFromCache()
-            try? await swiftData.addCategories(cachedCategories)
+            try! await swiftData.addCategories(cachedCategories)
         }
         
         await normaliseCategories()
@@ -41,10 +48,13 @@ public final class DataNormaliser {
     
     private func checkProducts() async {
         // TODO: Add normaliser implementation
-        let sdProducts = try! await swiftData.getProducts()
+        let sdProducts = try! await swiftData.getAllProducts()
         if sdProducts.isEmpty {
             for await cachedProducts in cache.loadPosts() {
-                try! await swiftData.addProducts(cachedProducts)
+                await calculateTime {
+                    print("T!: Start check part of the products")
+                    try! await swiftData.addProducts(cachedProducts)
+                }
             }
         }
         
@@ -100,4 +110,16 @@ extension DataNormaliser {
     private func loadPostsAPI() async -> [ProductModel] {
         return []
     }
+}
+
+// TODO: Let's mind where it should be store
+import Foundation
+
+private func calculateTime(block: () async -> Void) async {
+    let start = DispatchTime.now()
+    await block()
+    let end = DispatchTime.now()
+    let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+    let timeInterval = Double(nanoTime) / 1_000_000_000
+    print("T!: Time: \(timeInterval) seconds")
 }

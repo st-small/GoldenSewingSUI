@@ -12,20 +12,17 @@ public struct ProductModel: Decodable, Identifiable {
     public let id: ProductID
     public let title: String
     public let categories: [CategoryModel]
-    public let image: ImageModel?
     public let images: [ImageModel]?
     
     public init(
         id: UInt32,
         title: String,
         categories: [CategoryModel],
-        image: ImageModel? = nil,
         images: [ImageModel]? = nil
     ) {
         self.id = ProductID(id)
         self.title = title
         self.categories = categories
-        self.image = image
         self.images = images
     }
     
@@ -45,15 +42,17 @@ public struct ProductModel: Decodable, Identifiable {
             self.title = try container.decode(TitleModel.self, forKey: .title).rendered
             self.categories = try container.decode([UInt32].self, forKey: .categories)
                 .map { CategoryModel(id: $0) }
-            self.image = try container.decodeIfPresent(BetterFeaturedImage.self, forKey: .betterFeaturedImage)?.image
             
-            do {
-                let acf = try container.decodeIfPresent(ACF.self, forKey: .acf)
-                self.images = acf?.asImages
-            } catch {
-                print(error)
-                self.images = nil
+            var resultImages = [ImageModel]()
+            if let mainImage = try container.decodeIfPresent(BetterFeaturedImage.self, forKey: .betterFeaturedImage)?.image {
+                resultImages.append(mainImage)
             }
+            
+            if let acf = try? container.decodeIfPresent(ACF.self, forKey: .acf)?.asImages {
+                resultImages.append(contentsOf: acf)
+            }
+            
+            self.images = resultImages
         } catch {
             print("Error \(error)")
             preconditionFailure()

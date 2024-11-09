@@ -6,11 +6,11 @@ import SwiftData
 public protocol DataQueryProtocol {
     // Categories
     func addCategories(_ categories: [CategoryModel]) async throws
-    func getCategories() async throws -> [CategoryModel]
+    func getAllCategories() async throws -> [CategoryModel]
     
     // Products
     func addProducts(_ products: [ProductModel]) async throws
-    func getProducts() async throws -> [ProductModel]
+    func getAllProducts() async throws -> [ProductModel]
     func getProducts(_ categoryID: UInt32) async throws -> [ProductModel]
     
     // Images
@@ -29,23 +29,48 @@ public struct DatabaseQuery: DataQueryProtocol {
         try modelContext.save()
     }
     
-    public func getCategories() async throws -> [CategoryModel] {
+    public func getAllCategories() async throws -> [CategoryModel] {
         let modelContext = ModelContext(DatabaseManager.shared.container)
         return try modelContext.fetch(FetchDescriptor<SDCategoryEntity>())
             .map { $0.categoryModel() }
     }
     
+    private func getCategories(_ ids: [UInt32], context: ModelContext) async throws -> [SDCategoryEntity] {
+        let predicate = #Predicate<SDCategoryEntity> { ids.contains($0.id) }
+        let descriptor = FetchDescriptor(predicate: predicate)
+        
+        return try context.fetch(descriptor)
+    }
+    
     // MARK: - Product
     public func addProducts(_ products: [ProductModel]) async throws {
         let modelContext = ModelContext(DatabaseManager.shared.container)
-        let productEntities = products.map { SDProductEntity($0) }
-        productEntities.forEach { entity in
-            modelContext.insert(entity)
+        
+        for product in products {
+            let categoryEntities = try! await getCategories(product.categories.map { $0.id.value }, context: modelContext)
+            
+            let images = product.images?.compactMap { SDImageEntity($0) }
+            if let images {
+                for image in images {
+                    modelContext.insert(image)
+                    try! modelContext.save()
+                }
+            }
+            
+            let productEntity = SDProductEntity(
+                id: product.id.value,
+                title: product.title,
+                categories: categoryEntities,
+                images: images
+            )
+            
+            modelContext.insert(productEntity)
         }
+
         try modelContext.save()
     }
     
-    public func getProducts() async throws -> [ProductModel] {
+    public func getAllProducts() async throws -> [ProductModel] {
         let modelContext = ModelContext(DatabaseManager.shared.container)
         let descriptor = FetchDescriptor<SDProductEntity>()
         
