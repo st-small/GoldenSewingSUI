@@ -2,6 +2,7 @@ import Foundation
 
 public protocol Networkable {
     func sendRequest<T: Decodable>(_ endpoint: EndPoint) async throws -> T
+    func downloadImage(_ urlString: String) async throws -> Data
 }
 
 extension Networkable {
@@ -62,5 +63,10 @@ public final class NetworkService: Networkable {
         } else {
             throw NetworkError.unexpectedStatusCode
         }
+    }
+    
+    public func downloadImage(_ urlString: String) async throws -> Data {
+        guard let url = URL(string: urlString) else { throw NetworkError.invalidURL }
+        return try Data(contentsOf: url)
     }
 }

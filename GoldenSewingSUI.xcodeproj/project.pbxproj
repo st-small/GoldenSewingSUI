@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5218A2852CDBD90B002D9A7D /* SwiftDataModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5218A2842CDBD90B002D9A7D /* SwiftDataModule */; };
+		521CC7ED2CDFABAD00A84E4E /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CC7EC2CDFABA900A84E4E /* ImageProvider.swift */; };
 		522E24A92C300A2F00C9A774 /* CachedDataKit in Frameworks */ = {isa = PBXBuildFile; productRef = 522E24A82C300A2F00C9A774 /* CachedDataKit */; };
 		522E24AB2C300B5800C9A774 /* CachedDataKit in Resources */ = {isa = PBXBuildFile; fileRef = 522E24AA2C300B5700C9A774 /* CachedDataKit */; };
 		522E24AD2C303A9D00C9A774 /* ModelsKit in Resources */ = {isa = PBXBuildFile; fileRef = 522E24AC2C303A9D00C9A774 /* ModelsKit */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		5218A2832CDB9BB4002D9A7D /* SwiftDataModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftDataModule; sourceTree = "<group>"; };
+		521CC7EC2CDFABA900A84E4E /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		522E24AA2C300B5700C9A774 /* CachedDataKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CachedDataKit; sourceTree = "<group>"; };
 		522E24AC2C303A9D00C9A774 /* ModelsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ModelsKit; sourceTree = "<group>"; };
 		522E24B02C3068BE00C9A774 /* NetworkKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkKit; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		52EEED5D2C4BDF0A00699AC9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				521CC7EC2CDFABA900A84E4E /* ImageProvider.swift */,
 				52EEED5B2C4BDB9400699AC9 /* Injection.swift */,
 				52EEED5E2C4BDF2100699AC9 /* AppStarterService.swift */,
 				52975CF82C4837E9009CB283 /* Router.swift */,
@@ -265,7 +268,6 @@
 				522E24A82C300A2F00C9A774 /* CachedDataKit */,
 				522E24AE2C303AD700C9A774 /* ModelsKit */,
 				522E24B22C306EF800C9A774 /* NetworkKit */,
-				529FE5C02C3D72BA00A35257 /* SwiftDataProviderKit */,
 				523C07C42C40359D008253DE /* DataNormaliserKit */,
 				5279F0BA2C4532780070BAC7 /* Constants */,
 				52EEED592C4BD57100699AC9 /* Utilities */,
@@ -375,6 +377,7 @@
 				523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */,
 				5241C5842CCAC97B009F9186 /* CategoryListScreen.swift in Sources */,
 				5241C5812CCAB812009F9186 /* MockData.swift in Sources */,
+				521CC7ED2CDFABAD00A84E4E /* ImageProvider.swift in Sources */,
 				52EEED5F2C4BDF2100699AC9 /* AppStarterService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -670,10 +673,6 @@
 		5279F0BA2C4532780070BAC7 /* Constants */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Constants;
-		};
-		529FE5C02C3D72BA00A35257 /* SwiftDataProviderKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftDataProviderKit;
 		};
 		52EEED592C4BD57100699AC9 /* Utilities */ = {
 			isa = XCSwiftPackageProductDependency;

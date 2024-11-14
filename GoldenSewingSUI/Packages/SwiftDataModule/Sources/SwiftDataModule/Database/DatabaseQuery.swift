@@ -14,6 +14,8 @@ public protocol DataQueryProtocol {
     func getProducts(_ categoryID: UInt32) async throws -> [ProductModel]
     
     // Images
+    func addImage(_ imageID: UInt32, data: Data) async throws
+    func getImage(_ imageID: UInt32) async throws -> ImageModel
 }
 
 public struct DatabaseQuery: DataQueryProtocol {
@@ -89,5 +91,34 @@ public struct DatabaseQuery: DataQueryProtocol {
         }
         
         return category.products.map { $0.productModel() }
+    }
+    
+    // MARK: - Image
+    public func addImage(_ imageID: UInt32, data: Data) async throws {
+        let modelContext = ModelContext(DatabaseManager.shared.container)
+        guard let entity = try await getImageEntity(imageID, context: modelContext) else {
+            preconditionFailure()
+        }
+        
+        entity.imageData = data
+        try modelContext.save()
+    }
+    
+    public func getImage(_ imageID: UInt32) async throws -> ImageModel {
+        let modelContext = ModelContext(DatabaseManager.shared.container)
+        guard let entity = try await getImageEntity(imageID, context: modelContext) else {
+            preconditionFailure()
+        }
+        
+        return entity.imageModel()
+    }
+    
+    private func getImageEntity(_ imageID: UInt32, context: ModelContext) async throws -> SDImageEntity? {
+        let predicate = #Predicate<SDImageEntity> { entity in
+            entity.id == imageID
+        }
+        let descriptor = FetchDescriptor(predicate: predicate)
+        
+        return try context.fetch(descriptor).first
     }
 }
