@@ -1,3 +1,5 @@
+import SwiftUI
+
 // MARK: - Database
 private struct DatabaseKey: InjectionKey {
     static var currentValue: DatabaseQueryProtocol = DatabaseQuery()
@@ -21,4 +23,9 @@ extension InjectedValues {
         get { Self[RouterInjectionKey.self] }
         set { Self[RouterInjectionKey.self] = newValue }
     }
+}
+
+
+extension EnvironmentValues {
+    @Entry var imageLoader = ImageLoader()
 }

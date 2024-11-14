@@ -1,16 +1,20 @@
 import ModelsKit
 import SwiftUI
+import Utilities
 
 public struct ProductItemView: View {
+    @Environment(\.imageLoader) private var imageLoader
+    
     let product: ProductModel
+    
+    @State private var image: Image?
+    @State private var imageSize: CGSize = .zero
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(.gray.opacity(0.3))
-                .frame(height: 170)
-            
             VStack(alignment: .leading, spacing: 0) {
+                imageContainer
+                
                 Text(product.title)
                     .font(.system(size: 13, weight: .semibold))
                     .multilineTextAlignment(.leading)
@@ -23,11 +27,53 @@ public struct ProductItemView: View {
                     .opacity(0.6)
             }
         }
+        .task {
+            await loadImage()
+        }
+    }
+    
+    private var imageContainer: some View {
+        GeometryReader { geo in
+            Color.gray.opacity(0.3)
+                .onAppear {
+                    imageSize = geo.size
+                }
+            
+            if let image {
+                image
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .hSpacing()
+                    .vSpacing()
+            }
+        }
+        .frame(height: 170)
+        .clipShape(
+            .rect(cornerRadius: 10)
+        )
+    }
+    
+    private func loadImage() async {
+        guard let imageModel = product.images?.first else { return }
+        
+        do {
+            let uiImage = try await imageLoader.getImage(
+                imageModel,
+                width: imageSize.width,
+                height: imageSize.height
+            )
+            image = Image(uiImage: uiImage)
+        } catch {
+            print("Error \(error.localizedDescription)")
+        }
     }
 }
 
 #Preview {
-    ProductItemView(product: .mock)
+    ProductItemView(product: .mockWithImage)
         .frame(width: 167, height: 240)
         .border(.green)
 }

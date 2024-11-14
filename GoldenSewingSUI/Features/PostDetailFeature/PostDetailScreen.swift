@@ -121,6 +121,6 @@ struct PostPropertiesView: View {
 
 #Preview {
     NavigationStack {
-        PostDetailScreen(post: .mock)
+        PostDetailScreen(post: .mockWithImage)
     }
 }
