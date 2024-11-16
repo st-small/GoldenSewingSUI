@@ -2,6 +2,17 @@ import ModelsKit
 import NetworkKit
 import SwiftUI
 
+public enum ImageLoaderError: LocalizedError {
+    case imageDamaged
+    
+    public var errorDescription: String? {
+        switch self {
+        case .imageDamaged:
+            return "Файл поврежден"
+        }
+    }
+}
+
 public actor ImageLoader {
     @Injected(\.dbProvider) private var dbProvider
     
@@ -19,10 +30,29 @@ public actor ImageLoader {
         width: CGFloat,
         height: CGFloat
     ) async throws -> UIImage {
-        let imageData = try await fetch(model)
-        let uiImage = UIImage(data: imageData)!
-        
-        return uiImage.resize(width, height)
+        do {
+            let imageData = try await fetch(model)
+            guard let uiImage = UIImage(data: imageData) else {
+                throw ImageLoaderError.imageDamaged
+            }
+            
+            return uiImage.resize(width, height)
+        } catch {
+            throw error
+        }
+    }
+    
+    public func getFullImage(_ model: ImageModel) async throws -> UIImage {
+        do {
+            let imageData = try await fetch(model)
+            guard let uiImage = UIImage(data: imageData) else {
+                throw ImageLoaderError.imageDamaged
+            }
+            
+            return uiImage
+        } catch {
+            throw error
+        }
     }
     
     private func fetch(_ model: ImageModel) async throws -> Data {

@@ -2,22 +2,15 @@ import ModelsKit
 import SwiftUI
 import Utilities
 
-struct PostDetailScreen: View {
-    let post: ProductModel
+public struct ProductDetailScreen: View {
+    let product: ProductModel
     
-    var body: some View {
+    public var body: some View {
         ScrollView {
-            RoundedRectangle(cornerRadius: 6)
-                .fill(Color(0xF2F2F7))
-                .frame(height: 230)
-                .overlay {
-                    Image(.vladimir)
-                        .resizable()
-                        .scaledToFit()
-                }
+            ProductPreviewGalleryView(product.images)
             
             HStack {
-                Text(post.title)
+                Text(product.title)
                     .padding(.top, 30)
                     .font(.system(size: 17, weight: .semibold))
                     .multilineTextAlignment(.leading)
@@ -26,19 +19,19 @@ struct PostDetailScreen: View {
             }
             
             VStack {
-                PostPropertiesView(
+                ProductPropertiesView(
                     type: "Артикул",
                     value: "7598"
                 )
-                PostPropertiesView(
+                ProductPropertiesView(
                     type: "Ткань",
                     value: "Парча"
                 )
-                PostPropertiesView(
+                ProductPropertiesView(
                     type: "Способ изготовления",
                     value: "Золотая и серебряная канитель, Машинная вышивка, Метанит, Ручная инкрустация канителью, Трунцал"
                 )
-                PostPropertiesView(
+                ProductPropertiesView(
                     type: "Инкрустация",
                     value: "Горный хрусталь, Гранат, Жемчуг, Нефрит, Сердолик, Стразы \"Сваровски\", Живопись темперой",
                     isDivided: false
@@ -68,7 +61,7 @@ struct PostDetailScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(post.title)
+                Text(product.title)
                     .multilineTextAlignment(.center)
                     .font(.headline)
             }
@@ -76,7 +69,7 @@ struct PostDetailScreen: View {
     }
 }
 
-struct PostPropertiesView: View {
+struct ProductPropertiesView: View {
     let type: String
     let value: String
     let isDivided: Bool
@@ -121,6 +114,6 @@ struct PostPropertiesView: View {
 
 #Preview {
     NavigationStack {
-        PostDetailScreen(post: .mockWithImage)
+        ProductDetailScreen(product: .mockWithImage)
     }
 }
