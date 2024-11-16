@@ -9,6 +9,7 @@ public struct ProductItemView: View {
     
     @State private var image: Image?
     @State private var imageSize: CGSize = .zero
+    @State private var error: String?
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -39,7 +40,9 @@ public struct ProductItemView: View {
                     imageSize = geo.size
                 }
             
-            if let image {
+            if let error {
+                errorView
+            } else if let image {
                 image
                     .resizable()
                     .scaledToFill()
@@ -56,6 +59,20 @@ public struct ProductItemView: View {
         )
     }
     
+    private var errorView: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.largeTitle)
+                .foregroundStyle(.red)
+            
+            Text(error!)
+                .font(.caption)
+                .multilineTextAlignment(.center)
+        }
+        .hSpacing()
+        .vSpacing()
+    }
+    
     private func loadImage() async {
         guard let imageModel = product.images?.first else { return }
         
@@ -67,7 +84,7 @@ public struct ProductItemView: View {
             )
             image = Image(uiImage: uiImage)
         } catch {
-            print("Error \(error.localizedDescription)")
+            self.error = error.localizedDescription
         }
     }
 }

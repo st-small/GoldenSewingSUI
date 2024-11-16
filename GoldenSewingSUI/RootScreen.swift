@@ -11,7 +11,7 @@ struct RootScreen: View {
             case let .productsList(category):
                 CategoryListScreen(category)
             case let .productDetail(product):
-                PostDetailScreen(post: product)
+                ProductDetailScreen(product: product)
             }
         }
     }
