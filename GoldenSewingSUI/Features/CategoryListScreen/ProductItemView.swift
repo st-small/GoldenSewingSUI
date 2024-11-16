@@ -20,7 +20,6 @@ public struct ProductItemView: View {
                     .font(.system(size: 13, weight: .semibold))
                     .multilineTextAlignment(.leading)
                     .frame(maxHeight: .infinity)
-                    .border(.cyan)
                 
                 Text("Артикул: \(product.id.value)")
                     .font(.system(size: 12, weight: .medium))
@@ -40,7 +39,7 @@ public struct ProductItemView: View {
                     imageSize = geo.size
                 }
             
-            if let error {
+            if error != nil {
                 errorView
             } else if let image {
                 image

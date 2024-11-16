@@ -46,7 +46,6 @@ struct CategoryListScreen: View {
                     } label: {
                         ProductItemView(product: product)
                             .frame(height: 240)
-                            .border(.green)
                     }
                 }
             }

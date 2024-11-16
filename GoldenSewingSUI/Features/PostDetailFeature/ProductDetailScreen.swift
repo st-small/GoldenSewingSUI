@@ -7,57 +7,52 @@ public struct ProductDetailScreen: View {
     
     public var body: some View {
         ScrollView {
-            ProductPreviewGalleryView(product.images)
-            
-            HStack {
-                Text(product.title)
-                    .padding(.top, 30)
-                    .font(.system(size: 17, weight: .semibold))
-                    .multilineTextAlignment(.leading)
-                
-                Spacer()
-            }
-            
             VStack {
-                ProductPropertiesView(
-                    type: "Артикул",
-                    value: "7598"
-                )
-                ProductPropertiesView(
-                    type: "Ткань",
-                    value: "Парча"
-                )
-                ProductPropertiesView(
-                    type: "Способ изготовления",
-                    value: "Золотая и серебряная канитель, Машинная вышивка, Метанит, Ручная инкрустация канителью, Трунцал"
-                )
-                ProductPropertiesView(
-                    type: "Инкрустация",
-                    value: "Горный хрусталь, Гранат, Жемчуг, Нефрит, Сердолик, Стразы \"Сваровски\", Живопись темперой",
-                    isDivided: false
-                )
-            }
-            .padding(.top, 16)
-            
-            Button {
+                ProductPreviewGalleryView(product.images)
                 
-            } label: {
-                Text("Заказать информацию")
-                    .font(.system(size: 13))
-                    .foregroundStyle(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(Color(0x871A1A))
+                HStack {
+                    Text(product.title)
+                        .padding(.top, 30)
+                        .font(.system(size: 17, weight: .semibold))
+                        .multilineTextAlignment(.leading)
+                    
+                    Spacer()
+                }
+                
+                VStack(spacing: 10) {
+                    ProductPropertiesView(
+                        type: "Артикул",
+                        value: "\(product.id.value)"
                     )
+                    
+                    ForEach(0..<product.attributes.count, id: \.self) { index in
+                        ProductPropertiesView(
+                            type: product.attributes[index].name,
+                            value: product.attributes[index].value.joined(separator: ", "),
+                            isDivided: index != product.attributes.count - 1
+                        )
+                    }
+                }
+                .padding(.top, 16)
+                
+                Button {
+                    
+                } label: {
+                    Text("Заказать информацию")
+                        .font(.system(size: 13))
+                        .foregroundStyle(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color(0x871A1A))
+                        )
+                }
+                .padding(.top, 16)
             }
-            .padding(.top, 16)
-
-            
-            Spacer()
+            .padding(.horizontal, 16)
         }
-        .padding([.horizontal, .top], 16)
+        .padding([.top, .bottom], 16)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
