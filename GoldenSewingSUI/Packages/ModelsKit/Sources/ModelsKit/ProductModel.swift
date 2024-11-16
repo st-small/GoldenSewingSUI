@@ -8,22 +8,25 @@ public struct ProductID: Hashable, Decodable {
     public let value: UInt32
 }
 
-public struct ProductModel: Decodable, Identifiable {
+public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
     public let id: ProductID
     public let title: String
     public let categories: [CategoryModel]
     public let images: [ImageModel]?
+    public let attributes: [AttributeUnwrapped]
     
     public init(
         id: UInt32,
         title: String,
         categories: [CategoryModel],
-        images: [ImageModel]? = nil
+        images: [ImageModel]? = nil,
+        attributes: [AttributeUnwrapped]
     ) {
         self.id = ProductID(id)
         self.title = title
         self.categories = categories
         self.images = images
+        self.attributes = attributes
     }
     
     enum CodingKeys: String, CodingKey {
@@ -48,47 +51,19 @@ public struct ProductModel: Decodable, Identifiable {
                 resultImages.append(mainImage)
             }
             
-            if let acf = try? container.decodeIfPresent(ACF.self, forKey: .acf)?.asImages {
-                resultImages.append(contentsOf: acf)
-            }
+            let acf = try container.decodeIfPresent(ACF.self, forKey: .acf)
             
+            // ACF Images
+            if let images = acf?.asImages {
+                resultImages.append(contentsOf: images)
+            }
             self.images = resultImages
+            
+            // ACF Attributes
+            attributes = acf?.asAttributes ?? []
         } catch {
             print("Error \(error)")
             preconditionFailure()
         }
     }
 }
-
-extension ProductModel: Equatable, Hashable { }
-
-struct ACF: Decodable {
-    let images: [SubImageModel]
-    
-    enum CodingKeys: String, CodingKey {
-        case images = "add_img"
-    }
-    
-    var asImages: [ImageModel] {
-        images.map { ImageModel(id: $0.id, link: $0.link) }
-    }
-}
-
-public struct SubImageModel: Decodable {
-    let id: ImageID
-    let link: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "sub_img"
-        case link = "sub_img_url"
-    }
-    
-    public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let id = try container.decode(UInt32.self, forKey: .id)
-        self.id = ImageID(id)
-        self.link = try container.decode(String.self, forKey: .link)
-    }
-}
-
-

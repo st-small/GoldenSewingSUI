@@ -24,7 +24,7 @@ public protocol DataSourceProtocol {
         _ handler: @escaping Handler<[CategoryModel], CachedDataKitError>
     )
     
-    func loadPosts() -> AsyncStream<[ProductModel]>
+    func loadProducts() -> AsyncStream<[ProductModel]>
 }
 
 public final class DataSource: DataSourceProtocol {
@@ -50,11 +50,11 @@ public final class DataSource: DataSourceProtocol {
         }
     }
     
-    public func loadPosts() -> AsyncStream<[ProductModel]> {
+    public func loadProducts() -> AsyncStream<[ProductModel]> {
         AsyncStream { continuation in
             Task {
                 for page in Array(1...7) {
-                    if let posts = try? await getPosts(page) {
+                    if let posts = try? await getProducts(page) {
                         continuation.yield(posts)
                     }
                 }
@@ -64,7 +64,7 @@ public final class DataSource: DataSourceProtocol {
         }
     }
     
-    private func getPosts(_ pageIndex: Int) async throws -> [ProductModel] {
+    private func getProducts(_ pageIndex: Int) async throws -> [ProductModel] {
         guard let resourceFile = Bundle.module.url(
             forResource: "posts_\(pageIndex)",
             withExtension: "json"

@@ -9,17 +9,20 @@ public final class SDProductEntity {
     public var categories: [SDCategoryEntity]
     @Relationship(inverse: \SDImageEntity.product)
     public var images: [SDImageEntity]?
+    public var attributes: [String: [String]]
     
     public init(
         id: UInt32,
         title: String,
         categories: [SDCategoryEntity] = [],
-        images: [SDImageEntity]? = nil
+        images: [SDImageEntity]? = nil,
+        attributes: [String: [String]]
     ) {
         self.id = id
         self.title = title
         self.categories = categories
         self.images = images
+        self.attributes = attributes
     }
 }
 
@@ -31,7 +34,8 @@ extension SDProductEntity {
             id: id,
             title: title,
             categories: categories.map { $0.categoryModel() },
-            images: images
+            images: images,
+            attributes: attributes.map { .init(name: $0.key, value: $0.value) }
         )
     }
 }

@@ -63,7 +63,9 @@ public struct DatabaseQuery: DataQueryProtocol {
                 id: product.id.value,
                 title: product.title,
                 categories: categoryEntities,
-                images: images
+                images: images,
+                attributes: product.attributes
+                    .reduce(into: [String: [String]]()) { $0[$1.name] = $1.value }
             )
             
             modelContext.insert(productEntity)
