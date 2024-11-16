@@ -50,7 +50,7 @@ public final class DataNormaliser {
         // TODO: Add normaliser implementation
         let sdProducts = try! await swiftData.getAllProducts()
         if sdProducts.isEmpty {
-            for await cachedProducts in cache.loadPosts() {
+            for await cachedProducts in cache.loadProducts() {
                 await calculateTime {
                     print("T!: Start check part of the products")
                     try! await swiftData.addProducts(cachedProducts)

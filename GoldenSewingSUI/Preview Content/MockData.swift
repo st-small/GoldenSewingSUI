@@ -22,6 +22,20 @@ extension ProductModel {
                 link: "",
                 image: UIImage(resource: .sample).pngData()
             )
+        ],
+        attributes: [
+            AttributeUnwrapped(
+                name: "Ткань",
+                value: ["Органза", "Бархат", "Парча"]
+            ),
+            AttributeUnwrapped(
+                name: "Способ изготовления",
+                value: [
+                    "Ручная вышивка",
+                    "Машинная вышивка",
+                    "Инкрустация бисером"
+                ]
+            )
         ]
     )
     
@@ -30,6 +44,20 @@ extension ProductModel {
         title: "Икона Святого равноапостольного князя Владимира",
         categories: [
             CategoryModel(id: UInt32(4))
+        ],
+        attributes: [
+            AttributeUnwrapped(
+                name: "Ткань",
+                value: ["Органза", "Бархат", "Парча"]
+            ),
+            AttributeUnwrapped(
+                name: "Способ изготовления",
+                value: [
+                    "Ручная вышивка",
+                    "Машинная вышивка",
+                    "Инкрустация бисером"
+                ]
+            )
         ]
     )
 }
