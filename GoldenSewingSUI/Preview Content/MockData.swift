@@ -36,7 +36,8 @@ extension ProductModel {
                     "Инкрустация бисером"
                 ]
             )
-        ]
+        ],
+        link: ""
     )
     
     static let mockNoImage = ProductModel(
@@ -58,6 +59,7 @@ extension ProductModel {
                     "Инкрустация бисером"
                 ]
             )
-        ]
+        ],
+        link: ""
     )
 }

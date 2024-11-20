@@ -25,6 +25,7 @@
 		5241C5842CCAC97B009F9186 /* CategoryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241C5832CCAC97B009F9186 /* CategoryListScreen.swift */; };
 		5268252D2CE8B13A007781EE /* ProductGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5268252C2CE8B13A007781EE /* ProductGalleryView.swift */; };
 		5268252F2CE8B21C007781EE /* GalleryViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5268252E2CE8B21C007781EE /* GalleryViewContainer.swift */; };
+		526825312CE90F2E007781EE /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526825302CE90F2E007781EE /* MailView.swift */; };
 		5279F0B52C43E1680070BAC7 /* CatalogListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279F0B42C43E1680070BAC7 /* CatalogListFeature.swift */; };
 		5279F0B72C44103B0070BAC7 /* CatalogListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279F0B62C44103B0070BAC7 /* CatalogListViewModel.swift */; };
 		5279F0B92C45326F0070BAC7 /* Constants in Resources */ = {isa = PBXBuildFile; fileRef = 5279F0B82C45326F0070BAC7 /* Constants */; };
@@ -67,6 +68,7 @@
 		5241C5832CCAC97B009F9186 /* CategoryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListScreen.swift; sourceTree = "<group>"; };
 		5268252C2CE8B13A007781EE /* ProductGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGalleryView.swift; sourceTree = "<group>"; };
 		5268252E2CE8B21C007781EE /* GalleryViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewContainer.swift; sourceTree = "<group>"; };
+		526825302CE90F2E007781EE /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		5279F0B42C43E1680070BAC7 /* CatalogListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogListFeature.swift; sourceTree = "<group>"; };
 		5279F0B62C44103B0070BAC7 /* CatalogListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogListViewModel.swift; sourceTree = "<group>"; };
 		5279F0B82C45326F0070BAC7 /* Constants */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Constants; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				5268252C2CE8B13A007781EE /* ProductGalleryView.swift */,
 				52EBDBFA2CE65BD800FC869E /* ProductPreviewGalleryView.swift */,
 				52EBDBF82CE65B3100FC869E /* ImageViewContainer.swift */,
+				526825302CE90F2E007781EE /* MailView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				52975CFB2C483B4F009CB283 /* RootScreen.swift in Sources */,
 				52975CF92C4837E9009CB283 /* Router.swift in Sources */,
 				5241C57F2CCAB759009F9186 /* ProductDetailScreen.swift in Sources */,
+				526825312CE90F2E007781EE /* MailView.swift in Sources */,
 				5279F0B52C43E1680070BAC7 /* CatalogListFeature.swift in Sources */,
 				523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */,
 				52EBDBFB2CE65BD800FC869E /* ProductPreviewGalleryView.swift in Sources */,

@@ -14,19 +14,22 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
     public let categories: [CategoryModel]
     public let images: [ImageModel]?
     public let attributes: [AttributeUnwrapped]
+    public let link: String
     
     public init(
         id: UInt32,
         title: String,
         categories: [CategoryModel],
         images: [ImageModel]? = nil,
-        attributes: [AttributeUnwrapped]
+        attributes: [AttributeUnwrapped],
+        link: String
     ) {
         self.id = ProductID(id)
         self.title = title
         self.categories = categories
         self.images = images
         self.attributes = attributes
+        self.link = link
     }
     
     enum CodingKeys: String, CodingKey {
@@ -35,6 +38,7 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
         case categories
         case betterFeaturedImage = "better_featured_image"
         case acf
+        case link
     }
     
     public init(from decoder: any Decoder) {
@@ -45,9 +49,11 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
             self.title = try container.decode(TitleModel.self, forKey: .title).rendered
             self.categories = try container.decode([UInt32].self, forKey: .categories)
                 .map { CategoryModel(id: $0) }
+            self.link = try container.decode(String.self, forKey: .link)
             
             var resultImages = [ImageModel]()
-            if let mainImage = try container.decodeIfPresent(BetterFeaturedImage.self, forKey: .betterFeaturedImage)?.image {
+            if var mainImage = try container.decodeIfPresent(BetterFeaturedImage.self, forKey: .betterFeaturedImage)?.image {
+                mainImage.isMain = true
                 resultImages.append(mainImage)
             }
             

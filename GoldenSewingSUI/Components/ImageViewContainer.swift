@@ -49,6 +49,7 @@ public struct ImageViewContainer: View {
             Text(error!)
                 .font(.caption)
                 .multilineTextAlignment(.center)
+                .padding(.horizontal)
         }
         .hSpacing()
         .vSpacing()

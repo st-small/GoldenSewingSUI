@@ -73,7 +73,7 @@ public struct ProductItemView: View {
     }
     
     private func loadImage() async {
-        guard let imageModel = product.images?.first else { return }
+        guard let imageModel = product.images?.first(where: { $0.isMain == true }) else { return }
         
         do {
             let uiImage = try await imageLoader.getImage(

@@ -2,13 +2,17 @@ import ModelsKit
 import SwiftUI
 
 public struct ProductPreviewGalleryView: View {
-    let images: [ImageModel]
+    var images: [ImageModel]
     
     @State private var selectedIndex: Int = 0
     @State private var showGallery: Bool = false
     
     public init(_ models: [ImageModel]?) {
         self.images = models ?? []
+        
+        if let idx = images.firstIndex(where: { $0.isMain }) {
+            images.swapAt(idx, 0)
+        }
     }
     
     public var body: some View {

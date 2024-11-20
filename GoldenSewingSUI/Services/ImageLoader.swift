@@ -86,7 +86,7 @@ public actor ImageLoader {
     
     private func readFromDatabase(_ model: ImageModel) async -> Data? {
         do {
-            return try await dbProvider.getImage(model.id.value).image
+            return try await dbProvider.getImage(model.id.value)?.image
         } catch {
             print("Error \(error.localizedDescription)")
             preconditionFailure()
@@ -95,7 +95,7 @@ public actor ImageLoader {
     
     private func storeInDatabase(_ id: UInt32, data: Data) async {
         do {
-            try await dbProvider.addImage(id, data: data)
+            try await dbProvider.addImageData(id, data: data)
         } catch {
             print("Error \(error.localizedDescription)")
             preconditionFailure()
