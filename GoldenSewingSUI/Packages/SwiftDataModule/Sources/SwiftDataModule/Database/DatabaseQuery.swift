@@ -14,8 +14,9 @@ public protocol DataQueryProtocol {
     func getProducts(_ categoryID: UInt32) async throws -> [ProductModel]
     
     // Images
-    func addImage(_ imageID: UInt32, data: Data) async throws
-    func getImage(_ imageID: UInt32) async throws -> ImageModel
+    func addImages(_ images: [ImageModel], context: ModelContext) async throws
+    func addImageData(_ imageID: UInt32, data: Data) async throws
+    func getImage(_ imageID: UInt32) async throws -> ImageModel?
 }
 
 public struct DatabaseQuery: DataQueryProtocol {
@@ -37,41 +38,53 @@ public struct DatabaseQuery: DataQueryProtocol {
             .map { $0.categoryModel() }
     }
     
-    private func getCategories(_ ids: [UInt32], context: ModelContext) async throws -> [SDCategoryEntity] {
+    private func updateCategories(_ ids: [UInt32], product: SDProductEntity, context: ModelContext) throws {
         let predicate = #Predicate<SDCategoryEntity> { ids.contains($0.id) }
         let descriptor = FetchDescriptor(predicate: predicate)
+        let categories = try context.fetch(descriptor)
         
-        return try context.fetch(descriptor)
+        for category in categories {
+            category.products.append(product)
+            
+            try context.save()
+        }
     }
     
     // MARK: - Product
     public func addProducts(_ products: [ProductModel]) async throws {
         let modelContext = ModelContext(DatabaseManager.shared.container)
         
+        // Create product entity
         for product in products {
-            let categoryEntities = try! await getCategories(product.categories.map { $0.id.value }, context: modelContext)
-            
-            let images = product.images?.compactMap { SDImageEntity($0) }
-            if let images {
-                for image in images {
-                    modelContext.insert(image)
-                    try! modelContext.save()
-                }
-            }
-            
             let productEntity = SDProductEntity(
                 id: product.id.value,
                 title: product.title,
-                categories: categoryEntities,
-                images: images,
+                categories: [],
+                images: [],
                 attributes: product.attributes
-                    .reduce(into: [String: [String]]()) { $0[$1.name] = $1.value }
+                    .reduce(into: [String: [String]]()) { $0[$1.name] = $1.value },
+                link: product.link
             )
             
             modelContext.insert(productEntity)
+            try modelContext.save()
+            
+            // Create product's images entities
+            try await addImages(product.images ?? [], context: modelContext)
+            // Update product's images with product entity
+            for image in product.images ?? [] {
+                if let imageEntity = try await getImageEntity(image.id.value, context: modelContext) {
+                    productEntity.images?.append(imageEntity)
+                }
+            }
+            
+            // Update categories with child (product) entity
+            try updateCategories(
+                product.categories.map { $0.id.value },
+                product: productEntity,
+                context: modelContext
+            )
         }
-
-        try modelContext.save()
     }
     
     public func getAllProducts() async throws -> [ProductModel] {
@@ -92,11 +105,21 @@ public struct DatabaseQuery: DataQueryProtocol {
             preconditionFailure()
         }
         
-        return category.products.map { $0.productModel() }
+        return category.products
+            .map { $0.productModel() }
+            .sorted(by: { $0.id.value > $1.id.value })
     }
     
     // MARK: - Image
-    public func addImage(_ imageID: UInt32, data: Data) async throws {
+    public func addImages(_ images: [ImageModel], context: ModelContext) async throws {
+        let imageEntities = images.compactMap { SDImageEntity($0) }
+        for image in imageEntities {
+            context.insert(image)
+            try! context.save()
+        }
+    }
+    
+    public func addImageData(_ imageID: UInt32, data: Data) async throws {
         let modelContext = ModelContext(DatabaseManager.shared.container)
         guard let entity = try await getImageEntity(imageID, context: modelContext) else {
             preconditionFailure()
@@ -106,10 +129,11 @@ public struct DatabaseQuery: DataQueryProtocol {
         try modelContext.save()
     }
     
-    public func getImage(_ imageID: UInt32) async throws -> ImageModel {
+    public func getImage(_ imageID: UInt32) async throws -> ImageModel? {
         let modelContext = ModelContext(DatabaseManager.shared.container)
         guard let entity = try await getImageEntity(imageID, context: modelContext) else {
-            preconditionFailure()
+            print("Error no image model entity with \(imageID) id")
+            return nil
         }
         
         return entity.imageModel()

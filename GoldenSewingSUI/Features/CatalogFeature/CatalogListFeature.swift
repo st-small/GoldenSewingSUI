@@ -36,17 +36,19 @@ struct CategoryItemView: View {
         } label: {
             RoundedRectangle(cornerRadius: 10)
                 .frame(height: 162)
-                .foregroundStyle(.white)
-                .shadow(color: .black.opacity(0.12), radius: 5)
+                .foregroundStyle(.secondary)
+                .shadow(color: .primary.opacity(0.12), radius: 5)
                 .overlay {
                     VStack(alignment: .leading, spacing: 4) {
                         Constants.Category.preview(category.id.value)
                             .resizable()
+                            .scaledToFill()
                             .frame(maxHeight: 120)
                             .cornerRadius(6)
                             .padding([.top, .horizontal], 10)
                         Text(Constants.Category.title(category.id.value))
                             .font(.system(size: 13, weight: .medium))
+                            .foregroundStyle(.primary)
                             .frame(height: 18)
                             .padding(.horizontal, 10)
                     }
