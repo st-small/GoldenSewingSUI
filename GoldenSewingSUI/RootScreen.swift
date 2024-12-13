@@ -4,16 +4,8 @@ struct RootScreen: View {
     @Injected(\.router) private var router
     
     var body: some View {
-        RouterView(router: router) { path in
-            switch path {
-            case .catalogList:
-                CatalogListFeature()
-            case let .productsList(category):
-                CategoryListScreen(category)
-            case let .productDetail(product):
-                ProductDetailScreen(product: product)
-            }
-        }
+        // TODO: Add intro or main flow paths here
+        GSTabView()
     }
 }
 
