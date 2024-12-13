@@ -36,8 +36,11 @@ struct CategoryItemView: View {
         } label: {
             RoundedRectangle(cornerRadius: 10)
                 .frame(height: 162)
-                .foregroundStyle(.secondary)
-                .shadow(color: .primary.opacity(0.12), radius: 5)
+                .foregroundStyle(.white)
+                .shadow(
+                    color: .black.opacity(0.12),
+                    radius: 5
+                )
                 .overlay {
                     VStack(alignment: .leading, spacing: 4) {
                         Constants.Category.preview(category.id.value)

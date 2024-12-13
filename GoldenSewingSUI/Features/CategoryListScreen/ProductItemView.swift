@@ -13,19 +13,18 @@ public struct ProductItemView: View {
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            VStack(alignment: .leading, spacing: 0) {
-                imageContainer
-                
-                Text(product.title)
-                    .font(.system(size: 13, weight: .semibold))
-                    .multilineTextAlignment(.leading)
-                    .frame(maxHeight: .infinity)
-                
-                Text("Артикул: \(product.id.value)")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(Color(0x3C3C43))
-                    .opacity(0.6)
-            }
+            imageContainer
+            
+            Text(product.title)
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundStyle(.black)
+                .multilineTextAlignment(.leading)
+                .lineLimit(2)
+            
+            Text("Артикул: \(product.id.value)")
+                .font(.system(size: 12, weight: .medium))
+                .foregroundStyle(Color(0x3C3C43))
+                .opacity(0.6)
         }
         .task {
             await loadImage()

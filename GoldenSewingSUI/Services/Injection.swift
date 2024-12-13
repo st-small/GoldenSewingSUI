@@ -14,7 +14,11 @@ public extension InjectedValues {
 
 // MARK: - Router
 private struct RouterInjectionKey: InjectionKey {
-    static var currentValue: Router<Route> = Router(root: .catalogList)
+    static var currentValue: Router<Route> = Router(
+        categoriesRoot: .catalogList,
+        favoritesRoot: .favouritesList,
+        menuRoot: .menu
+    )
 }
 
 

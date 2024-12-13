@@ -5,42 +5,86 @@ public enum Route: Hashable {
     case catalogList
     case productsList(CategoryModel)
     case productDetail(ProductModel)
+    case favouritesList
+    case favouritesDetail
+    case menu
+}
+
+public enum RootRouteType {
+    case categories, favourites, menu
 }
 
 public final class Router<T: Hashable>: ObservableObject {
-    @Published var root: T
-    @Published var paths: [T] = []
+    @Published var categoriesRoot: T
+    @Published var favoritesRoot: T
+    @Published var menuRoot: T
     
-    init(root: T) {
-        self.root = root
+    @Published var categoriesPaths: [T] = []
+    @Published var favoritesPaths: [T] = []
+    @Published var menuPaths: [T] = []
+    
+    private var selectedRouteType: RootRouteType
+    
+    public init(
+        categoriesRoot: T,
+        favoritesRoot: T,
+        menuRoot: T
+    ) {
+        self.categoriesRoot = categoriesRoot
+        self.favoritesRoot = favoritesRoot
+        self.menuRoot = menuRoot
+        
+        selectedRouteType = .categories
+    }
+    
+    public func didSelectTab(_ type: RootRouteType) {
+        selectedRouteType = type
     }
     
     public func push(_ path: T) {
-        paths.append(path)
+        switch selectedRouteType {
+        case .categories:
+            categoriesPaths.append(path)
+        case .favourites:
+            favoritesPaths.append(path)
+        case .menu:
+            menuPaths.append(path)
+        }
     }
     
-    public func pop() { 
-        paths.removeLast()
-    }
-    
-    public func pop(to: T) { 
-        guard let found = paths.firstIndex(where: { $0 == to }) else { return }
-        let numPop = (found ..< paths.endIndex).count - 1
-        paths.removeLast(numPop)
-    }
-    
-    public func popToRoot() { 
-        paths.removeAll()
+    public func pop() {
+        switch selectedRouteType {
+        case .categories:
+            categoriesPaths.removeLast()
+        case .favourites:
+            favoritesPaths.removeLast()
+        case .menu:
+            menuPaths.removeLast()
+        }
     }
 }
 
-public struct RouterView<T: Hashable, C: View>: View {
+public struct RouterCatalogView<T: Hashable, C: View>: View {
     @ObservedObject var router: Router<T>
     @ViewBuilder var buildView: (T) -> C
     
     public var body: some View {
-        NavigationStack(path: $router.paths) {
-            buildView(router.root)
+        NavigationStack(path: $router.categoriesPaths) {
+            buildView(router.categoriesRoot)
+                .navigationDestination(for: T.self) { path in
+                    buildView(path)
+                }
+        }
+    }
+}
+
+public struct RouterFavouritesView<T: Hashable, C: View>: View {
+    @ObservedObject var router: Router<T>
+    @ViewBuilder var buildView: (T) -> C
+    
+    public var body: some View {
+        NavigationStack(path: $router.favoritesPaths) {
+            buildView(router.favoritesRoot)
                 .navigationDestination(for: T.self) { path in
                     buildView(path)
                 }
