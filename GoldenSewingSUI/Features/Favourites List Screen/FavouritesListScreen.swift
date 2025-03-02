@@ -31,16 +31,36 @@ public struct FavouritesListScreen: View {
     
     @StateObject private var vm = FavouritesListViewModel()
     
+    private let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible())
+    ]
+    
     public var body: some View {
-        Group {
-            if vm.products.isEmpty {
-                emptyListView
-            } else {
-                Text("There're \(vm.products.count) product(s)")
-            }
-        }
+        content
         .navigationTitle("Избранное")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    @ViewBuilder
+    private var content: some View {
+        if vm.products.isEmpty {
+            emptyListView
+        } else {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 12) {
+                    ForEach(vm.products) { product in
+                        Button {
+                            router.push(.productDetail(product))
+                        } label: {
+                            ProductItemView(product: product)
+                                .frame(height: 240)
+                        }
+                    }
+                }
+                .padding(.horizontal, 16)
+            }
+        }
     }
     
     private var emptyListView: some View {
