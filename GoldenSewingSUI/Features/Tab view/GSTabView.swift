@@ -96,7 +96,7 @@ public struct GSTabView: View {
                 case let .productDetail(product):
                     ProductDetailScreen(product)
                 default:
-                    Text("No view!")
+                    Text("RouterCatalogView: No view!")
                 }
             }
             .tag(TabItemModel.catalog)
@@ -106,16 +106,23 @@ public struct GSTabView: View {
                 switch path {
                 case .favouritesList:
                     FavouritesListScreen()
-                case .favouritesDetail:
-                    Text("Details sample")
+                case let .favouritesDetail(product):
+                    ProductDetailScreen(product)
                 default:
-                    Text("No view!")
+                    Text("RouterFavouritesView: No view!")
                 }
             }
             .tag(TabItemModel.favs)
             
-            ZStack {
-                Color.brown.ignoresSafeArea()
+            RouterMenuView(router: router) { path in
+                switch path {
+                case .menu:
+                    MenuScreen()
+                case .menuDelivery:
+                    MenuDeliveryScreen()
+                default:
+                    Text("RouterMenuView: No view!")
+                }
             }
             .tag(TabItemModel.menu)
         }

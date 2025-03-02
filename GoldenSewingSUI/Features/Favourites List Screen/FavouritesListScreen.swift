@@ -51,7 +51,7 @@ public struct FavouritesListScreen: View {
                 LazyVGrid(columns: columns, spacing: 12) {
                     ForEach(vm.products) { product in
                         Button {
-                            router.push(.productDetail(product))
+                            router.push(.favouritesDetail(product))
                         } label: {
                             ProductItemView(product: product)
                                 .frame(height: 240)

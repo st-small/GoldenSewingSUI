@@ -6,8 +6,14 @@ public enum Route: Hashable {
     case productsList(CategoryModel)
     case productDetail(ProductModel)
     case favouritesList
-    case favouritesDetail
+    case favouritesDetail(ProductModel)
     case menu
+    case menuDelivery
+    case menuDiscount
+    case menuAwards
+    case menuAboutUs
+    case menuForPartners
+    case menuContacts
 }
 
 public enum RootRouteType {
@@ -96,6 +102,20 @@ public struct RouterFavouritesView<T: Hashable, C: View>: View {
     public var body: some View {
         NavigationStack(path: $router.favoritesPaths) {
             buildView(router.favoritesRoot)
+                .navigationDestination(for: T.self) { path in
+                    buildView(path)
+                }
+        }
+    }
+}
+
+public struct RouterMenuView<T: Hashable, C: View>: View {
+    @ObservedObject var router: Router<T>
+    @ViewBuilder var buildView: (T) -> C
+    
+    public var body: some View {
+        NavigationStack(path: $router.menuPaths) {
+            buildView(router.menuRoot)
                 .navigationDestination(for: T.self) { path in
                     buildView(path)
                 }
