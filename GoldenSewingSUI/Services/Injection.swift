@@ -21,7 +21,6 @@ private struct RouterInjectionKey: InjectionKey {
     )
 }
 
-
 extension InjectedValues {
     public var router: Router<Route> {
         get { Self[RouterInjectionKey.self] }
@@ -29,6 +28,17 @@ extension InjectedValues {
     }
 }
 
+// MARK: - Favourites observer
+private struct FavouritesObserverInjectionKey: InjectionKey {
+    static var currentValue: FavouritesObserver = .init()
+}
+
+extension InjectedValues {
+    public var favsObserver: FavouritesObserver {
+        get { Self[FavouritesObserverInjectionKey.self] }
+        set { Self[FavouritesObserverInjectionKey.self] = newValue }
+    }
+}
 
 extension EnvironmentValues {
     @Entry var imageLoader = ImageLoader()

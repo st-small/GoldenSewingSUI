@@ -11,6 +11,7 @@ public final class SDProductEntity {
     public var images: [SDImageEntity]?
     public var attributes: [String: [String]]
     public var link: String
+    public var isFavourite: Bool
     
     public init(
         id: UInt32,
@@ -18,7 +19,8 @@ public final class SDProductEntity {
         categories: [SDCategoryEntity] = [],
         images: [SDImageEntity]? = nil,
         attributes: [String: [String]],
-        link: String
+        link: String,
+        isFavourite: Bool
     ) {
         self.id = id
         self.title = title
@@ -26,6 +28,7 @@ public final class SDProductEntity {
         self.images = images
         self.attributes = attributes
         self.link = link
+        self.isFavourite = isFavourite
     }
 }
 
@@ -39,7 +42,8 @@ extension SDProductEntity {
             categories: categories.map { $0.categoryModel() },
             images: images,
             attributes: attributes.map { .init(name: $0.key, value: $0.value) },
-            link: link
+            link: link,
+            isFavourite: isFavourite
         )
     }
 }

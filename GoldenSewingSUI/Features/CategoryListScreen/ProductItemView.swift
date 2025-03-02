@@ -4,30 +4,43 @@ import Utilities
 
 public struct ProductItemView: View {
     @Environment(\.imageLoader) private var imageLoader
+    @Injected(\.favsObserver) private var favsObserver
     
     let product: ProductModel
     
     @State private var image: Image?
     @State private var imageSize: CGSize = .zero
+    @State private var isFavourite = false
     @State private var error: String?
     
+    private var showFavIcon: Bool {
+        image != nil && isFavourite
+    }
+    
     public var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading) {
             imageContainer
             
-            Text(product.title)
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(.black)
-                .multilineTextAlignment(.leading)
-                .lineLimit(2)
+            Spacer(minLength: 10)
             
-            Text("Артикул: \(product.id.value)")
-                .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(Color(0x3C3C43))
-                .opacity(0.6)
+            VStack(alignment: .leading, spacing: 0) {
+                Text(product.title)
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(.black)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2)
+                    .frame(maxHeight: .infinity)
+                
+                Text("Артикул: \(product.id.value)")
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(Color(0x3C3C43))
+                    .opacity(0.6)
+            }
         }
         .task {
             await loadImage()
+            
+            isFavourite = favsObserver.favourites.contains(where: { $0.id == product.id })
         }
     }
     
@@ -55,6 +68,21 @@ public struct ProductItemView: View {
         .clipShape(
             .rect(cornerRadius: 10)
         )
+        .overlay {
+            Button {
+                isFavourite.toggle()
+                favsObserver.updateProduct(product)
+            } label: {
+                Image(systemName: "heart.fill")
+                    .frame(width: 28, height: 28)
+                    .foregroundStyle(.red)
+                    .shadow(color: .white, radius: 3)
+                    .padding([.top, .trailing], 5)
+            }
+            .hSpacing(.trailing)
+            .vSpacing(.top)
+            .opacity(showFavIcon ? 1 : 0)
+        }
     }
     
     private var errorView: some View {

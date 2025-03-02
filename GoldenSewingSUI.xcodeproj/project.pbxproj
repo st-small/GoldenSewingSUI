@@ -31,6 +31,7 @@
 		5279F0B92C45326F0070BAC7 /* Constants in Resources */ = {isa = PBXBuildFile; fileRef = 5279F0B82C45326F0070BAC7 /* Constants */; };
 		5279F0BB2C4532780070BAC7 /* Constants in Frameworks */ = {isa = PBXBuildFile; productRef = 5279F0BA2C4532780070BAC7 /* Constants */; };
 		528F016D2D0C9D670083B7D9 /* FavouritesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528F016C2D0C9D670083B7D9 /* FavouritesListScreen.swift */; };
+		528F016F2D0DC0A30083B7D9 /* FavouritesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528F016E2D0DC0A30083B7D9 /* FavouritesObserver.swift */; };
 		52975CF92C4837E9009CB283 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52975CF82C4837E9009CB283 /* Router.swift */; };
 		52975CFB2C483B4F009CB283 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52975CFA2C483B4F009CB283 /* RootScreen.swift */; };
 		52B013B22CEE530700506605 /* GSTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B013B12CEE530700506605 /* GSTabView.swift */; };
@@ -75,6 +76,7 @@
 		5279F0B62C44103B0070BAC7 /* CatalogListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogListViewModel.swift; sourceTree = "<group>"; };
 		5279F0B82C45326F0070BAC7 /* Constants */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Constants; sourceTree = "<group>"; };
 		528F016C2D0C9D670083B7D9 /* FavouritesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListScreen.swift; sourceTree = "<group>"; };
+		528F016E2D0DC0A30083B7D9 /* FavouritesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesObserver.swift; sourceTree = "<group>"; };
 		52975CF82C4837E9009CB283 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		52975CFA2C483B4F009CB283 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
 		52A81F442AC35F3D003D8F46 /* GoldenSewingSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldenSewingSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +276,7 @@
 		52EEED5D2C4BDF0A00699AC9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				528F016E2D0DC0A30083B7D9 /* FavouritesObserver.swift */,
 				521CC7EC2CDFABA900A84E4E /* ImageLoader.swift */,
 				52EEED5B2C4BDB9400699AC9 /* Injection.swift */,
 				52EEED5E2C4BDF2100699AC9 /* AppStarterService.swift */,
@@ -417,6 +420,7 @@
 				52EBDBF92CE65B3100FC869E /* ImageViewContainer.swift in Sources */,
 				5241C5812CCAB812009F9186 /* MockData.swift in Sources */,
 				521CC7ED2CDFABAD00A84E4E /* ImageLoader.swift in Sources */,
+				528F016F2D0DC0A30083B7D9 /* FavouritesObserver.swift in Sources */,
 				52EEED5F2C4BDF2100699AC9 /* AppStarterService.swift in Sources */,
 				5268252D2CE8B13A007781EE /* ProductGalleryView.swift in Sources */,
 			);

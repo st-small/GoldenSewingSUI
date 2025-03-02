@@ -15,15 +15,15 @@ public enum RootRouteType {
 }
 
 public final class Router<T: Hashable>: ObservableObject {
-    @Published var categoriesRoot: T
-    @Published var favoritesRoot: T
-    @Published var menuRoot: T
+    @Published private(set) var categoriesRoot: T
+    @Published private(set) var favoritesRoot: T
+    @Published private(set) var menuRoot: T
     
     @Published var categoriesPaths: [T] = []
     @Published var favoritesPaths: [T] = []
     @Published var menuPaths: [T] = []
     
-    private var selectedRouteType: RootRouteType
+    @Published private(set) var selectedRouteType: RootRouteType
     
     public init(
         categoriesRoot: T,
@@ -60,6 +60,17 @@ public final class Router<T: Hashable>: ObservableObject {
             favoritesPaths.removeLast()
         case .menu:
             menuPaths.removeLast()
+        }
+    }
+    
+    public func popToRoot() {
+        switch selectedRouteType {
+        case .categories:
+            categoriesPaths.removeAll()
+        case .favourites:
+            favoritesPaths.removeAll()
+        case .menu:
+            menuPaths.removeAll()
         }
     }
 }

@@ -15,6 +15,7 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
     public let images: [ImageModel]?
     public let attributes: [AttributeUnwrapped]
     public let link: String
+    public var isFavourite: Bool
     
     public init(
         id: UInt32,
@@ -22,7 +23,8 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
         categories: [CategoryModel],
         images: [ImageModel]? = nil,
         attributes: [AttributeUnwrapped],
-        link: String
+        link: String,
+        isFavourite: Bool
     ) {
         self.id = ProductID(id)
         self.title = title
@@ -30,6 +32,7 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
         self.images = images
         self.attributes = attributes
         self.link = link
+        self.isFavourite = isFavourite
     }
     
     enum CodingKeys: String, CodingKey {
@@ -50,6 +53,7 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
             self.categories = try container.decode([UInt32].self, forKey: .categories)
                 .map { CategoryModel(id: $0) }
             self.link = try container.decode(String.self, forKey: .link)
+            self.isFavourite = false
             
             var resultImages = [ImageModel]()
             if var mainImage = try container.decodeIfPresent(BetterFeaturedImage.self, forKey: .betterFeaturedImage)?.image {

@@ -1,6 +1,6 @@
 
 public struct AppStarterService {
-    
+    @Injected(\.favsObserver) private var favsObserver
     @Injected(\.dbProvider) private var dbProvider
     
     public func start() async {
@@ -12,5 +12,6 @@ public struct AppStarterService {
         )
         
         await normaliser.start()
+        await favsObserver.fetchFavourites()
     }
 }
