@@ -4,6 +4,7 @@ import SwiftUI
 
 public final class CategoryListViewModel: ObservableObject {
     @Injected(\.dbProvider) private var dbProvider
+    @Injected(\.favsObserver) private var favsObserver
     
     @Published private(set) var category: CategoryModel
     @Published private(set) var items: [ProductModel] = []
@@ -13,6 +14,10 @@ public final class CategoryListViewModel: ObservableObject {
     public init(_ category: CategoryModel) {
         self.category = category
         
+        fetchProducts()
+    }
+    
+    private func fetchProducts() {
         Task { @MainActor in
             do {
                 items = try await dbProvider.getProducts(category.id.value)

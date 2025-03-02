@@ -37,7 +37,8 @@ extension ProductModel {
                 ]
             )
         ],
-        link: ""
+        link: "",
+        isFavourite: false
     )
     
     static let mockNoImage = ProductModel(
@@ -60,6 +61,7 @@ extension ProductModel {
                 ]
             )
         ],
-        link: ""
+        link: "",
+        isFavourite: false
     )
 }

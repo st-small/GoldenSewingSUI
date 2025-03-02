@@ -3,21 +3,50 @@ import MessageUI
 import SwiftUI
 import Utilities
 
-public struct ProductDetailScreen: View {
+public final class ProductDetailViewModel: ObservableObject {
+    @Injected(\.dbProvider) private var dbProvider
+    @Injected(\.favsObserver) private var favsObserver
+    
+    @Published private(set) var isFavourite: Bool = false
+    
     let product: ProductModel
+    
+    public init(_ product: ProductModel) {
+        self.product = product
+        
+        Task { @MainActor [favsObserver] in
+            isFavourite = await favsObserver.favourites.contains(where: { $0.id == product.id })
+        }
+    }
+    
+    public func toggleProductFavourite() {
+        Task {
+            await favsObserver.updateProduct(product)
+        }
+        
+        isFavourite.toggle()
+    }
+}
+
+public struct ProductDetailScreen: View {
+    @StateObject private var vm: ProductDetailViewModel
     
     @State private var showMailView: Bool = false
     @State private var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State private var alertMessage: String?
     @State private var alertIsPresented: Bool = false
     
+    public init(_ product: ProductModel) {
+        _vm = StateObject(wrappedValue: .init(product))
+    }
+    
     public var body: some View {
         ScrollView {
             VStack {
-                ProductPreviewGalleryView(product.images)
+                ProductPreviewGalleryView(vm.product.images)
                 
                 HStack {
-                    Text(product.title)
+                    Text(vm.product.title)
                         .padding(.top, 30)
                         .font(.system(size: 17, weight: .semibold))
                         .multilineTextAlignment(.leading)
@@ -28,14 +57,14 @@ public struct ProductDetailScreen: View {
                 VStack(spacing: 10) {
                     ProductPropertiesView(
                         type: "Артикул",
-                        value: "\(product.id.value)"
+                        value: "\(vm.product.id.value)"
                     )
                     
-                    ForEach(0..<product.attributes.count, id: \.self) { index in
+                    ForEach(0..<vm.product.attributes.count, id: \.self) { index in
                         ProductPropertiesView(
-                            type: product.attributes[index].name,
-                            value: product.attributes[index].value.joined(separator: ", "),
-                            isDivided: index != product.attributes.count - 1
+                            type: vm.product.attributes[index].name,
+                            value: vm.product.attributes[index].value.joined(separator: ", "),
+                            isDivided: index != vm.product.attributes.count - 1
                         )
                     }
                 }
@@ -66,14 +95,31 @@ public struct ProductDetailScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(product.title)
+                Text(vm.product.title)
                     .multilineTextAlignment(.center)
                     .font(.headline)
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    vm.toggleProductFavourite()
+                } label: {
+                    Image(systemName: vm.isFavourite
+                          ? "heart.fill"
+                          : "heart"
+                    )
+                    .foregroundStyle(
+                        vm.isFavourite
+                        ? Color(0x871A1A)
+                        : .black
+                    )
+                    .frame(width: 22, height: 22)
+                }
             }
         }
         .sheet(isPresented: $showMailView) {
             MailView(
-                product: product,
+                product: vm.product,
                 showMail: $showMailView,
                 result: $mailResult
             )
@@ -161,6 +207,6 @@ struct ProductPropertiesView: View {
 
 #Preview {
     NavigationStack {
-        ProductDetailScreen(product: .mockWithImage)
+        ProductDetailScreen(.mockWithImage)
     }
 }

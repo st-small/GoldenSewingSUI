@@ -1,3 +1,4 @@
+import Combine
 import SwiftUI
 
 public struct TabItemModel: Identifiable, Equatable, Hashable {
@@ -34,6 +35,24 @@ public final class GSTabViewModel: ObservableObject {
     @Injected(\.router) private var router
     
     @Published var selectedTab: TabItemModel = .catalog
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    public init() {
+        router.$selectedRouteType
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] selected in
+                switch selected {
+                case .categories:
+                    self?.didSelectTab(.catalog)
+                case .favourites:
+                    self?.didSelectTab(.favs)
+                case .menu:
+                    self?.didSelectTab(.menu)
+                }
+            }
+            .store(in: &cancellables)
+    }
     
     public func didSelectTab(_ tag: TabItemModel) {
         selectedTab = tag
@@ -75,7 +94,7 @@ public struct GSTabView: View {
                 case let .productsList(category):
                     CategoryListScreen(category)
                 case let .productDetail(product):
-                    ProductDetailScreen(product: product)
+                    ProductDetailScreen(product)
                 default:
                     Text("No view!")
                 }
@@ -130,6 +149,7 @@ public struct BottomBar<Content: View>: View {
             .tabViewStyle(.automatic)
             
             VStack(spacing: 0) {
+                Divider()
                 TabBarItemsView(
                     selectedTab: $selectedTab,
                     items: items

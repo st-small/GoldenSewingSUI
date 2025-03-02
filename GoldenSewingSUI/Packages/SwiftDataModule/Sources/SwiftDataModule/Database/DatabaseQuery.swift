@@ -2,6 +2,9 @@ import Foundation
 import ModelsKit
 import SwiftData
 
+public enum DataQueryError: Error {
+    case entityNotExists
+}
 
 public protocol DataQueryProtocol {
     // Categories
@@ -12,6 +15,8 @@ public protocol DataQueryProtocol {
     func addProducts(_ products: [ProductModel]) async throws
     func getAllProducts() async throws -> [ProductModel]
     func getProducts(_ categoryID: UInt32) async throws -> [ProductModel]
+    func getFavsProducts() async throws -> [ProductModel]
+    func updateProduct(_ productID: UInt32, isFavourite: Bool) async throws
     
     // Images
     func addImages(_ images: [ImageModel], context: ModelContext) async throws
@@ -63,7 +68,8 @@ public struct DatabaseQuery: DataQueryProtocol {
                 images: [],
                 attributes: product.attributes
                     .reduce(into: [String: [String]]()) { $0[$1.name] = $1.value },
-                link: product.link
+                link: product.link,
+                isFavourite: product.isFavourite
             )
             
             modelContext.insert(productEntity)
@@ -108,6 +114,29 @@ public struct DatabaseQuery: DataQueryProtocol {
         return category.products
             .map { $0.productModel() }
             .sorted(by: { $0.id.value > $1.id.value })
+    }
+    
+    public func getFavsProducts() async throws -> [ProductModel] {
+        let modelContext = ModelContext(DatabaseManager.shared.container)
+        let predicate = #Predicate<SDProductEntity> { entity in
+            return entity.isFavourite == true
+        }
+        let descriptor = FetchDescriptor<SDProductEntity>(predicate: predicate)
+        
+        return try modelContext.fetch(descriptor).map { $0.productModel() }
+    }
+    
+    public func updateProduct(_ productID: UInt32, isFavourite: Bool) async throws {
+        let modelContext = ModelContext(DatabaseManager.shared.container)
+        let predicate = #Predicate<SDProductEntity> { $0.id == productID }
+        let descriptor = FetchDescriptor(predicate: predicate)
+        
+        guard let product = try modelContext.fetch(descriptor).first else {
+            throw DataQueryError.entityNotExists
+        }
+        
+        product.isFavourite = isFavourite
+        try modelContext.save()
     }
     
     // MARK: - Image
