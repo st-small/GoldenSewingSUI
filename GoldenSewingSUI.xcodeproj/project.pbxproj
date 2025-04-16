@@ -39,6 +39,11 @@
 		528F016F2D0DC0A30083B7D9 /* FavouritesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528F016E2D0DC0A30083B7D9 /* FavouritesObserver.swift */; };
 		52975CF92C4837E9009CB283 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52975CF82C4837E9009CB283 /* Router.swift */; };
 		52975CFB2C483B4F009CB283 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52975CFA2C483B4F009CB283 /* RootScreen.swift */; };
+		52A1D26D2D79E1E300FC63AE /* MenuDiscountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1D26C2D79E1E300FC63AE /* MenuDiscountScreen.swift */; };
+		52A1D26F2D79E82200FC63AE /* MenuAboutUsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1D26E2D79E82200FC63AE /* MenuAboutUsScreen.swift */; };
+		52A1D2712D79F05700FC63AE /* MenuForPartnersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1D2702D79F05700FC63AE /* MenuForPartnersScreen.swift */; };
+		52A1D2732D79F5D200FC63AE /* MenuAwardsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1D2722D79F5D200FC63AE /* MenuAwardsScreen.swift */; };
+		52A1D2752D7A0AD500FC63AE /* MenuContactsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1D2742D7A0AD500FC63AE /* MenuContactsScreen.swift */; };
 		52B013B22CEE530700506605 /* GSTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B013B12CEE530700506605 /* GSTabView.swift */; };
 		52C855512CCC0553007FE216 /* ProductItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C855502CCC0553007FE216 /* ProductItemView.swift */; };
 		52EBDBF92CE65B3100FC869E /* ImageViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBDBF82CE65B3100FC869E /* ImageViewContainer.swift */; };
@@ -89,6 +94,11 @@
 		528F016E2D0DC0A30083B7D9 /* FavouritesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesObserver.swift; sourceTree = "<group>"; };
 		52975CF82C4837E9009CB283 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		52975CFA2C483B4F009CB283 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
+		52A1D26C2D79E1E300FC63AE /* MenuDiscountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDiscountScreen.swift; sourceTree = "<group>"; };
+		52A1D26E2D79E82200FC63AE /* MenuAboutUsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAboutUsScreen.swift; sourceTree = "<group>"; };
+		52A1D2702D79F05700FC63AE /* MenuForPartnersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuForPartnersScreen.swift; sourceTree = "<group>"; };
+		52A1D2722D79F5D200FC63AE /* MenuAwardsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAwardsScreen.swift; sourceTree = "<group>"; };
+		52A1D2742D7A0AD500FC63AE /* MenuContactsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContactsScreen.swift; sourceTree = "<group>"; };
 		52A81F442AC35F3D003D8F46 /* GoldenSewingSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldenSewingSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B013B12CEE530700506605 /* GSTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTabView.swift; sourceTree = "<group>"; };
 		52B8CD6A2AF69C1800962EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +153,11 @@
 				521A55922D74D38000831E00 /* MenuItemType.swift */,
 				521A558E2D74B3E300831E00 /* MenuScreen.swift */,
 				521A55902D74C02700831E00 /* MenuDeliveryScreen.swift */,
+				52A1D26C2D79E1E300FC63AE /* MenuDiscountScreen.swift */,
+				52A1D26E2D79E82200FC63AE /* MenuAboutUsScreen.swift */,
+				52A1D2702D79F05700FC63AE /* MenuForPartnersScreen.swift */,
+				52A1D2722D79F5D200FC63AE /* MenuAwardsScreen.swift */,
+				52A1D2742D7A0AD500FC63AE /* MenuContactsScreen.swift */,
 			);
 			path = "Menu Screen";
 			sourceTree = "<group>";
@@ -430,10 +445,12 @@
 				521A558F2D74B3E300831E00 /* MenuScreen.swift in Sources */,
 				521A55932D74D38000831E00 /* MenuItemType.swift in Sources */,
 				52EEED582C4BD56600699AC9 /* Types.swift in Sources */,
+				52A1D26D2D79E1E300FC63AE /* MenuDiscountScreen.swift in Sources */,
 				52C855512CCC0553007FE216 /* ProductItemView.swift in Sources */,
 				521A55912D74C02700831E00 /* MenuDeliveryScreen.swift in Sources */,
 				52975CFB2C483B4F009CB283 /* RootScreen.swift in Sources */,
 				52975CF92C4837E9009CB283 /* Router.swift in Sources */,
+				52A1D2712D79F05700FC63AE /* MenuForPartnersScreen.swift in Sources */,
 				5241C57F2CCAB759009F9186 /* ProductDetailScreen.swift in Sources */,
 				521A55972D74D46000831E00 /* MenuItemRow.swift in Sources */,
 				526825312CE90F2E007781EE /* MailView.swift in Sources */,
@@ -441,11 +458,14 @@
 				523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */,
 				52EBDBFB2CE65BD800FC869E /* ProductPreviewGalleryView.swift in Sources */,
 				5241C5842CCAC97B009F9186 /* CategoryListScreen.swift in Sources */,
+				52A1D2732D79F5D200FC63AE /* MenuAwardsScreen.swift in Sources */,
 				5268252F2CE8B21C007781EE /* GalleryViewContainer.swift in Sources */,
 				528F016D2D0C9D670083B7D9 /* FavouritesListScreen.swift in Sources */,
 				52B013B22CEE530700506605 /* GSTabView.swift in Sources */,
 				52EBDBF92CE65B3100FC869E /* ImageViewContainer.swift in Sources */,
 				5241C5812CCAB812009F9186 /* MockData.swift in Sources */,
+				52A1D26F2D79E82200FC63AE /* MenuAboutUsScreen.swift in Sources */,
+				52A1D2752D7A0AD500FC63AE /* MenuContactsScreen.swift in Sources */,
 				521CC7ED2CDFABAD00A84E4E /* ImageLoader.swift in Sources */,
 				528F016F2D0DC0A30083B7D9 /* FavouritesObserver.swift in Sources */,
 				52EEED5F2C4BDF2100699AC9 /* AppStarterService.swift in Sources */,
