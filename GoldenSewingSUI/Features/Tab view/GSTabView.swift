@@ -120,6 +120,16 @@ public struct GSTabView: View {
                     MenuScreen()
                 case .menuDelivery:
                     MenuDeliveryScreen()
+                case .menuDiscount:
+                    MenuDiscountScreen()
+                case .menuAwards:
+                    MenuAwardsScreen()
+                case .menuAboutUs:
+                    MenuAboutUsScreen()
+                case .menuForPartners:
+                    MenuForPartnersScreen()
+                case .menuContacts:
+                    MenuContactsScreen()
                 default:
                     Text("RouterMenuView: No view!")
                 }

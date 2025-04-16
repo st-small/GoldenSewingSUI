@@ -4,7 +4,7 @@ public struct MenuItemRow: View, Identifiable {
     public var id: String { title }
     
     let title: String
-    let elements: [String]
+    let elements: [MenuRowElement]
     
     public var body: some View {
         VStack(alignment: .leading) {
@@ -15,14 +15,27 @@ public struct MenuItemRow: View, Identifiable {
             
             ForEach(elements, id: \.self) { element in
                 HStack(alignment: .top) {
-                    Image(systemName: "circle.fill")
-                        .font(.system(size: 5))
-                        .padding(.top, 7)
-                    Text(element)
+                    if element.isDotted {
+                        Image(systemName: "circle.fill")
+                            .font(.system(size: 5))
+                            .padding(.top, 7)
+                    }
+                    Text(element.value)
                         .font(.system(size: 13))
                 }
             }
-            .padding(.leading, 9)
         }
+    }
+}
+
+public struct MenuRowElement: Identifiable, Hashable {
+    public var id: String { value }
+    
+    let value: String
+    let isDotted: Bool
+    
+    public init(value: String, isDotted: Bool = true) {
+        self.value = value
+        self.isDotted = isDotted
     }
 }
