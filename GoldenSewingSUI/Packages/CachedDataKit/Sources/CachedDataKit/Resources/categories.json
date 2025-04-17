@@ -205,47 +205,6 @@
     }
   },
   {
-    "id": 101,
-    "count": 78,
-    "description": "",
-    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/metallonit-metanit-dlya-mashshinnoj-i-ruchnoj-vyshivki\/",
-    "name": "\u041c\u0435\u0442\u0430\u043b\u043b\u043e\u043d\u0438\u0442\u044c (\u043c\u0435\u0442\u0430\u043d\u0438\u0442) \u0434\u043b\u044f \u043c\u0430\u0448\u0438\u043d\u043d\u043e\u0439 \u0438 \u0440\u0443\u0447\u043d\u043e\u0439 \u0432\u044b\u0448\u0438\u0432\u043a\u0438",
-    "slug": "metallonit-metanit-dlya-mashshinnoj-i-ruchnoj-vyshivki",
-    "taxonomy": "category",
-    "parent": 0,
-    "meta": [],
-    "acf": [],
-    "_links": {
-      "self": [
-        {
-          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/101"
-        }
-      ],
-      "collection": [
-        {
-          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
-        }
-      ],
-      "about": [
-        {
-          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
-        }
-      ],
-      "wp:post_type": [
-        {
-          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=101"
-        }
-      ],
-      "curies": [
-        {
-          "name": "wp",
-          "href": "https:\/\/api.w.org\/{rel}",
-          "templated": true
-        }
-      ]
-    }
-  },
-  {
     "id": 6,
     "count": 174,
     "description": "",
@@ -603,47 +562,6 @@
       "wp:post_type": [
         {
           "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=13"
-        }
-      ],
-      "curies": [
-        {
-          "name": "wp",
-          "href": "https:\/\/api.w.org\/{rel}",
-          "templated": true
-        }
-      ]
-    }
-  },
-  {
-    "id": 103,
-    "count": 15,
-    "description": "",
-    "link": "https:\/\/zolotoe-shitvo.kr.ua\/category\/tserkovnye-tkani\/",
-    "name": "\u0426\u0435\u0440\u043a\u043e\u0432\u043d\u044b\u0435 \u0442\u043a\u0430\u043d\u0438",
-    "slug": "tserkovnye-tkani",
-    "taxonomy": "category",
-    "parent": 0,
-    "meta": [],
-    "acf": [],
-    "_links": {
-      "self": [
-        {
-          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories\/103"
-        }
-      ],
-      "collection": [
-        {
-          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/categories"
-        }
-      ],
-      "about": [
-        {
-          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/taxonomies\/category"
-        }
-      ],
-      "wp:post_type": [
-        {
-          "href": "https:\/\/zolotoe-shitvo.kr.ua\/wp-json\/wp\/v2\/posts?categories=103"
         }
       ],
       "curies": [
