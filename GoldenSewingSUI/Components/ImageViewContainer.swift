@@ -38,6 +38,11 @@ public struct ImageViewContainer: View {
                 } else {
                     ProgressView()
                         .progressViewStyle(.circular)
+						.background(
+							RoundedRectangle(cornerRadius: 8)
+								.stroke(Color(0x871A1A).opacity(0.3), lineWidth: 1)
+								.frame(width: imageSize.width, height: imageSize.height)
+						)
                 }
             }
             .hSpacing()
@@ -73,7 +78,9 @@ public struct ImageViewContainer: View {
                 width: imageSize.width,
                 height: imageSize.height
             )
-            image = Image(uiImage: uiImage)
+			withAnimation {
+				image = Image(uiImage: uiImage)
+			}
         } catch {
             self.error = error.localizedDescription
         }
