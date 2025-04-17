@@ -7,7 +7,6 @@ public final class SDCategoryEntity {
     public var id: UInt32
     public var title: String
     public var link: String
-    public var isFavorite: Bool
     @Relationship(inverse: \SDProductEntity.categories)
     public var products: [SDProductEntity] = []
     
@@ -15,13 +14,11 @@ public final class SDCategoryEntity {
         id: UInt32,
         title: String,
         link: String,
-        isFavourite: Bool,
         products: [SDProductEntity] = []
     ) {
         self.id = id
         self.title = title
         self.link = link
-        self.isFavorite = isFavourite
         self.products = products
     }
     
@@ -29,7 +26,6 @@ public final class SDCategoryEntity {
         self.id = model.id.value
         self.title = model.title
         self.link = model.link
-        self.isFavorite = model.isFavourite ?? false
     }
 }
 

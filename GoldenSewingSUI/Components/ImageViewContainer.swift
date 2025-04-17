@@ -5,11 +5,22 @@ public struct ImageViewContainer: View {
     @Environment(\.imageLoader) private var imageLoader
     
     let model: ImageModel
+	let mode: ContentMode
     let onTapped: () -> Void
     
     @State private var image: Image?
     @State private var imageSize: CGSize = .zero
     @State private var error: String?
+	
+	public init(
+		model: ImageModel,
+		mode: ContentMode = .fit,
+		onTapped: @escaping () -> Void
+	) {
+		self.model = model
+		self.mode = mode
+		self.onTapped = onTapped
+	}
     
     public var body: some View {
         GeometryReader { geo in
@@ -22,7 +33,7 @@ public struct ImageViewContainer: View {
                     } label: {
                         image
                             .resizable()
-                            .scaledToFit()
+							.aspectRatio(contentMode: mode)
                     }
                 } else {
                     ProgressView()
