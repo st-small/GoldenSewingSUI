@@ -14,7 +14,7 @@ public struct Category {
     }
 	
 	public static func priority(_ id: UInt32) -> UInt8 {
-		categoryPriority[id]!
+		getCategoryPriority(id)
 	}
 	
 	public static func subtitle(_ id: UInt32) -> String {
@@ -61,6 +61,14 @@ private let categoryPriority = [
 	UInt32(101) /* "Металлонить" */: UInt8(20),
 	UInt32(103) /* "Церковные ткани" */: UInt8(10)
 ]
+
+private func getCategoryPriority(_ id: UInt32) -> UInt8 {
+	guard let priority = categoryPriority[id] else {
+		return 0
+	}
+	
+	return priority
+}
 
 // TODO: Вынести это в отдельный пакет с расширениями и утилитами
 extension Image {

@@ -25,6 +25,7 @@ public protocol DataSourceProtocol {
     )
     
     func loadProducts() -> AsyncStream<[ProductModel]>
+	func loadGeraldika() -> ProductModel?
 }
 
 public final class DataSource: DataSourceProtocol {
@@ -63,6 +64,38 @@ public final class DataSource: DataSourceProtocol {
             }
         }
     }
+	
+	public func loadGeraldika() -> ProductModel? {
+		guard
+			let resourceFile = Bundle.module.url(
+				forResource: "geraldika",
+				withExtension: "json"),
+			let geraldikaData = try? Data(contentsOf: resourceFile),
+			let geraldika = try? JSONDecoder().decode([String].self, from: geraldikaData)
+		else {
+			print("🔴 \(CachedDataKitError.geraldikaDataFileMissing)")
+			return nil
+		}
+		
+		let images = geraldika.map {
+			ImageModel(
+				id: ImageID(UInt32.random(in: 0...1000)),
+				link: $0
+			)
+		}
+		
+		return ProductModel(
+			id: UInt32(0),
+			title: "",
+			categories: [
+				CategoryModel(id: 0)
+			],
+			images: images,
+			attributes: [],
+			link: "",
+			isFavourite: false
+		)
+	}
     
     private func getProducts(_ pageIndex: Int) async throws -> [ProductModel] {
         guard let resourceFile = Bundle.module.url(

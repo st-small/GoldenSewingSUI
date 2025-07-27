@@ -5,6 +5,7 @@ public enum Route: Hashable {
     case catalogList
     case productsList(CategoryModel)
     case productDetail(ProductModel)
+	case gallery(Int)
     case favouritesList
     case favouritesDetail(ProductModel)
     case menu

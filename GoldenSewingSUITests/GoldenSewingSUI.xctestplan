@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "2D2D8041-059B-40E5-9648-78FF1688FF91",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "environmentVariableEntries" : [
+      {
+        "enabled" : false,
+        "key" : "IDELogRedirectionPolicy",
+        "value" : "oslogToStdio"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:GoldenSewingSUI.xcodeproj",
+      "identifier" : "523752BE2AC1EF930007C48A",
+      "name" : "GoldenSewingSUI"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:GoldenSewingSUI.xcodeproj",
+        "identifier" : "52A81F432AC35F3D003D8F46",
+        "name" : "GoldenSewingSUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

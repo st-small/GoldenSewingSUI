@@ -13,18 +13,18 @@ struct CatalogListFeature: View {
 	public init(categories: [CategoryViewModel] = []) {
 		self.categories = categories
 	}
-    
-    var body: some View {
-        ScrollView {
+	
+	var body: some View {
+		ScrollView {
 			LazyVGrid(columns: [.init(.adaptive(minimum: 200))]) {
 				ForEach(categories) { category in
 					CategoryItemView(category: category)
 				}
 			}
-        }
+		}
 		.padding(.bottom, 32)
-        .navigationTitle("Каталог")
-        .navigationBarTitleDisplayMode(.inline)
+		.navigationTitle("Каталог")
+		.navigationBarTitleDisplayMode(.inline)
 		.task {
 			guard
 				categories.isEmpty,
@@ -36,15 +36,24 @@ struct CatalogListFeature: View {
 				categories.append(categoryVM)
 			}
 		}
-    }
+	}
 }
 
 struct CategoryItemView: View {
 	@Injected(\.router) private var router
 	
-    let category: CategoryViewModel
-    
-    var body: some View {
+	let category: CategoryViewModel
+	
+	private var images: [ImageModel] {
+		if category.id == .init(0) {
+			let images = category.items[0].images ?? []
+			return Array(images.shuffled().prefix(4)).map { $0 }
+		} else {
+			return category.items.compactMap { $0.images?[0] }
+		}
+	}
+	
+	var body: some View {
 		VStack(alignment: .leading, spacing: 5) {
 			VStack(alignment: .leading) {
 				HStack(alignment: .top) {
@@ -79,20 +88,10 @@ struct CategoryItemView: View {
 			
 			ScrollView(.horizontal, showsIndicators: false) {
 				HStack(spacing: 8) {
-					ForEach(category.items) { item in
-						ImageViewContainer(
-							model: item.images![0],
-							mode: .fill,
-							onTapped: {
-								router.push(.productDetail(item))
-							}
-						)
-						.frame(width: 100, height: 100)
-						.cornerRadius(8)
-						.shadow(
-							color: .black.opacity(0.3),
-							radius: 2, x: 1, y: 2
-						)
+					if category.id == CategoryID(0) {
+						geraldikaView
+					} else {
+						categoryView
 					}
 				}
 				.padding(.vertical, 5)
@@ -100,7 +99,44 @@ struct CategoryItemView: View {
 			.contentMargins(.horizontal, 16, for: .scrollContent)
 		}
 		.padding(.top, 24)
-    }
+	}
+	
+	private var categoryView: some View {
+		ForEach(category.items) { item in
+			ImageViewContainer(
+				model: item.images![0],
+				mode: .fill,
+				onTapped: {
+					router.push(.productDetail(item))
+				}
+			)
+			.frame(width: 100, height: 100)
+			.cornerRadius(8)
+			.shadow(
+				color: .black.opacity(0.3),
+				radius: 2, x: 1, y: 2
+			)
+		}
+	}
+	
+	private var geraldikaView: some View {
+		ForEach(Array(category.items[0].images!.enumerated()), id: \.element.id) { index, item in
+			ImageViewContainer(
+				model: item,
+				mode: .fill,
+				onTapped: {
+					router.push(.gallery(index))
+					
+				}
+			)
+			.frame(width: 100, height: 100)
+			.cornerRadius(8)
+			.shadow(
+				color: .black.opacity(0.3),
+				radius: 2, x: 1, y: 2
+			)
+		}
+	}
 }
 
 //#Preview {
