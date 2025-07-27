@@ -1,12 +1,14 @@
 import CachedDataKit
+import Dependencies
+import FeatureFlag
 import ModelsKit
 import NetworkKit
 import SwiftDataModule
 
 public final class DataNormaliser {
+	@Dependency(\.feature) private var feature
+	
     private let network = NetworkService()
-    private var inProgress: Bool = false
-    
     private let cache: DataSourceProtocol
     private let swiftData: DataQueryProtocol
     
@@ -19,11 +21,6 @@ public final class DataNormaliser {
     }
     
     public func start() async {
-        guard !inProgress else { return }
-        inProgress = true
-        
-        defer { inProgress = false }
-        
         await calculateTime {
             print("T!: Start check categories")
             await checkCategories()
@@ -43,6 +40,7 @@ public final class DataNormaliser {
             try! await swiftData.addCategories(cachedCategories)
         }
         
+		guard feature.isEnabled(.networkUpdatesEnabled) else { return }
         await normaliseCategories()
     }
     
@@ -56,9 +54,15 @@ public final class DataNormaliser {
                     try! await swiftData.addProducts(cachedProducts)
                 }
             }
+			
+			if let geraldika = cache.loadGeraldika() {
+				print("geraldika \(geraldika)")
+				try! await swiftData.addProducts([geraldika])
+			}
         }
         
-        await normalisePosts()
+		guard feature.isEnabled(.networkUpdatesEnabled) else { return }
+        await normaliseProducts()
     }
     
     private func normaliseCategories() async {
@@ -74,7 +78,7 @@ public final class DataNormaliser {
 //        }
     }
     
-    private func normalisePosts() async {
+    private func normaliseProducts() async {
         print("<<< Пошел в нормализацию постов")
         // TODO: normalisePosts
     }
