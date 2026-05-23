@@ -3,13 +3,13 @@ import SwiftUI
 
 public struct GalleryViewContainer: View {
     @Environment(\.imageLoader) private var imageLoader
-    
+
     let model: ImageModel
-    
+
     @State private var image: Image?
     @State private var imageSize: CGSize = .zero
     @State private var error: String?
-    
+
     public var body: some View {
         GeometryReader { geo in
             Group {
@@ -18,7 +18,7 @@ public struct GalleryViewContainer: View {
                         Image(systemName: "exclamationmark.triangle")
                             .font(.largeTitle)
                             .foregroundStyle(.red)
-                        
+
                         Text(error)
                             .font(.caption)
                             .multilineTextAlignment(.center)
@@ -44,7 +44,7 @@ public struct GalleryViewContainer: View {
             await loadImage()
         }
     }
-    
+
     private func loadImage() async {
         do {
             let uiImage = try await imageLoader.getFullImage(model)

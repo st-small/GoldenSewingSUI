@@ -20,4 +20,3 @@ public extension Color {
         return value
     }
 }
-

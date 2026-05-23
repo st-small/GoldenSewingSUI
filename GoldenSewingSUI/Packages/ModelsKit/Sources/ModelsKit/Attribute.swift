@@ -13,7 +13,7 @@ public struct Attribute: Decodable {
     let defaultWidth: String
     let defaultImage: String
     let defaultSize: [String]
-    
+
     enum CodingKeys: String, CodingKey {
         case defaultName = "default_name"
         case propertyName = "property_name"
@@ -32,7 +32,7 @@ public struct Attribute: Decodable {
 public struct AttributeUnwrapped: Equatable, Hashable {
     public let name: String
     public let value: [String]
-    
+
     public init(_ attribute: Attribute) {
         switch attribute.defaultName {
         case "cloth":
@@ -65,7 +65,7 @@ public struct AttributeUnwrapped: Equatable, Hashable {
             fatalError()
         }
     }
-    
+
     public init(name: String, value: [String]) {
         self.name = name
         self.value = value

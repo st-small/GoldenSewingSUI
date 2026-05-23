@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5218A2852CDBD90B002D9A7D /* SwiftDataModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5218A2842CDBD90B002D9A7D /* SwiftDataModule */; };
 		521A558F2D74B3E300831E00 /* MenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A558E2D74B3E300831E00 /* MenuScreen.swift */; };
 		521A55912D74C02700831E00 /* MenuDeliveryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A55902D74C02700831E00 /* MenuDeliveryScreen.swift */; };
 		521A55932D74D38000831E00 /* MenuItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A55922D74D38000831E00 /* MenuItemType.swift */; };
@@ -24,8 +23,6 @@
 		523752C32AC1EF930007C48A /* GoldenSewingSUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */; };
 		523752C72AC1EF950007C48A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523752C62AC1EF950007C48A /* Assets.xcassets */; };
 		523752CA2AC1EF950007C48A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523752C92AC1EF950007C48A /* Preview Assets.xcassets */; };
-		523C07C32C40358E008253DE /* DataNormaliserKit in Resources */ = {isa = PBXBuildFile; fileRef = 523C07C22C40358E008253DE /* DataNormaliserKit */; };
-		523C07C52C40359D008253DE /* DataNormaliserKit in Frameworks */ = {isa = PBXBuildFile; productRef = 523C07C42C40359D008253DE /* DataNormaliserKit */; };
 		5241C57F2CCAB759009F9186 /* ProductDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241C57E2CCAB759009F9186 /* ProductDetailScreen.swift */; };
 		5241C5812CCAB812009F9186 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241C5802CCAB80E009F9186 /* MockData.swift */; };
 		5241C5842CCAC97B009F9186 /* CategoryListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5241C5832CCAC97B009F9186 /* CategoryListScreen.swift */; };
@@ -48,11 +45,11 @@
 		52B013B22CEE530700506605 /* GSTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B013B12CEE530700506605 /* GSTabView.swift */; };
 		52C53FF42DD7BC6B00081E64 /* DependenciesTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 52C53FF32DD7BC6B00081E64 /* DependenciesTestSupport */; };
 		52C53FF72DD7C2FC00081E64 /* FeatureServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C53FF52DD7BFE800081E64 /* FeatureServiceTest.swift */; };
-		52C53FFA2DD8884E00081E64 /* FeatureFlag in Frameworks */ = {isa = PBXBuildFile; productRef = 52C53FF92DD8884E00081E64 /* FeatureFlag */; };
 		52C53FFD2DD888E100081E64 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = 52C53FFC2DD888E100081E64 /* Dependencies */; };
 		52C53FFF2DD888E100081E64 /* DependenciesMacros in Frameworks */ = {isa = PBXBuildFile; productRef = 52C53FFE2DD888E100081E64 /* DependenciesMacros */; };
 		52C540012DD888E100081E64 /* DependenciesTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 52C540002DD888E100081E64 /* DependenciesTestSupport */; };
 		52C855512CCC0553007FE216 /* ProductItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C855502CCC0553007FE216 /* ProductItemView.swift */; };
+		52E627102FC1EBC40020E01A /* CatalogCore in Frameworks */ = {isa = PBXBuildFile; productRef = 52E6270F2FC1EBC40020E01A /* CatalogCore */; };
 		52EBDBF92CE65B3100FC869E /* ImageViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBDBF82CE65B3100FC869E /* ImageViewContainer.swift */; };
 		52EBDBFB2CE65BD800FC869E /* ProductPreviewGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBDBFA2CE65BD800FC869E /* ProductPreviewGalleryView.swift */; };
 		52EEED562C4BD40F00699AC9 /* Utilities in Resources */ = {isa = PBXBuildFile; fileRef = 52EEED552C4BD40F00699AC9 /* Utilities */; };
@@ -73,7 +70,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5218A2832CDB9BB4002D9A7D /* SwiftDataModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftDataModule; sourceTree = "<group>"; };
 		521A558E2D74B3E300831E00 /* MenuScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreen.swift; sourceTree = "<group>"; };
 		521A55902D74C02700831E00 /* MenuDeliveryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDeliveryScreen.swift; sourceTree = "<group>"; };
 		521A55922D74D38000831E00 /* MenuItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemType.swift; sourceTree = "<group>"; };
@@ -88,7 +84,6 @@
 		523752C22AC1EF930007C48A /* GoldenSewingSUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenSewingSUIApp.swift; sourceTree = "<group>"; };
 		523752C62AC1EF950007C48A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		523752C92AC1EF950007C48A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		523C07C22C40358E008253DE /* DataNormaliserKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DataNormaliserKit; sourceTree = "<group>"; };
 		5241C57E2CCAB759009F9186 /* ProductDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailScreen.swift; sourceTree = "<group>"; };
 		5241C5802CCAB80E009F9186 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		5241C5832CCAC97B009F9186 /* CategoryListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListScreen.swift; sourceTree = "<group>"; };
@@ -128,14 +123,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				523C07C52C40359D008253DE /* DataNormaliserKit in Frameworks */,
-				52C53FFA2DD8884E00081E64 /* FeatureFlag in Frameworks */,
 				52C53FFF2DD888E100081E64 /* DependenciesMacros in Frameworks */,
 				5279F0BB2C4532780070BAC7 /* Constants in Frameworks */,
 				52C53FFD2DD888E100081E64 /* Dependencies in Frameworks */,
+				52E627102FC1EBC40020E01A /* CatalogCore in Frameworks */,
 				522E24B32C306EF800C9A774 /* NetworkKit in Frameworks */,
 				52EEED5A2C4BD57100699AC9 /* Utilities in Frameworks */,
-				5218A2852CDBD90B002D9A7D /* SwiftDataModule in Frameworks */,
 				522E24AF2C303AD700C9A774 /* ModelsKit in Frameworks */,
 				522E24A92C300A2F00C9A774 /* CachedDataKit in Frameworks */,
 			);
@@ -189,10 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				52C53FF82DD8835D00081E64 /* FeatureFlag */,
-				5218A2832CDB9BB4002D9A7D /* SwiftDataModule */,
 				52EEED552C4BD40F00699AC9 /* Utilities */,
 				5279F0B82C45326F0070BAC7 /* Constants */,
-				523C07C22C40358E008253DE /* DataNormaliserKit */,
 				522E24B02C3068BE00C9A774 /* NetworkKit */,
 				522E24AC2C303A9D00C9A774 /* ModelsKit */,
 				522E24AA2C300B5700C9A774 /* CachedDataKit */,
@@ -363,13 +354,11 @@
 				522E24A82C300A2F00C9A774 /* CachedDataKit */,
 				522E24AE2C303AD700C9A774 /* ModelsKit */,
 				522E24B22C306EF800C9A774 /* NetworkKit */,
-				523C07C42C40359D008253DE /* DataNormaliserKit */,
 				5279F0BA2C4532780070BAC7 /* Constants */,
 				52EEED592C4BD57100699AC9 /* Utilities */,
-				5218A2842CDBD90B002D9A7D /* SwiftDataModule */,
-				52C53FF92DD8884E00081E64 /* FeatureFlag */,
 				52C53FFC2DD888E100081E64 /* Dependencies */,
 				52C53FFE2DD888E100081E64 /* DependenciesMacros */,
+				52E6270F2FC1EBC40020E01A /* CatalogCore */,
 			);
 			productName = GoldenSewingSUI;
 			productReference = 523752BF2AC1EF930007C48A /* GoldenSewingSUI.app */;
@@ -423,6 +412,7 @@
 			mainGroup = 523752B62AC1EF930007C48A;
 			packageReferences = (
 				52C53FFB2DD888E100081E64 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
+				52E6270E2FC1EBC40020E01A /* XCLocalSwiftPackageReference "GoldenSewingSUI/Packages/GSDataSource" */,
 			);
 			productRefGroup = 523752C02AC1EF930007C48A /* Products */;
 			projectDirPath = "";
@@ -441,7 +431,6 @@
 			files = (
 				522E24AB2C300B5800C9A774 /* CachedDataKit in Resources */,
 				52EEED562C4BD40F00699AC9 /* Utilities in Resources */,
-				523C07C32C40358E008253DE /* DataNormaliserKit in Resources */,
 				523752CA2AC1EF950007C48A /* Preview Assets.xcassets in Resources */,
 				523752C72AC1EF950007C48A /* Assets.xcassets in Resources */,
 				522E24AD2C303A9D00C9A774 /* ModelsKit in Resources */,
@@ -767,6 +756,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		52E6270E2FC1EBC40020E01A /* XCLocalSwiftPackageReference "GoldenSewingSUI/Packages/GSDataSource" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = GoldenSewingSUI/Packages/GSDataSource;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		52C53FEE2DD7BC6B00081E64 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -787,10 +783,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5218A2842CDBD90B002D9A7D /* SwiftDataModule */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftDataModule;
-		};
 		522E24A82C300A2F00C9A774 /* CachedDataKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CachedDataKit;
@@ -803,10 +795,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkKit;
 		};
-		523C07C42C40359D008253DE /* DataNormaliserKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = DataNormaliserKit;
-		};
 		5279F0BA2C4532780070BAC7 /* Constants */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Constants;
@@ -815,10 +803,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 52C53FEE2DD7BC6B00081E64 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
 			productName = DependenciesTestSupport;
-		};
-		52C53FF92DD8884E00081E64 /* FeatureFlag */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = FeatureFlag;
 		};
 		52C53FFC2DD888E100081E64 /* Dependencies */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -834,6 +818,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 52C53FFB2DD888E100081E64 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
 			productName = DependenciesTestSupport;
+		};
+		52E6270F2FC1EBC40020E01A /* CatalogCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CatalogCore;
 		};
 		52EEED592C4BD57100699AC9 /* Utilities */ = {
 			isa = XCSwiftPackageProductDependency;

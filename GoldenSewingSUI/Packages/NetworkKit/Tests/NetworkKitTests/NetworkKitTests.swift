@@ -1,5 +1,5 @@
-import XCTest
 @testable import NetworkKit
+import XCTest
 
 final class NetworkKitTests: XCTestCase {
     func testExample() throws {

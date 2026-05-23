@@ -5,27 +5,27 @@ public struct TabItemModel: Identifiable, Equatable, Hashable {
     public var id: String { title }
     let icon: Image
     let title: String
-    
+
     static let home = TabItemModel(
         icon: Image(.home),
         title: "Главная"
     )
-    
+
     static let catalog = TabItemModel(
         icon: Image(.catalog),
         title: "Каталог"
     )
-    
+
     static let favs = TabItemModel(
         icon: Image(.favs),
         title: "Избранное"
     )
-    
+
     static let menu = TabItemModel(
         icon: Image(.menu),
         title: "Меню"
     )
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(title)
     }
@@ -33,11 +33,11 @@ public struct TabItemModel: Identifiable, Equatable, Hashable {
 
 public final class GSTabViewModel: ObservableObject {
     @Injected(\.router) private var router
-    
+
     @Published var selectedTab: TabItemModel = .catalog
-    
+
     private var cancellables: Set<AnyCancellable> = []
-    
+
     public init() {
         router.$selectedRouteType
             .receive(on: DispatchQueue.main)
@@ -53,10 +53,10 @@ public final class GSTabViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     public func didSelectTab(_ tag: TabItemModel) {
         selectedTab = tag
-        
+
         switch selectedTab {
         case .catalog:
             router.didSelectTab(.categories)
@@ -72,13 +72,13 @@ public final class GSTabViewModel: ObservableObject {
 
 public struct GSTabView: View {
     @Injected(\.router) private var router
-    
+
     @StateObject private var vm = GSTabViewModel()
-    
+
     private var bottomItems: [TabItemModel] {
         [.catalog, .favs, .menu]
     }
-    
+
     public var body: some View {
         BottomBar(
             selectedTab: Binding(
@@ -100,7 +100,7 @@ public struct GSTabView: View {
                 }
             }
             .tag(TabItemModel.catalog)
-            
+
             RouterFavouritesView(router: router) {
                 path in
                 switch path {
@@ -113,7 +113,7 @@ public struct GSTabView: View {
                 }
             }
             .tag(TabItemModel.favs)
-            
+
             RouterMenuView(router: router) { path in
                 switch path {
                 case .menu:
@@ -144,7 +144,7 @@ public struct BottomBar<Content: View>: View {
     @Binding var selectedTab: TabItemModel
     let items: [TabItemModel]
     let content: Content
-    
+
     public init(
         selectedTab: Binding<TabItemModel>,
         items: [TabItemModel],
@@ -153,10 +153,10 @@ public struct BottomBar<Content: View>: View {
         _selectedTab = selectedTab
         self.items = items
         self.content = content()
-        
+
         UITabBar.appearance().isHidden = true
     }
-    
+
     public var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $selectedTab) {
@@ -164,7 +164,7 @@ public struct BottomBar<Content: View>: View {
                     .edgesIgnoringSafeArea(.all)
             }
             .tabViewStyle(.automatic)
-            
+
             VStack(spacing: 0) {
                 Divider()
                 TabBarItemsView(
@@ -179,7 +179,7 @@ public struct BottomBar<Content: View>: View {
 public struct TabBarItemsView: View {
     @Binding var selectedTab: TabItemModel
     let items: [TabItemModel]
-    
+
     public var body: some View {
         HStack(alignment: .center, spacing: .zero) {
             ForEach(items) { tabItem in
@@ -197,7 +197,7 @@ public struct TabBarItemsView: View {
 public struct BottomTabView: View {
     let type: TabItemModel
     @Binding var isSelected: Bool
-    
+
     public var body: some View {
         Button {
             withAnimation {
@@ -212,8 +212,8 @@ public struct BottomTabView: View {
         }
         .foregroundStyle(
             isSelected
-            ? .black
-            : Color(0x3C3C43).opacity(0.6)
+                ? .black
+                : Color(0x3C3C43).opacity(0.6)
         )
         .frame(maxWidth: .infinity)
     }

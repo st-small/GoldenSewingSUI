@@ -5,42 +5,42 @@ public protocol Networkable {
     func downloadImage(_ urlString: String) async throws -> Data
 }
 
-extension Networkable {
-    fileprivate func createRequest(endPoint: EndPoint) -> URLRequest? {
+private extension Networkable {
+    func createRequest(endPoint: EndPoint) -> URLRequest? {
         var urlComponents = URLComponents()
         urlComponents.scheme = endPoint.scheme
         urlComponents.host = endPoint.host
         urlComponents.path = endPoint.path
-        
+
         // Adding query parameters
         urlComponents.queryItems = endPoint.queryParams?.map { URLQueryItem(name: $0.key, value: $0.value) }
-        
+
         // Handling path parameters
         var path = endPoint.path
         for (key, value) in endPoint.pathParams ?? [:] {
             path = path.replacingOccurrences(of: "{\(key)}", with: value)
         }
         urlComponents.path = path
-        
+
         guard let url = urlComponents.url else {
             return nil
         }
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = endPoint.method.rawValue
         request.allHTTPHeaderFields = endPoint.header
-        
+
         if let body = endPoint.body {
             let encoder = JSONEncoder()
             request.httpBody = try? encoder.encode(body)
         }
-        
+
         return request
     }
 }
 
 public final class NetworkService: Networkable {
-    public init() { }
+    public init() {}
     public func sendRequest<T: Decodable>(_ endpoint: EndPoint) async throws -> T {
         guard let urlRequest = createRequest(endPoint: endpoint) else {
             throw NetworkError.invalidURL
@@ -50,7 +50,7 @@ public final class NetworkService: Networkable {
             throw NetworkError.noResponse
         }
 
-        if 200...299 ~= response.statusCode {
+        if 200 ... 299 ~= response.statusCode {
             guard let data = data as Data? else {
                 throw NetworkError.unknown
             }
@@ -64,7 +64,7 @@ public final class NetworkService: Networkable {
             throw NetworkError.unexpectedStatusCode
         }
     }
-    
+
     public func downloadImage(_ urlString: String) async throws -> Data {
         guard let url = URL(string: urlString) else { throw NetworkError.invalidURL }
         return try Data(contentsOf: url)

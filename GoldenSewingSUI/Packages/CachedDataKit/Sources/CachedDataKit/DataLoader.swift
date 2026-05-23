@@ -1,6 +1,6 @@
 import Foundation
 
-public final class DataLoader {
+public enum DataLoader {
     public static func loadData(
         from: Resource,
         handler: @escaping Handler<Data, CachedDataKitError>
@@ -12,7 +12,7 @@ public final class DataLoader {
             handler(.failure(.categoriesDataFileMissing))
             return
         }
-        
+
         do {
             let data = try Data(contentsOf: resourceFile)
             handler(.success(data))

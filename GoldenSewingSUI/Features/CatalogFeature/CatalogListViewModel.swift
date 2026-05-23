@@ -3,31 +3,31 @@ import Foundation
 import ModelsKit
 
 public final class CatalogListViewModel: ObservableObject {
-    @Injected(\.dbProvider) private var dbProvider
-    
+//    @Injected(\.dbProvider) private var dbProvider
+
     @Published private(set) var categories: [CategoryModel] = []
 
     private var cancellables: Set<AnyCancellable> = []
-    
+
     init() {
         fetchData()
-        
+
         NotificationCenter.default
             .publisher(for: .NSManagedObjectContextDidSave)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] value in
+            .sink { [weak self] _ in
                 self?.fetchData()
             }
             .store(in: &cancellables)
     }
-    
+
     private func fetchData() {
         Task { @MainActor in
-            do {
-                categories = try await dbProvider.getAllCategories()
-            } catch {
-                preconditionFailure(error.localizedDescription)
-            }
+//            do {
+//                categories = try await dbProvider.getAllCategories()
+//            } catch {
+//                preconditionFailure(error.localizedDescription)
+//            }
         }
     }
 }

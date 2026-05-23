@@ -8,7 +8,7 @@ struct MenuDiscountScreen: View {
                 MenuRowElement(
                     value: "Православным Епархиям при заказе более 3-х изделий одного наименования.",
                     isDotted: false
-                )
+                ),
             ]
         ),
         MenuItemRow(
@@ -17,7 +17,7 @@ struct MenuDiscountScreen: View {
                 MenuRowElement(
                     value: "Православным Епархиям при одновременном заказе различных изделий на сумму свыше 5 000$.",
                     isDotted: false
-                )
+                ),
             ]
         ),
         MenuItemRow(
@@ -26,11 +26,11 @@ struct MenuDiscountScreen: View {
                 MenuRowElement(
                     value: "Своим постоянным заказчикам предприятие предоставляет накопительную скидку от 2% до 10% по следующей схеме:\n   • от 1 000$ и выше — 2%\n   • от 3 000$ и выше — 5%\n   • от 5 000$ и выше — 10%.",
                     isDotted: false
-                )
+                ),
             ]
         ),
     ]
-    
+
     var body: some View {
         if #available(iOS 18.0, *) {
             List {
