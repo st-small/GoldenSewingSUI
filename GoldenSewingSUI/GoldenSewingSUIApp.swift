@@ -2,11 +2,10 @@ import SwiftUI
 
 @main
 struct GoldenSewingSUIApp: App {
-    
     @Environment(\.scenePhase) var scenePhase
-    
+
     private let starterService = AppStarterService()
-    
+
     var body: some Scene {
         WindowGroup {
             RootScreen()

@@ -4,5 +4,5 @@ public enum CachedDataKitError: LocalizedError {
     case allDataFileMissing
     case categoriesDataFileMissing
     case postsDataFileMissing
-	case geraldikaDataFileMissing
+    case geraldikaDataFileMissing
 }

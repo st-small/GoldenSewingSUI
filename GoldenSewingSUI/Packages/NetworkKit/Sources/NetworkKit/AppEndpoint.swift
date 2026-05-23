@@ -20,17 +20,17 @@ extension AppEndpoint: EndPoint {
             return "\(prefix)/media"
         }
     }
-    
+
     public var method: RequestMethod {
         switch self {
         case .getCategories, .getPosts, .getMediaItems:
             return .get
         }
     }
-    
-    public var header: [String : String]? { nil }
-    public var body: [String : String]? { nil }
-    public var queryParams: [String : String]? {
+
+    public var header: [String: String]? { nil }
+    public var body: [String: String]? { nil }
+    public var queryParams: [String: String]? {
         switch self {
         case let .getCategories(perPage):
             return ["per_page": "\(perPage)"]
@@ -38,5 +38,6 @@ extension AppEndpoint: EndPoint {
             return nil
         }
     }
-    public var pathParams: [String : String]? { nil }
+
+    public var pathParams: [String: String]? { nil }
 }

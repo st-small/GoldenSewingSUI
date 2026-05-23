@@ -5,7 +5,7 @@ public enum Route: Hashable {
     case catalogList
     case productsList(CategoryModel)
     case productDetail(ProductModel)
-	case gallery(Int)
+    case gallery(Int)
     case favouritesList
     case favouritesDetail(ProductModel)
     case menu
@@ -25,13 +25,13 @@ public final class Router<T: Hashable>: ObservableObject {
     @Published private(set) var categoriesRoot: T
     @Published private(set) var favoritesRoot: T
     @Published private(set) var menuRoot: T
-    
+
     @Published var categoriesPaths: [T] = []
     @Published var favoritesPaths: [T] = []
     @Published var menuPaths: [T] = []
-    
+
     @Published private(set) var selectedRouteType: RootRouteType
-    
+
     public init(
         categoriesRoot: T,
         favoritesRoot: T,
@@ -40,14 +40,14 @@ public final class Router<T: Hashable>: ObservableObject {
         self.categoriesRoot = categoriesRoot
         self.favoritesRoot = favoritesRoot
         self.menuRoot = menuRoot
-        
+
         selectedRouteType = .categories
     }
-    
+
     public func didSelectTab(_ type: RootRouteType) {
         selectedRouteType = type
     }
-    
+
     public func push(_ path: T) {
         switch selectedRouteType {
         case .categories:
@@ -58,7 +58,7 @@ public final class Router<T: Hashable>: ObservableObject {
             menuPaths.append(path)
         }
     }
-    
+
     public func pop() {
         switch selectedRouteType {
         case .categories:
@@ -69,7 +69,7 @@ public final class Router<T: Hashable>: ObservableObject {
             menuPaths.removeLast()
         }
     }
-    
+
     public func popToRoot() {
         switch selectedRouteType {
         case .categories:
@@ -85,7 +85,7 @@ public final class Router<T: Hashable>: ObservableObject {
 public struct RouterCatalogView<T: Hashable, C: View>: View {
     @ObservedObject var router: Router<T>
     @ViewBuilder var buildView: (T) -> C
-    
+
     public var body: some View {
         NavigationStack(path: $router.categoriesPaths) {
             buildView(router.categoriesRoot)
@@ -99,7 +99,7 @@ public struct RouterCatalogView<T: Hashable, C: View>: View {
 public struct RouterFavouritesView<T: Hashable, C: View>: View {
     @ObservedObject var router: Router<T>
     @ViewBuilder var buildView: (T) -> C
-    
+
     public var body: some View {
         NavigationStack(path: $router.favoritesPaths) {
             buildView(router.favoritesRoot)
@@ -113,7 +113,7 @@ public struct RouterFavouritesView<T: Hashable, C: View>: View {
 public struct RouterMenuView<T: Hashable, C: View>: View {
     @ObservedObject var router: Router<T>
     @ViewBuilder var buildView: (T) -> C
-    
+
     public var body: some View {
         NavigationStack(path: $router.menuPaths) {
             buildView(router.menuRoot)

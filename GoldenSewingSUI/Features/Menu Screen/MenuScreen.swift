@@ -2,9 +2,9 @@ import SwiftUI
 
 public struct MenuScreen: View {
     @Injected(\.router) private var router
-    
+
     private var allItems = MenuItemType.allCases
-    
+
     public var body: some View {
         ScrollView {
             ForEach(allItems) { item in

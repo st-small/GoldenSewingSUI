@@ -6,14 +6,14 @@ struct MenuDeliveryScreen: View {
             title: "Доставка изделий",
             elements: [
                 MenuRowElement(value: "курьерскими службами"),
-                MenuRowElement(value: "по почте")
+                MenuRowElement(value: "по почте"),
             ]
         ),
         MenuItemRow(
             title: "Условия доставки",
             elements: [
                 MenuRowElement(value: "оплата за доставку осуществляется Заказчиком"),
-                MenuRowElement(value: "при индивидуальном заказе продукции на сумму свыше 5000$ бесплатная доставка по Украине и ближнему зарубежью")
+                MenuRowElement(value: "при индивидуальном заказе продукции на сумму свыше 5000$ бесплатная доставка по Украине и ближнему зарубежью"),
             ]
         ),
         MenuItemRow(
@@ -21,11 +21,11 @@ struct MenuDeliveryScreen: View {
             elements: [
                 MenuRowElement(value: "изготовление индивидуальных заказов осуществляется после оплаты 50% стоимости заказа"),
                 MenuRowElement(value: "почтовым или банковским переводом (в том числе, и на расчетный счет предприятия)"),
-                MenuRowElement(value: "денежными переводами Western Union, Privat Money, Money Gram и другими")
+                MenuRowElement(value: "денежными переводами Western Union, Privat Money, Money Gram и другими"),
             ]
-        )
+        ),
     ]
-    
+
     var body: some View {
         if #available(iOS 18.0, *) {
             List {

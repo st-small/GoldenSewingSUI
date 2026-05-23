@@ -16,7 +16,7 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
     public let attributes: [AttributeUnwrapped]
     public let link: String
     public var isFavourite: Bool
-    
+
     public init(
         id: UInt32,
         title: String,
@@ -34,7 +34,7 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
         self.link = link
         self.isFavourite = isFavourite
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -43,32 +43,32 @@ public struct ProductModel: Decodable, Identifiable, Equatable, Hashable {
         case acf
         case link
     }
-    
+
     public init(from decoder: any Decoder) {
         do {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let categoryIDValue = try container.decode(UInt32.self, forKey: .id)
-            self.id = ProductID(categoryIDValue)
-            self.title = try container.decode(TitleModel.self, forKey: .title).rendered
-            self.categories = try container.decode([UInt32].self, forKey: .categories)
+            id = ProductID(categoryIDValue)
+            title = try container.decode(TitleModel.self, forKey: .title).rendered
+            categories = try container.decode([UInt32].self, forKey: .categories)
                 .map { CategoryModel(id: $0) }
-            self.link = try container.decode(String.self, forKey: .link)
-            self.isFavourite = false
-            
+            link = try container.decode(String.self, forKey: .link)
+            isFavourite = false
+
             var resultImages = [ImageModel]()
             if var mainImage = try container.decodeIfPresent(BetterFeaturedImage.self, forKey: .betterFeaturedImage)?.image {
                 mainImage.isMain = true
                 resultImages.append(mainImage)
             }
-            
+
             let acf = try container.decodeIfPresent(ACF.self, forKey: .acf)
-            
+
             // ACF Images
             if let images = acf?.asImages {
                 resultImages.append(contentsOf: images)
             }
-            self.images = resultImages
-            
+            images = resultImages
+
             // ACF Attributes
             attributes = acf?.asAttributes ?? []
         } catch {

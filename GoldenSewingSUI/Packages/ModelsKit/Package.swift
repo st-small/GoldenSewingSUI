@@ -8,7 +8,8 @@ let package = Package(
     products: [
         .library(
             name: "ModelsKit",
-            targets: ["ModelsKit"]),
+            targets: ["ModelsKit"]
+        ),
     ],
     dependencies: [
         .package(name: "Constants", path: "../Constants"),
@@ -19,6 +20,6 @@ let package = Package(
             dependencies: [
                 .product(name: "Constants", package: "Constants"),
             ]
-        )
+        ),
     ]
 )

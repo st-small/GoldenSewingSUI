@@ -14,14 +14,14 @@ extension ProductModel {
         id: UInt32(111),
         title: "Икона Святого равноапостольного князя Владимира",
         categories: [
-            CategoryModel(id: UInt32(4))
+            CategoryModel(id: UInt32(4)),
         ],
         images: [
             ImageModel(
                 id: ImageID(5),
                 link: "",
                 image: UIImage(resource: .sample).pngData()
-            )
+            ),
         ],
         attributes: [
             AttributeUnwrapped(
@@ -33,19 +33,19 @@ extension ProductModel {
                 value: [
                     "Ручная вышивка",
                     "Машинная вышивка",
-                    "Инкрустация бисером"
+                    "Инкрустация бисером",
                 ]
-            )
+            ),
         ],
         link: "",
         isFavourite: false
     )
-    
+
     static let mockNoImage = ProductModel(
         id: UInt32(111),
         title: "Икона Святого равноапостольного князя Владимира",
         categories: [
-            CategoryModel(id: UInt32(4))
+            CategoryModel(id: UInt32(4)),
         ],
         attributes: [
             AttributeUnwrapped(
@@ -57,9 +57,9 @@ extension ProductModel {
                 value: [
                     "Ручная вышивка",
                     "Машинная вышивка",
-                    "Инкрустация бисером"
+                    "Инкрустация бисером",
                 ]
-            )
+            ),
         ],
         link: "",
         isFavourite: false

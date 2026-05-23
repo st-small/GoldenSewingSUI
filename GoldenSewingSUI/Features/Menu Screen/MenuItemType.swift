@@ -1,10 +1,10 @@
 import SwiftUI
 
 public enum MenuItemType: String, CaseIterable, Identifiable {
-    public var id: String { self.rawValue }
-    
+    public var id: String { rawValue }
+
     case delivery, discount, awards, aboutUs, forPartners, contacts
-    
+
     var title: String {
         switch self {
         case .delivery:
@@ -21,7 +21,7 @@ public enum MenuItemType: String, CaseIterable, Identifiable {
             "Контакты"
         }
     }
-    
+
     var icon: Image {
         switch self {
         case .delivery:

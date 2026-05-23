@@ -8,7 +8,8 @@ let package = Package(
     products: [
         .library(
             name: "CachedDataKit",
-            targets: ["CachedDataKit"]),
+            targets: ["CachedDataKit"]
+        ),
     ],
     dependencies: [
         .package(name: "ModelsKit", path: "../ModelsKit"),

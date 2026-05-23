@@ -8,7 +8,8 @@ let package = Package(
     products: [
         .library(
             name: "Constants",
-            targets: ["Constants"]),
+            targets: ["Constants"]
+        ),
     ],
     targets: [
         .target(
@@ -17,6 +18,7 @@ let package = Package(
         ),
         .testTarget(
             name: "ConstantsTests",
-            dependencies: ["Constants"]),
+            dependencies: ["Constants"]
+        ),
     ]
 )

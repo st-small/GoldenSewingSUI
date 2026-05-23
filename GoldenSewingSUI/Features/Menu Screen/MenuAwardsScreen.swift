@@ -4,9 +4,9 @@ import Utilities
 struct MenuAwardsScreen: View {
     private let columns = [
         GridItem(.flexible(), spacing: 10),
-        GridItem(.flexible())
+        GridItem(.flexible()),
     ]
-    
+
     let awardsFirst = [
         AwardModel(
             title: "Дипломы предприятия «Золотое шитье»",
@@ -36,9 +36,9 @@ struct MenuAwardsScreen: View {
         AwardModel(
             title: "«Лидер отрасли»",
             image: Image(.nagorodi007)
-        )
+        ),
     ]
-    
+
     let awardsSecond = [
         AwardModel(
             title: "Медаль «За выдающиеся достижения»",
@@ -61,36 +61,36 @@ struct MenuAwardsScreen: View {
             image: Image(.nagorodi012)
         ),
     ]
-    
+
     var body: some View {
-		ScrollView {
-			LazyVGrid(columns: columns, spacing: 10) {
-				ForEach(awardsFirst) { award in
-					awardView(award)
-				}
-			}
-			.padding(.horizontal, 16)
-			
-			HStack {
-				Text("Наградные медали предприятия")
-					.font(.system(size: 17, weight: .semibold))
-				
-				Spacer()
-			}
-			.padding(.top, 18)
-			.padding(.horizontal, 16)
-			
-			LazyVGrid(columns: columns, spacing: 10) {
-				ForEach(awardsSecond) { award in
-					awardView(award)
-				}
-			}
-			.padding(.horizontal, 16)
-		}
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(awardsFirst) { award in
+                    awardView(award)
+                }
+            }
+            .padding(.horizontal, 16)
+
+            HStack {
+                Text("Наградные медали предприятия")
+                    .font(.system(size: 17, weight: .semibold))
+
+                Spacer()
+            }
+            .padding(.top, 18)
+            .padding(.horizontal, 16)
+
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(awardsSecond) { award in
+                    awardView(award)
+                }
+            }
+            .padding(.horizontal, 16)
+        }
         .navigationTitle("Награды")
         .navigationBarTitleDisplayMode(.inline)
     }
-    
+
     private func awardView(_ award: AwardModel) -> some View {
         VStack {
             ZStack {
@@ -99,7 +99,7 @@ struct MenuAwardsScreen: View {
                     .resizable()
                     .scaledToFit()
             }
-            
+
             Text(award.title)
                 .multilineTextAlignment(.center)
                 .font(.system(size: 12))
@@ -121,7 +121,7 @@ public struct AwardModel: Identifiable {
     let title: String
     let image: Image
     let bgColor: Color
-    
+
     public init(
         title: String,
         image: Image,

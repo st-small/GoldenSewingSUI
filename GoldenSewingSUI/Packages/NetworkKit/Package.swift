@@ -8,13 +8,15 @@ let package = Package(
     products: [
         .library(
             name: "NetworkKit",
-            targets: ["NetworkKit"]),
+            targets: ["NetworkKit"]
+        ),
     ],
     targets: [
         .target(
             name: "NetworkKit"),
         .testTarget(
             name: "NetworkKitTests",
-            dependencies: ["NetworkKit"]),
+            dependencies: ["NetworkKit"]
+        ),
     ]
 )

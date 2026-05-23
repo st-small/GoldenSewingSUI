@@ -4,15 +4,15 @@ import SwiftUI
 public struct ProductGalleryView: View {
     @Binding var showGallery: Bool
     @Binding var currentIndex: Int
-    
+
     let images: [ImageModel]
-    
+
     @State private var offset: CGSize = .zero
-    
+
     public var body: some View {
         NavigationStack {
             TabView(selection: $currentIndex) {
-                ForEach(0..<images.count, id: \.self) { index in
+                ForEach(0 ..< images.count, id: \.self) { index in
                     GalleryViewContainer(
                         model: images[index]
                     )
@@ -32,7 +32,7 @@ public struct ProductGalleryView: View {
                             .foregroundStyle(.white)
                     }
                 }
-                
+
                 ToolbarItem(placement: .topBarTrailing) {
                     Text("\(currentIndex + 1)/\(images.count)")
                 }

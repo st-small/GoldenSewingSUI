@@ -14,7 +14,7 @@ struct MenuForPartnersScreen: View {
                 MenuRowElement(
                     value: "жесткая канитель-проволка"),
                 MenuRowElement(
-                    value: "все виды цветной канители.")
+                    value: "все виды цветной канители."),
             ]
         ),
         MenuItemRow(
@@ -23,7 +23,7 @@ struct MenuForPartnersScreen: View {
                 MenuRowElement(
                     value: "Рассмотрим предложения фирм и частных лиц по закупке шлифованных натуральных камней (гранат, оникс, топаз, бирюза, жемчуг, аметист и др.) следующих диаметров:\n   • малые (Ø от 1,5мм до 2,5мм)\n   • средние (Ø от 2,5мм до 4,5мм)\n   • крупные (Ø от 4,5мм до 6,5мм).",
                     isDotted: false
-                )
+                ),
             ]
         ),
         MenuItemRow(
@@ -32,11 +32,11 @@ struct MenuForPartnersScreen: View {
                 MenuRowElement(
                     value: "Предлагаем комплекты вышивки для сбора митр, покровцы, кресты, плащаницы и другие товары по специальным ценам.",
                     isDotted: false
-                )
+                ),
             ]
         ),
     ]
-    
+
     var body: some View {
         if #available(iOS 18.0, *) {
             List {
